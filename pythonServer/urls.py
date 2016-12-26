@@ -21,5 +21,7 @@ from manage_urls_app import views
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^item/(?P<id>\d)/', views.item_details, name='item details'),
+	url(r'^getTopFamous/'),
+    url(r'^getTopFamous/' , views.getTopFamous),
     url(r'^admin/', admin.site.urls),
 ]
