@@ -20,7 +20,8 @@ def searchTweetsForCeleb(celebLastName):
         texts[word] = {}
         texts[word]['Texts'] = []
         for tweet in tweetsWithWord:
-            texts[word]['Texts'].append(tweet['text'])
+            if tweet['text'] not in texts[word]['Texts']:
+                texts[word]['Texts'].append(tweet['text'])
         texts[word]['texts_count'] = len(texts[word]['Texts'])
         number = 0
         for text in texts[word]['Texts']:

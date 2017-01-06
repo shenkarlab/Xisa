@@ -10,6 +10,6 @@ def item_details(request, id):
 def getFamous(request):
 	return HttpResponse(searchCeleb.getFamouses())
 
-def getFamousProfile(request,string):
-	return HttpResponse(celebTweets.searchTweetsForCeleb("Trump"))
+def getFamousProfile(request,name):
+	return HttpResponse(celebTweets.searchTweetsForCeleb(name))
 #	#TODO: return name,picture,bad word(array),bad words with count(array) how many said the bad word,how many retweet for page 2
