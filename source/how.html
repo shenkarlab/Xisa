@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+	<head>
+		<title>XISA</title>
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/chart.js/dist/Chart.bundle.min.js"></script>
+		<script src="scripts/script.js"></script>
+		<link rel="stylesheet" type="text/css" href="scss/style.css">
+	</head>
+	<body ng-controller="howCtrl">
+		<div id="wrapper">
+			<!-- @include template/nav.html -->
+			<section id="howText">
+				<p>Users also said about:</p>
+				<p id="howName">THE #{{name}}</p>
+				<p>{{celeb}}</p>
+			</section>
+			<section id="bars">
+			</section>
+		</div>
+	</body>
+</html>
