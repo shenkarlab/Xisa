@@ -50,14 +50,12 @@ def getFamouses():
                         followers_count = user["followers_count"]
                         image = user["profile_image_url"].replace('_normal', '')
                 tempUser["name"] = userName;
-                tempUser["followers_count"] = followers_count
                 tempUser["image"] = image
                 tempUser["word"] = word.upper()
                 tempUser["retweet_count"] = retweets
                 celebs.append(tempUser)
             else:
                 tempUser["name"] = userName;
-                tempUser["followers_count"] = followers_count
                 tempUser["image"] = image
                 tempUser["word"] = word.upper()
                 tempUser["retweet_count"] = retweets
