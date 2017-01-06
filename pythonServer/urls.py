@@ -22,6 +22,8 @@ urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^item/(?P<id>\d)/', views.item_details, name='item details'),
 	url(r'^famous/',views.getFamous),
+	url(r'^famousProfile/(?P<string>[\w\-]+)/$',views.getFamousProfile,name='Famous Name' ),
+
     #url(r'^Famous/' , views.getTopFamous),
     url(r'^admin/', admin.site.urls),
 ]

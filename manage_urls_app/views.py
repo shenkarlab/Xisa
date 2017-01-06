@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from manage_urls_app import searchCeleb
+from manage_urls_app import celebTweets
 def index(request):
 	return HttpResponse('<h1>Hello World! </h1>')
 
@@ -8,8 +9,7 @@ def item_details(request, id):
 
 def getFamous(request):
 	return HttpResponse(searchCeleb.getFamouses())
-	#TODO: return name,picture,bad word, how many said the bad word,how many retweet for page 1
 
-#def getFamous(request,twitterName):
-#	return 1
+def getFamousProfile(request,string):
+	return HttpResponse(celebTweets.searchTweetsForCeleb("Trump"))
 #	#TODO: return name,picture,bad word(array),bad words with count(array) how many said the bad word,how many retweet for page 2
