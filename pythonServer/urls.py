@@ -19,8 +19,6 @@ from django.contrib import admin
 from manage_urls_app import views
 
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
-	url(r'^item/(?P<id>\d)/', views.item_details, name='item details'),
 	url(r'^famous/',views.getFamous),
 	url(r'^famousProfile/(?P<name>[\w\-]+)/$',views.getFamousProfile,name='Famous Name' ),
 
