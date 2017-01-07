@@ -1,10 +1,11 @@
 from django.http import HttpResponse
-from manage_urls_app import searchCeleb
-from manage_urls_app import celebTweets
+from manage_urls_app import celeb_search
+from manage_urls_app import celeb_tweets
 
 
-def getFamous(request):
-	return HttpResponse(searchCeleb.getFamouses())
+def get_celebs(request):
+    return HttpResponse(celeb_search.get_celebs(), content_type="application/json")
 
-def getFamousProfile(request,name):
-	return HttpResponse(celebTweets.searchTweetsForCeleb(name))
+
+def get_celeb_profile(request, name):
+    return HttpResponse(celeb_tweets.get_tweets(name), content_type="application/json")

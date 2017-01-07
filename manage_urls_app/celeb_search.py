@@ -7,7 +7,7 @@ from manage_urls_app import config
 twitter = Twitter(
     auth=OAuth(config.access_key,config.access_secret,config.consumer_key,config.consumer_secret))
 
-def getFamouses():
+def get_celebs():
     celebNames = []
     celebs = []
     celebsRepeat = []
@@ -49,16 +49,11 @@ def getFamouses():
                         userName = user["name"]
                         followers_count = user["followers_count"]
                         image = user["profile_image_url"].replace('_normal', '')
-                tempUser["name"] = userName;
-                tempUser["image"] = image
-                tempUser["word"] = word.upper()
-                tempUser["retweet_count"] = retweets
-                celebs.append(tempUser)
-            else:
-                tempUser["name"] = userName;
-                tempUser["image"] = image
-                tempUser["word"] = word.upper()
-                tempUser["retweet_count"] = retweets
-                celebs.append(tempUser)
+            tempUser["name"] = userName;
+            tempUser["image"] = image
+            tempUser["word"] = word.upper()
+            tempUser["retweet_count"] = retweets
+            celebs.append(tempUser)
         celebNames = []
     return json.dumps(celebs)
+
