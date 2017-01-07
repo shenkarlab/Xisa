@@ -10,7 +10,7 @@ bad_words = ["racist", "fascist", "ugly", "stupid", "liar", "corrupt", "fat", "m
 def get_tweets(name):
     texts = {}
     result = []
-    max_bad_words = 0;
+    max_bad_words = 0
     for word in bad_words:
         phrase = '/"' + name + ' is a ' + word + '/"'
         tweets = twitter.search.tweets(q=phrase, count=100)['statuses']
@@ -28,6 +28,4 @@ def get_tweets(name):
             max_bad_words = bad_words_count
             texts[word]['word'] = word
             result.append(texts[word])
-    print(result)
     return json.dumps(result)
-get_tweets("Trump")
