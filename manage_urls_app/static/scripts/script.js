@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('xisa', []);
-var path = 'xisaserver.herokuapp.com';
+var path = 'https://xisaserver.herokuapp.com';
 
 function getUrlParameter(param) {
         var sPageURL = window.location.search.substring(1),
@@ -118,18 +118,3 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 
 }]);
 
-var movingBars = function(){
-    var timer = !1;
-    _Ticker = $("#T1").newsTicker();
-    _Ticker.on("mouseenter",function(){
-        var __self = this;
-        timer = setTimeout(function(){
-          __self.pauseTicker();
-        },200);
-    });
-    _Ticker.on("mouseleave",function(){
-        clearTimeout(timer);
-        if(!timer) return !1;
-        this.startTicker();
-    });
-};

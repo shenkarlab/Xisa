@@ -7,6 +7,7 @@ from manage_urls_app import config
 twitter = Twitter(
     auth=OAuth(config.access_key,config.access_secret,config.consumer_key,config.consumer_secret))
 
+
 def get_celebs():
     celebNames = []
     celebs = []
