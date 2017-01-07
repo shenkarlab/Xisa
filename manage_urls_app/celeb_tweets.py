@@ -25,6 +25,6 @@ def get_tweets(name):
         temp = value
         result.append(temp)
     result.sort(key=lambda x: x['bad_words_count'])
-    return json.dumps(result[5:])
+    return json.dumps(result[4:8])
 
 
