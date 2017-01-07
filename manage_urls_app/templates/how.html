@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+	<head>
+		<title>XISA</title>
+		<script
+		  src="https://code.jquery.com/jquery-3.1.1.min.js"
+		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		  crossorigin="anonymous">
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="../static/scripts/jquery.tickerNews.js"></script>
+		<script src="../static/scripts/script.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	</head>
+	<body ng-controller="howCtrl" id="how">
+		<nav ng-controller="navCtrl">
+			<p>according to Twitter</p>
+			<ul>
+				<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a>
+				<div class="claer"></div>
+			</ul>
+			<div class="claer"></div>
+		</nav>
+		<section id="howHeader">
+			<section id="names">
+				<p id="howCelebName">{{celebName}}</p>
+				<p id="twitterName">{{twitterName}}</p>
+			</section>
+			<section id="howText">
+				<p>This week, People said {{numOfPeople}} times That he is <span id="mark">{{badWord}}</span></p>
+				<p>They also said about him:</p>
+			</section>
+			<div class="clear"></div>
+		</section>
+		<section id="howContent">
+			<section id="bars"></section>
+			<section id="bad_words"></section>
+		</section>
+	</body>
+</html>
