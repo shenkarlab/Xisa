@@ -1,4 +1,4 @@
-consumer_key = "NsdUnoM8W1ZHEQOylGmaftkJ5"
-consumer_secret = "97WQmq4KYI5QahXyomrHyL8mAz7nMK4heHKFe9TK7fmXeD4F7L"
-access_key = "798072331864309765-CYMWpbVstu3MNOT8KRiWvBECbmVqHiA"
-access_secret = "ZrtkTIYxCLOYdxwNKn3zbdwQ7d6IfzLS7Fa9fBYAG0O1T"
+consumer_key = "WJCuAK9k41Ks1L6MmAgroIoOC"
+consumer_secret = "HuNvhLU8QT3z9jjP38lp99pEfrxjOR1mqoRdTF2sTICjCJP5dN"
+access_key = "809132041363222528-SywcqlS0wHqQYHtC8lkm482RgYMg0T4"
+access_secret = "coopLxnijCnHuTCoeXqwXMOoBqFZxJnSE00pL4K2jp5dn"
