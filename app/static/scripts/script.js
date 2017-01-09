@@ -19,7 +19,7 @@ function getUrlParameter(param) {
 }
 
 app.controller('whoCtrl', function($scope, $http) {
-    $http.get(path+'getCelebs')
+    $http.get('/api/getCelebs')
 	    .then(function (response){
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
@@ -45,9 +45,13 @@ app.controller('whoCtrl', function($scope, $http) {
 });
 
 app.controller('howCtrl', function($scope, $http) {
-	 var names = getUrlParameter('name').replace("%20", " ").split(" ");
-   var lastName = names[names.length - 1];
-   $http.get(path+'celeb/'+lastName)
+   var lastName = getUrlParameter('name').split("%20");
+   lastName = lastName[lastName.length -1];
+   if(lastName == null){
+    lastName = getUrlParameter('name');
+   }
+   var request = decodeURIComponent('/api/celeb/'+lastName);
+   $http.get(request)
 	    .then(function (response){
         var url = getUrlParameter('url');
         var urlAppend = 'url('+url+')';
@@ -55,8 +59,8 @@ app.controller('howCtrl', function($scope, $http) {
         $('body').css('background-repeat','no-repeat');
         $('body').css('background-size','100% 100%');
 	    	var badWord = getUrlParameter('word');
-	    	$scope.celebName = getUrlParameter('name').replace("%20", " ").toUpperCase();
-	     	$scope.twitterName = getUrlParameter('name').replace("%20", " ");
+	    	$scope.celebName = decodeURIComponent(getUrlParameter('name')).toUpperCase();
+	     	$scope.twitterName = decodeURIComponent(getUrlParameter('name'));
         $scope.numOfPeople = 'This week, People said 100 times That he is ';
         $scope.badWord = badWord;
         $scope.also = 'They also said about him:';
@@ -91,9 +95,13 @@ app.controller('howCtrl', function($scope, $http) {
 });
 
 app.controller('whatCtrl', function($scope, $http) {
-   var names = getUrlParameter('name').replace("%20", " ").split(" ");
-   var lastName = names[names.length - 1];
-   $http.get(path+'celeb/'+lastName)
+   var lastName = getUrlParameter('name').split("%20");
+   lastName = lastName[lastName.length -1];
+   if(lastName == null){
+    lastName = getUrlParameter('name');
+   }
+   var request = decodeURIComponent('/api/celeb/'+lastName);
+   $http.get(request)
       .then(function (response){
         var url = getUrlParameter('url');
         var urlAppend = 'url('+url+')';
@@ -101,8 +109,8 @@ app.controller('whatCtrl', function($scope, $http) {
         $('body').css('background-repeat','no-repeat');
         $('body').css('background-size','100% 100%');
         var badWord = getUrlParameter('word');
-        $scope.firstName = getUrlParameter('name').replace("%20", " ").toUpperCase().split(" ")[0];
-        $scope.lastName = getUrlParameter('name').replace("%20", " ").toUpperCase().split(" ")[1];
+        $scope.firstName = decodeURIComponent(getUrlParameter('name')).toUpperCase().split(" ")[0];
+        $scope.lastName = decodeURIComponent(getUrlParameter('name')).toUpperCase().split(" ")[1];
         $scope.twitterName = getUrlParameter('name').replace("%20", " ");
         $scope.followersCount = '3000 followers';
         $scope.numOfPeople = 'This week, '+$scope.firstName+' said ';
@@ -145,10 +153,8 @@ app.controller('whatCtrl', function($scope, $http) {
 });
 
 app.controller('whomCtrl', function($scope, $http) {
-    $http.get(path+'getCelebs')
+    $http.get('/api/getCelebs')
       .then(function (response){
-        // var minRetweets = 9999999999;
-        // var maxRetweets = 0;
         $scope.mostOffencive = 'MOST OFFENCIVE';
         $scope.users = 'USERS';
         $scope.lowerFollowers = 'lower followers';

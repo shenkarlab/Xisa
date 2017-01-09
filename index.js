@@ -1,13 +1,16 @@
 var express	= require('express'),
 	path	= require('path');
 	fs		= require('fs');
-	http	= require('http'),
-	cors = require('cors');
+	cors 	= require('cors'),
+	request = require('request');
 
-var port = process.env.PORT || 3000,
-	app = express(),
-	clientRootPath = __dirname + '/app/',
-	apiPath = 'xisaserver.herokuapp.com';
+const http = require('http');
+
+var port 			= process.env.PORT || 3000,
+	app 			= express(),
+	clientRootPath 	= __dirname + '/app/',
+	apiPath 		= 'xisaserver.herokuapp.com',
+	clientPort 			= 8080;
 
 //server config
 app.use(express.static(__dirname + '/app/static'));
@@ -73,55 +76,28 @@ app.get('/whom', (req,res,next) => {
 });
 
 app.get('/api/getCelebs', (req,res,next) => {
-	var options = {
-		host: apiPath,
-		path: '/getCelebs'
-	}
-	console.log(options);
-	var request = http.request(options, (response) => {
-		console.log(`STATUS: ${res.statusCode}`);
-		var json = "";
-		response.on('data', (data) => {
-    		json += data;
-    		console.log(data);	
-    	});
-    	response.on('end', () => {
-    		console.log('done');
-    		res.status(200).json(json);
-    	});
-	});
-	request.on('error', (err) => {
-		if (err) {
-    		console.log(err);
-    		throw err; 
-    	}
-	});
+	request('http://localhost:8080/getCelebs', function (error, response, body) {
+	  if(error){
+	  	console.log(error);
+	  }
+	  if (!error && response.statusCode == 200) {
+	    console.log(body);
+	    return res.status(200).json(JSON.parse(body));
+	  }
+	})
 });
 
 app.get('/api/celeb/:name', (req,res,next) => {
-	var options = {
-		host: apiPath,
-		path: '/celeb/' + req.query.name
-	}
-	console.log(options);
-	var request = http.request(options, (response) => {
-		console.log(`STATUS: ${res.statusCode}`);
-		var json = "";
-		response.on('data', (data) => {
-    		json += data;
-    		console.log(data);	
-    	});
-    	response.on('end', () => {
-    		console.log('done');
-    		res.status(200).json(json);
-    	});
-	});
-	request.on('error', (err) => {
-		if (err) {
-			console.log(err);
-    		throw err; 
-    	}
-	});
+	var queryRequest = 'http://localhost:8080/celeb/'+req.params.name;
+	request(queryRequest, function (error, response, body) {
+	  if(error){
+	  	console.log(error);
+	  }
+	  if (!error && response.statusCode == 200) {
+	    console.log(body);
+	    return res.status(200).json(JSON.parse(body));
+	  }
+	})
 });
 
 app.get('*', (req,res) => {
