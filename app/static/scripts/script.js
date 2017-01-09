@@ -2,43 +2,34 @@
 
 var app = angular.module('xisa', []);
 
-var path = 'http://xisaserver.herokuapp.com';
+var path = 'http://xisasimpleserver.herokuapp.com/api/';
 
 function getUrlParameter(param) {
-        var sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split(/[&||?]/),
-            res;
-        for (var i = 0; i < sURLVariables.length; i += 1) {
-            var paramName = sURLVariables[i],
-                sParameterName = (paramName || '').split('=');
-            if (sParameterName[0] === param) {
-                res = sParameterName[1];
-            }
-        }
-        return res;
+  var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split(/[&||?]/),
+      res;
+  for (var i = 0; i < sURLVariables.length; i += 1) {
+      var paramName = sURLVariables[i],
+          sParameterName = (paramName || '').split('=');
+      if (sParameterName[0] === param) {
+          res = sParameterName[1];
+      }
+  }
+  return res;
 }
 
 app.controller('whoCtrl', function($scope, $http) {
-    $http.get(path+'/getCelebs')
+    $http.get(path+'getCelebs')
 	    .then(function (success){
-	    	// var minRetweets = 9999999999;
-    		// var maxRetweets = 0;
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
         $scope.lowerBuzz = 'lower Buzz';
         $scope.higherBuzz = 'higher Buzz';
         $('retweet').append('<img id="bar" src="images/bar.png" alt="color bar">');
     		var i = 1;
-    		// var color = ['#dadada','#c7c7c7','#b5b5b5','#a2a2a2','#464646'];
 	    	angular.forEach(success.data, function(value){
-	    		// if(value.retweet_count > maxRetweets){
-	    		// 	maxRetweets = value.retweet_count;
-	    		// }
-	    		// if(value.retweet_count < minRetweets){
-	    		// 	minRetweets = value.retweet_count;
-	    		// }
 	    		var cube =	'<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
-        	    						'<section class="cube" id="cube'+i+'">'+
+      	    						'<section class="cube" id="cube'+i+'">'+
         									'<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
                           '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
         								'</section>'+
@@ -48,9 +39,7 @@ app.controller('whoCtrl', function($scope, $http) {
           $('#cube'+i).css('background',url);
   				i++;
 	    	})
-        // var range = maxRetweets - minRetweets;
-        // var categories = [range/10,(range/10)*2,(range/10)*3,(range/10)*4,(range/10)*5,(range/10)*6,(range/10)*7,(range/10)*8,(range/10)*9,range+minRetweets];
-		},function (error){
+      },function (error){
         $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
 		});
 });
@@ -156,7 +145,7 @@ app.controller('whatCtrl', function($scope, $http) {
 });
 
 app.controller('whomCtrl', function($scope, $http) {
-    $http.get(path+'/getCelebs')
+    $http.get(path+'getCelebs')
       .then(function (success){
         // var minRetweets = 9999999999;
         // var maxRetweets = 0;
@@ -166,14 +155,7 @@ app.controller('whomCtrl', function($scope, $http) {
         $scope.higherFollowers = 'higher followers';
         $('whomretweet').append('<img id="bar" src="images/redbar.png" alt="color bar">');
         var i = 1;
-        // var color = ['#dadada','#c7c7c7','#b5b5b5','#a2a2a2','#464646'];
         angular.forEach(success.data, function(value){
-          // if(value.retweet_count > maxRetweets){
-          //  maxRetweets = value.retweet_count;
-          // }
-          // if(value.retweet_count < minRetweets){
-          //  minRetweets = value.retweet_count;
-          // }
           var cube =  '<a href="/what?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
                           '<section class="whomcube" id="whomcube'+i+'">'+
                           '<p id="userName"><span class="blackHighlight">'+value.word+'</span></p>'+
@@ -185,9 +167,7 @@ app.controller('whomCtrl', function($scope, $http) {
           $('#whomcube'+i).css('background',url);
           i++;
         })
-        // var range = maxRetweets - minRetweets;
-        // var categories = [range/10,(range/10)*2,(range/10)*3,(range/10)*4,(range/10)*5,(range/10)*6,(range/10)*7,(range/10)*8,(range/10)*9,range+minRetweets];
-    },function (error){
+      },function (error){
         $('#whomcubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
 });
@@ -200,15 +180,15 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
         LinkText: 'WHO'
     }, {
         Title: '#',
-        Alias: '/how',
+        Alias: 'how',
         LinkText: 'HOW'
     }, {
         Title: '#',
-        Alias: '/what',
+        Alias: 'what',
         LinkText: 'WHAT'
     }, {
         Title: '/whom',
-        Alias: '/whom',
+        Alias: 'whom',
         LinkText: 'WHOM'
     }];
 
