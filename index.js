@@ -70,7 +70,6 @@ app.get('/whom', (req,res,next) => {
 
 app.get('/api/getCelebs', (req,res,next) => {
 	var options = {
-		protocol: 'https',
 		method: 'GET',
 		host: apiPath,
 		hostname: apiPath,
@@ -94,7 +93,6 @@ app.get('/api/getCelebs', (req,res,next) => {
 
 app.get('/api/celeb/:name', (req,res,next) => {
 	var options = {
-		protocol: 'https',
 		method: 'GET',
 		host: apiPath,
 		hostname: apiPath,
