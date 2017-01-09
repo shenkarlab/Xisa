@@ -1,7 +1,8 @@
 var express	= require('express'),
 	path	= require('path');
 	fs		= require('fs');
-	http	= require('http');
+	http	= require('http'),
+	cors = require('cors');
 
 var port = process.env.PORT || 3000,
 	app = express(),
@@ -10,24 +11,24 @@ var port = process.env.PORT || 3000,
 
 //server config
 app.use(express.static(__dirname + '/app/static'));
-app.use((req,res,next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+app.use(cors());
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, content-type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader("Content-Type", "text/html");
+  	next();
 });
 
 //routes
-app.all('*', (req,res,next) => {
-	res.writeHead(200, { "Content-Type": "text/html" });
-	next()
-});
 
 app.all('/api/*', (req,res,next) => {
-	res.writeHead(200, { "Content-Type": "application/json" });
+	res.setHeader("Content-Type", "application/json");
 	next()
 });
 
-app.get('/', (req,res) => {
+app.get('/', (req,res,next) => {
 	fs.readFile(clientRootPath + 'views/index.html', (err, html) => {
 		if (err) {
         	throw err; 
@@ -37,7 +38,7 @@ app.get('/', (req,res) => {
 	});
 });
 
-app.get('/how', (req,res) => {
+app.get('/how', (req,res,next) => {
 	fs.readFile(clientRootPath + 'views/how.html', (err, html) => {
 		if (err) {
         	throw err; 
@@ -47,7 +48,7 @@ app.get('/how', (req,res) => {
 	});
 });
 
-app.get('/what', (req,res) => {
+app.get('/what', (req,res,next) => {
 	fs.readFile(clientRootPath + 'views/what.html', (err, html) => {
 		if (err) {
         	throw err; 
@@ -57,7 +58,7 @@ app.get('/what', (req,res) => {
 	});
 });
 
-app.get('/whom', (req,res) => {
+app.get('/whom', (req,res,next) => {
 	fs.readFile(clientRootPath + 'views/whom.html', (err, html) => {
 		if (err) {
         	throw err; 
@@ -67,7 +68,7 @@ app.get('/whom', (req,res) => {
 	});
 });
 
-app.get('/api/getCelebs', (req,res) => {
+app.get('/api/getCelebs', (req,res,next) => {
 	var options = {
 		protocol: 'http',
 		method: 'GET',
@@ -76,7 +77,7 @@ app.get('/api/getCelebs', (req,res) => {
 		path: '/getCelebs'
 	}
 	http.request(options, (response) => {
-		vsr json = "";
+		var json = "";
 		response.on('error', (err) => {
 			if (err) {
 	    		throw err; 
@@ -91,7 +92,7 @@ app.get('/api/getCelebs', (req,res) => {
 	});
 });
 
-app.get('/api/celeb/:name', (req,res) => {
+app.get('/api/celeb/:name', (req,res,next) => {
 	var options = {
 		protocol: 'http',
 		method: 'GET',
@@ -100,7 +101,7 @@ app.get('/api/celeb/:name', (req,res) => {
 		path: '/celeb/' + req.query.name
 	}
 	http.request(options, (response) => {
-		vsr json = "";
+		var json = "";
 		response.on('error', (err) => {
 			if (err) {
 	    		throw err; 
