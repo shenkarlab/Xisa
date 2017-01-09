@@ -70,47 +70,51 @@ app.get('/whom', (req,res,next) => {
 
 app.get('/api/getCelebs', (req,res,next) => {
 	var options = {
-		method: 'GET',
 		host: apiPath,
-		hostname: apiPath,
 		path: '/getCelebs'
 	}
-	http.request(options, (response) => {
+	console.log(options);
+	var request = http.request(options, (response) => {
+		console.log(`STATUS: ${res.statusCode}`);
 		var json = "";
-		response.on('error', (err) => {
-			if (err) {
-	    		throw err; 
-	    	}
-		});
 		response.on('data', (data) => {
-    		json += data;	
+    		json += data;
+    		console.log(data);	
     	});
     	response.on('end', () => {
+    		console.log('done');
     		res.status(200).json(json);
     	});
+	});
+	request.on('error', (err) => {
+		if (err) {
+    		throw err; 
+    	}
 	});
 });
 
 app.get('/api/celeb/:name', (req,res,next) => {
 	var options = {
-		method: 'GET',
 		host: apiPath,
-		hostname: apiPath,
 		path: '/celeb/' + req.query.name
 	}
-	http.request(options, (response) => {
+	console.log(options);
+	var request = http.request(options, (response) => {
+		console.log(`STATUS: ${res.statusCode}`);
 		var json = "";
-		response.on('error', (err) => {
-			if (err) {
-	    		throw err; 
-	    	}
-		});
 		response.on('data', (data) => {
-    		json += data;	
+    		json += data;
+    		console.log(data);	
     	});
     	response.on('end', () => {
+    		console.log('done');
     		res.status(200).json(json);
     	});
+	});
+	request.on('error', (err) => {
+		if (err) {
+    		throw err; 
+    	}
 	});
 });
 

@@ -20,14 +20,14 @@ function getUrlParameter(param) {
 
 app.controller('whoCtrl', function($scope, $http) {
     $http.get(path+'getCelebs')
-	    .then(function (success){
+	    .then(function (response){
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
         $scope.lowerBuzz = 'lower Buzz';
         $scope.higherBuzz = 'higher Buzz';
         $('retweet').append('<img id="bar" src="images/bar.png" alt="color bar">');
     		var i = 1;
-	    	angular.forEach(success.data, function(value){
+	    	angular.forEach(response.data, function(value){
 	    		var cube =	'<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
       	    						'<section class="cube" id="cube'+i+'">'+
         									'<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
@@ -48,7 +48,7 @@ app.controller('howCtrl', function($scope, $http) {
 	 var names = getUrlParameter('name').replace("%20", " ").split(" ");
    var lastName = names[names.length - 1];
    $http.get(path+'celeb/'+lastName)
-	    .then(function (success){
+	    .then(function (response){
         var url = getUrlParameter('url');
         var urlAppend = 'url('+url+')';
         $('body').css('background',urlAppend);
@@ -61,7 +61,7 @@ app.controller('howCtrl', function($scope, $http) {
         $scope.badWord = badWord;
         $scope.also = 'They also said about him:';
         var i = 0;
-        angular.forEach(success.data, function(data){
+        angular.forEach(response.data, function(data){
           var barDiv =  '<p id="barBadWord">'+data.word.toUpperCase()+'</p>'+
                         '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
                         '<p id="barWordCount">'+data.bad_words_count+'</p>'
@@ -94,7 +94,7 @@ app.controller('whatCtrl', function($scope, $http) {
    var names = getUrlParameter('name').replace("%20", " ").split(" ");
    var lastName = names[names.length - 1];
    $http.get(path+'celeb/'+lastName)
-      .then(function (success){
+      .then(function (response){
         var url = getUrlParameter('url');
         var urlAppend = 'url('+url+')';
         $('body').css('background',urlAppend);
@@ -115,7 +115,7 @@ app.controller('whatCtrl', function($scope, $http) {
           $('#pics').append(pic);
         }
         $('#pics').append('<div class="clear"></div>');
-        angular.forEach(success.data, function(data){
+        angular.forEach(response.data, function(data){
           var barDiv =  '<p id="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
                         '<div class="whatbar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
                         '<p id="whatbarWordCount">'+data.bad_words_count+'</p>'
@@ -146,7 +146,7 @@ app.controller('whatCtrl', function($scope, $http) {
 
 app.controller('whomCtrl', function($scope, $http) {
     $http.get(path+'getCelebs')
-      .then(function (success){
+      .then(function (response){
         // var minRetweets = 9999999999;
         // var maxRetweets = 0;
         $scope.mostOffencive = 'MOST OFFENCIVE';
@@ -155,7 +155,7 @@ app.controller('whomCtrl', function($scope, $http) {
         $scope.higherFollowers = 'higher followers';
         $('whomretweet').append('<img id="bar" src="images/redbar.png" alt="color bar">');
         var i = 1;
-        angular.forEach(success.data, function(value){
+        angular.forEach(response.data, function(value){
           var cube =  '<a href="/what?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
                           '<section class="whomcube" id="whomcube'+i+'">'+
                           '<p id="userName"><span class="blackHighlight">'+value.word+'</span></p>'+
