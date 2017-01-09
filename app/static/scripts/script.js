@@ -2,7 +2,7 @@
 
 var app = angular.module('xisa', []);
 
-var path = 'http://xisasimpleserver.herokuapp.com/api/';
+var path = 'https://xisasimpleserver.herokuapp.com/api/';
 
 function getUrlParameter(param) {
   var sPageURL = window.location.search.substring(1),
