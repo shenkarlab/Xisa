@@ -24,6 +24,10 @@ app.use(function(req, res, next) {
 //routes
 
 app.all('/api/*', (req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, content-type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
 	res.setHeader("Content-Type", "application/json");
 	next()
 });
@@ -88,6 +92,7 @@ app.get('/api/getCelebs', (req,res,next) => {
 	});
 	request.on('error', (err) => {
 		if (err) {
+    		console.log(err);
     		throw err; 
     	}
 	});
@@ -113,6 +118,7 @@ app.get('/api/celeb/:name', (req,res,next) => {
 	});
 	request.on('error', (err) => {
 		if (err) {
+			console.log(err);
     		throw err; 
     	}
 	});
@@ -125,4 +131,4 @@ app.get('*', (req,res) => {
 //create server
 app.listen(port, () => {
   console.log('listening on port '+port+'!');
-})
+});
