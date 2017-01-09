@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+	<head>
+		<title>XISA</title>
+		<script
+		  src="https://code.jquery.com/jquery-3.1.1.min.js"
+		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		  crossorigin="anonymous">
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="scripts/jquery.tickerNews.min.js"></script>
+		<script src="scripts/script.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body ng-controller="whatCtrl" id="what">
+		<div id="whatdimmer">
+			<nav ng-controller="navCtrl">
+				<p>according to Twitter</p>
+				<ul>
+					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+					<div class="claer"></div>
+				</ul>
+				<div class="claer"></div>
+			</nav>
+			<section id="whatHeader">
+				<section id="whatnames">
+					<p id="whatuserName">{{firstName}}</p>
+					<p id="whatuserName">{{lastName}}</p>
+					<p id="whattwitterName">{{twitterName}}</p>
+					<p id="whatfollowersCount"><span id="mark">{{followersCount}}</span></p>
+				</section>
+				<section id="whatText">
+					<p>{{numOfPeople}}<span id="whatmark">{{badWordCount}}</span>{{also}}</p>
+				</section>
+				<section id="hatedPeople">
+					<p id="picText"><span id="whatmark">{{picText}}</span></p>
+					<section id="pics"></section>
+				</section>
+				<div class="clear"></div>
+			</section>
+			<section id="whatContent">
+				<section id="whatbars"></section>
+				<section id="whatbad_words"></section>
+			</section>
+		</div>
+	</body>
+</html>

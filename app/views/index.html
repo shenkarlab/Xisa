@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+	<head>
+		<title>XISA</title>
+		<script
+		  src="https://code.jquery.com/jquery-3.1.1.min.js"
+		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		  crossorigin="anonymous">
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="scripts/script.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body ng-controller="whoCtrl" id="who">
+		<div id="wrapper">
+			<nav ng-controller="navCtrl">
+				<p>according to Twitter</p>
+				<ul>
+					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+					<div class="claer"></div>
+				</ul>
+				<div class="claer"></div>
+			</nav>
+			<section id="header">
+				<section id="title"><b>{{mostHated}}</b> <span>{{people}}</span></section>
+				<section id="retweets">
+					<p id="left">{{ lowerBuzz }}</p>
+					<p id="right">{{ higherBuzz }}</p><br>
+				</section>
+				<div class="clear"></div>
+			</section>
+			<section id="cubeContainer"></section>
+		</div>
+	</body>
+</html>
