@@ -22,7 +22,7 @@ app.all('*', (req,res,next) => {
 	next()
 });
 
-app.all('/api/*', (req.res.next) => {
+app.all('/api/*', (req,res,next) => {
 	res.writeHead(200, { "Content-Type": "application/json" });
 	next()
 });
