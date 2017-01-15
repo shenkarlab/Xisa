@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('xisa', ['ui.bootstrap']);
+var app = angular.module('xisa', []);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var flag = false;
 

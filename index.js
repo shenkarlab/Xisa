@@ -9,7 +9,7 @@ var port 			= process.env.PORT || 3000,
 	clientRootPath 	= __dirname + '/app/',
 	apiPath 		= 'xisaserver.herokuapp.com',
 	clientPort 		= 8080,
-	DEBUG			= false;	
+	DEBUG			= true;	
 
 //server config
 app.use(express.static(__dirname + '/app/static'));
