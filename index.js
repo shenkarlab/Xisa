@@ -275,10 +275,10 @@ app.get('*', (req,res,next) => {
 
 app.use((err,req,res,next) => {
 	if(err.status == 404){
-		return res.json(JSON.parse(err));
+		return res.status(404).end(err.message);
 	}
 	else if(err.status == 500){
-		return res.json(JSON.parse(err));
+		return res.status(500).end(err.message);
 	}
 });
 

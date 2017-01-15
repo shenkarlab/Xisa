@@ -11,10 +11,9 @@
 	<body ng-controller="whoCtrl" id="who">
 		<div id="wrapper">
 			<nav ng-controller="navCtrl">
-				<p><a href="/"><img src="/images/redLOGO.png" alt="logo"></a></p>
+				<a id="logo" href="/"><img src="/images/redLOGO.png" alt="logo"></a>
 				<ul>
 					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
-					<div class="claer"></div>
 				</ul>
 				<div class="claer"></div>
 			</nav>

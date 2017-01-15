@@ -46,27 +46,9 @@ nav ul li a {
     text-decoration: none;
 }
 
-#what nav ul li a {
-    display: block;
-    color: #0000ff;
-    opacity: 0.3;
-    text-align: center;
-    font-size: 1.666em;
-    text-decoration: none;
-}
-
 nav ul li a.active {
     display: block;
     color: #ffffff;
-    text-align: center;
-    font-size: 1.666em;
-    text-decoration: none;
-}
-
-#what nav ul li a.active {
-    display: block;
-    color: #0000ff;
-    opacity: 1;
     text-align: center;
     font-size: 1.666em;
     text-decoration: none;

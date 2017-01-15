@@ -12,26 +12,26 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body ng-controller="howCtrl" id="how">
-			<nav ng-controller="navCtrl">
-				<a id= "logo" href="/whom"><img src="/images/redLOGO.png" alt="logo"></a>
-				<ul>
-					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
-				</ul>
-			</nav>
-			<section id="howHeader">
-				<section id="names">
-					<p id="howCelebName">{{celebName}}</p>
-					<p id="twitterName">{{twitterName}}</p>
-				</section>
-				<section id="howText">
-					<p>{{numOfPeople}}<span id="mark">{{badWord}}</span></p>
-					<p>{{also}}</p>
-				</section>
-				<div class="clear"></div>
+		<nav ng-controller="navCtrl">
+			<a id= "logo" href="/"><img src="/images/redLOGO.png" alt="logo"></a>
+			<ul>
+				<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+			</ul>
+		</nav>
+		<section id="howHeader">
+			<section id="names">
+				<p id="howCelebName">{{celebName}}</p>
+				<p id="twitterName">{{twitterName}}</p>
 			</section>
-			<section id="howContent">
-				<section id="bars"></section>
-				<section id="bad_words"></section>
+			<section id="howText">
+				<p>{{numOfPeople}}<span id="mark">{{badWord}}</span></p>
+				<p>{{also}}</p>
 			</section>
+			<div class="clear"></div>
+		</section>
+		<section id="howContent">
+			<section id="bars"></section>
+			<section id="bad_words"></section>
+		</section>
 	</body>
 </html>
