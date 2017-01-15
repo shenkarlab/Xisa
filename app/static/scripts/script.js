@@ -103,9 +103,10 @@ app.controller('howCtrl', function($scope, $http) {
    $http.get(request).then(function (response){
     var url = getUrlParameter('url');
     var urlAppend = 'url('+url+')';
-    $('body').css('background',urlAppend);
-    $('body').css('background-repeat','no-repeat');
-    $('body').css('background-size','100% 100%');
+    $('body').css('width', '100vw');
+    $('body').css('height', '100vh');
+    $('body').css('background', '#464646 ' + urlAppend + ' no-repeat fixed center center');
+    $('body').css('background-size', 'cover');
   	var badWord = getUrlParameter('word');
   	$scope.celebName = decodeURIComponent(getUrlParameter('name')).toUpperCase();
    	$scope.twitterName = '@'+decodeURIComponent(getUrlParameter('name'));
@@ -114,9 +115,9 @@ app.controller('howCtrl', function($scope, $http) {
     $scope.also = 'They also said about him:';
     var i = 0;
     angular.forEach(response.data, function(data){
-      var barDiv =  '<p id="barBadWord">'+data.word.toUpperCase()+'</p>'+
+      var barDiv =  '<p class="barBadWord">'+data.word.toUpperCase()+'</p>'+
                     '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
-                    '<p id="barWordCount">'+data.bad_words_count+' times</p>';
+                    '<p class="barWordCount">'+data.bad_words_count+' times</p>';
       $("#bars").append(barDiv);
       var texts = "";
       texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
@@ -178,9 +179,9 @@ app.controller('whatCtrl', function($scope, $http) {
     $('#pics').append('<div class="clear"></div>');
     angular.forEach(response.data.words_with_texts, function(data){
       badWordCount += data.count;
-      var barDiv =  '<p id="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
+      var barDiv =  '<p class="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
                     '<div class="whatbar_chart" style="width:'+data.count*3+'px;"></div>'+
-                    '<p id="whatbarWordCount">'+data.count+' times</p>';
+                    '<p class="whatbarWordCount">'+data.count+' times</p>';
       $("#whatbars").append(barDiv);
       var texts = "";
       texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';

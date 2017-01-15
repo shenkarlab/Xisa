@@ -227,7 +227,7 @@ app.get('/api/user/:name', (req,res,next) => {
 	        	var err = new Error();
   				err.status = 500;
   				err.message = error.message;
-  				next(err); 
+  				next(err); 0f
 	    	}
 	    	res.json(JSON.parse(json)); 
 		});
