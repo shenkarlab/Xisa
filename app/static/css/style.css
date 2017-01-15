@@ -94,7 +94,7 @@ nav ul li a.active {
 
 #filter {
   float: right;
-  width: 15%;
+  width: 20%;
   padding-top: 27px;
   cursor: pointer; }
 
@@ -201,8 +201,8 @@ nav ul li a.active {
 
 
 #redDimmer {
-  width: 60px;
-  height: 63px;
+    width: 50px;
+    height: 50px;
   display: block;
   position: relative; }
 
@@ -291,7 +291,7 @@ nav ul li a.active {
   line-height: 50px;
   padding-bottom: 40px;
   color: #ffffff;
-  font-size: 2em; }
+  font-size: 3em; }
 
 .ti_wrapper {
   width: 100%;
@@ -416,9 +416,9 @@ nav ul li a.active {
 
 #searchBar input {
   float: left;
-  font-size: 2em;
+  font-size: 1.7em;
   padding-top: 11px;
-  width: 70%;
+  width: 85%;
   color: #4d4d4d;
   background-color: #000000;
   border: 0px; }
@@ -438,9 +438,8 @@ nav ul li a.active {
 #location {
   color: #000000;
   font-size: 0.6em;
-  position: absolute;
-  left: 0;
-  right: 0; }
+  position: relative;
+  display: block; }
 
 #background {
   background-color: #ffffff; }

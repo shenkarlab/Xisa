@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('xisa', []);
+var app = angular.module('xisa', ['ui.bootstrap']);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var flag = false;
 
@@ -45,6 +45,29 @@ function filterBtnClick(filter){
     });
     flag = false;
   }
+}
+
+function setMovingTextClass(news, i){
+  $("#text_move"+(i+1)).hover(function(){
+    news[0].pauseTicker();
+    var content = $('#text_move'+(i+1)+' .ti_content').children('div');
+    angular.forEach(content, function(child){
+      angular.forEach($(child).children('.whatmark'), function(grandchild){
+        $(grandchild).hover(function(){
+          $(this).removeClass('whatmark');
+          $(this).addClass('redUnder');
+          $(this).click(function(){
+            window.location.href = '/what?name='+child.html();
+          })
+        }, function(){
+          $(this).first().removeClass('redUnder');
+          $(this).first().addClass('whatmark');
+        });
+      });
+    });
+  }, function(){
+    news[0].startTicker();
+  });
 }
 
 app.controller('whoCtrl', function($scope, $http) {
@@ -115,24 +138,7 @@ app.controller('howCtrl', function($scope, $http) {
       texts += '</div> </div> </div> </div>';
       $("#bad_words").append(texts);
       var news = $("#text_move"+(i+1)).newsTicker();
-      $("#text_move"+(i+1)).hover(function(){
-       news[0].pauseTicker();
-       for(var l = 0; l < k; l++){
-        var ref = $('#ti_news'+(l+1)+'.whatmark');
-          ref.hover(function(){
-            ref.removeClass('whatmark');
-            ref.addClass('redUnder');
-            ref.click(function(){
-              window.location.href = '/what?name='+ref.html();
-            })
-          }, function(){
-            ref.removeClass('redUnder');
-            ref.addClass('whatmark');
-          });
-         }
-        }, function(){
-        news[0].startTicker();
-      });
+      setMovingTextClass(news, i);
       i++;
     })
     $('#howContent').append('<div class="clear"></div>');
@@ -196,24 +202,7 @@ app.controller('whatCtrl', function($scope, $http) {
       texts += '</div> </div> </div> </div>';
       $("#whatbad_words").append(texts);
       var news = $("#text_move"+(i+1)).newsTicker();
-      $("#text_move"+(i+1)).hover(function(){
-       news[0].pauseTicker();
-       for(var l = 0; l < k; l++){
-        var ref = $('#ti_news'+(l+1)+'.whatmark');
-          ref.hover(function(){
-            ref.removeClass('whatmark');
-            ref.addClass('redUnder');
-            ref.click(function(){
-              window.location.href = '/what?name='+ref.html();
-            })
-          }, function(){
-            ref.removeClass('redUnder');
-            ref.addClass('whatmark');
-          });
-         }
-        }, function(){
-        news[0].startTicker();
-      });
+      setMovingTextClass(news, i);
       i++;
     });
     $scope.badWordCount = badWordCount;
@@ -243,7 +232,7 @@ app.controller('whomCtrl', function($scope, $http) {
       var followersCount = '<span id="location"><span id="background">'+value.followers_count+' followers</span></span>';
       var cube =  '<a href="/what?name='+value.tweeter_name+'">'+
                       '<section class="cube" id="cube'+i+'">'+
-                      '<p id="userName"><span class="blackHighlight">'+name+'</span>'+followersCount+'</p>'+
+                      '<p id="userName"><span class="blackHighlight">'+name.substring(0, 10)+'</span>'+followersCount+'</p>'+
                     '</section>'+
                   '<a>';
       $('#cubeContainer').append(cube);
