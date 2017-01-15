@@ -1,69 +1,86 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-* {
-  margin: 0px;
-  padding: 0px;
-  font-family: 'Montserrat', sans-serif; }
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    padding: 3.3% 2%;
+}
+
+#logo {
+    padding-left: 2%;
+    flex: 1;
+}
 
 section header nav a {
-  display: block; }
+    display: block;
+}
 
 nav {
-  padding-top: 3.3%; }
+    display: flex;
+    flex-direction: row;
+}
 
 nav p {
-  float: left; }
+}
 
 nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  float: right;
-  overflow: hidden;
-  width: 20%; }
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+}
 
 nav ul li {
-  padding-left: 10%;
-  float: left; }
+    padding-left: 10%;
+}
 
 nav ul li a {
-  display: block;
-  color: #4d4d4d;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none; }
-
+    display: block;
+    color: #4d4d4d;
+    text-align: center;
+    font-size: 1.666em;
+    text-decoration: none;
+}
 
 #what nav ul li a {
-  display: block;
-  color: #0000ff;
-  opacity: 0.3;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none; }
+    display: block;
+    color: #0000ff;
+    opacity: 0.3;
+    text-align: center;
+    font-size: 1.666em;
+    text-decoration: none;
+}
 
 nav ul li a.active {
-  display: block;
-  color: #ffffff;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none; }
-
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.666em;
+    text-decoration: none;
+}
 
 #what nav ul li a.active {
-  display: block;
-  color: #0000ff;
-  opacity: 1;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none; }
+    display: block;
+    color: #0000ff;
+    opacity: 1;
+    text-align: center;
+    font-size: 1.666em;
+    text-decoration: none;
+}
 
 #wrapper {
-  margin: 0px auto;
-  text-align: center;
-  width: 95%; }
+    margin: 0px auto;
+    text-align: center;
+    width: 95%;
+}
 
 .clear {
-  clear: both; }
+    clear: both;
+}
 
 .error {
     color: #0000ff;
@@ -72,386 +89,459 @@ nav ul li a.active {
 }
 
 #who {
-  background-color: #000000; }
+    background-color: #000000;
+}
 
 #header {
-  padding-top: 7%; }
+    padding-top: 7%;
+}
 
 #leftText {
-  float: left; }
+    float: left;
+}
 
 #hatedTitle {
-  color: #ff0000;
-  font-size: 4.583em; }
+    color: #ff0000;
+    font-size: 4.583em;
+}
 
 #lastSeven {
-  color: #4d4d4d;
-  font-size: 1.666em; 
-  float: left; }
+    color: #4d4d4d;
+    font-size: 1.666em;
+    float: left;
+}
 
 #hatedTitle span {
-  color: #ffffff; }
+    color: #ffffff;
+}
 
 #filter {
-  float: right;
-  width: 20%;
-  padding-top: 27px;
-  cursor: pointer; }
+    float: right;
+    width: 20%;
+    padding-top: 27px;
+    cursor: pointer;
+}
 
-.filterItem {    
-  float: right;
-  list-style-type: none;
-  display: none; } 
+.filterItem {
+    float: right;
+    list-style-type: none;
+    display: none;
+}
 
 .hidden {
-  visibility: hidden; }
+    visibility: hidden;
+}
 
 .filterOptions {
-  float: left;
-  color: #ff0000;
-  background: #000000;
-  border: 0px;
-  border-bottom: 1px solid #ff0000;
-  width: 85%;
-  font-size: 1.8em;
-  cursor: pointer;
-  text-align: left; }
+    float: left;
+    color: #ff0000;
+    background: #000000;
+    border: 0px;
+    border-bottom: 1px solid #ff0000;
+    width: 85%;
+    font-size: 1.8em;
+    cursor: pointer;
+    text-align: left;
+}
 
 .filterItemButton {
-  float: right;
-  color: #ff0000;
-  background: #000000;
-  border: 0px;
-  border-bottom: 1px solid #ff0000;
-  font-size: 1.8em;
-  padding-top: 5px;
-  margin-right: 75px;
-  cursor: pointer; }
+    float: right;
+    color: #ff0000;
+    background: #000000;
+    border: 0px;
+    border-bottom: 1px solid #ff0000;
+    font-size: 1.8em;
+    padding-top: 5px;
+    margin-right: 75px;
+    cursor: pointer;
+}
 
 #close {
-  font-size: 2.5em;
-  color: #4d4d4d;
-  width: 50px;
-  height: 50px;
-  right: 100px;
-  top: 100px;
-  position: absolute;
-  background-color: #000000;
-  border: 0px;
-  cursor: pointer; }
+    font-size: 2.5em;
+    color: #4d4d4d;
+    width: 50px;
+    height: 50px;
+    right: 100px;
+    top: 100px;
+    position: absolute;
+    background-color: #000000;
+    border: 0px;
+    cursor: pointer;
+}
 
-#arrow {    
-  padding-left: 7px;
-  padding-bottom: 3px; }
+#arrow {
+    padding-left: 7px;
+    padding-bottom: 3px;
+}
 
 #cubeContainer {
-  margin-top: 3.3%; }
+    margin-top: 3.3%;
+}
 
 #celebName {
-  margin-top: 188px;
-  left: 0;
-  right: 0;
-  color: #ffffff;
-  font-size: 1.048em;
-  text-align: center; }
+    margin-top: 188px;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 1.048em;
+    text-align: center;
+}
 
 #hashtag {
-  margin-top: 143px;
-  left: 0;
-  right: 0;
-  color: #ffffff;
-  font-size: 2.291em;
-  text-align: center; }
+    margin-top: 143px;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 2.291em;
+    text-align: center;
+}
 
 .highlight {
-  background-color: #ff0000;
-  display: inline; }
+    background-color: #ff0000;
+    display: inline;
+}
 
 .cube {
-  float: left;
-  width: 20%;
+    float: left;
+    width: 20%;
 
-  height: 367px;
-  background-color: #ffffff;
-  position: relative; }
+    height: 367px;
+    background-color: #ffffff;
+    position: relative;
+}
 
 .cube p {
-  position: absolute; }
-
-#how {
-  background-color: #000000;
-  z-index: 1; }
+    position: absolute;
+}
 
 #dimmer {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: relative; }
+    display: block;
 
-#dimmer::after {
-  content: "";
-  background-color: #000000;
-  opacity: 0.85;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1; }
 
+}
+
+body::after {
+    content: "";
+    background-color: #000000;
+    opacity: 0.85;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
 
 #redDimmer {
     width: 50px;
     height: 50px;
-  display: block;
-  position: relative; }
+    display: block;
+    position: relative;
+}
 
 #redDimmer::after {
-  content: "";
-  background-color: #ff0000;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute; }
+    content: "";
+    background-color: #ff0000;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
 
 #how nav p {
-  margin-left: 2%; }
+    margin-left: 2%;
+}
 
 #howHeader {
-  color: #ffffff;
-  height: 150px;
-  padding-top: 100px;
-  margin-left: 2%; }
+    color: #ffffff;
+    height: 150px;
+    margin-top: 50px;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: row;
+}
 
 .redUnder {
-  color: #ff0000;
-  border-bottom: 4px solid #ff0000;
+    color: #ff0000;
+    border-bottom: 4px solid #ff0000;
 }
 
 #names {
-  float: left;
-  width: 26%; }
+    width: 26%;
+}
+
+#names p {
+    margin: 0;
+}
+
+#howText p {
+    margin: 0;
+}
 
 #howCelebName {
-  font-size: 2.18em;
-  color: #ff0000; }
+    font-size: 2.18em;
+    font-weight: bold;
+    color: #ff0000;
+}
 
 #twitterName {
-  float: left;
-  font-size: 1.09em; }
+    float: left;
+    font-size: 1.09em;
+}
 
 #howText {
-  width: 74%;
-  font-size: 1.50em;
-  color: #535257;
-  padding-top: 30px; }
+    width: 74%;
+    font-size: 1.50em;
+    color: #535257;
+    margin-top: 12px;
+}
 
 #mark {
-  background-color: #ff0000;
-  color: #ffffff; }
+    background-color: #ff0000;
+    color: #ffffff;
+}
 
-#blueMark{
-  background-color: #ffffff;
-  color: #0000ff; }
+#blueMark {
+    background-color: #ffffff;
+    color: #0000ff;
+}
 
-#revertBlueMark{
-  background-color: #0000ff;
-  color: #ffffff; }
+#revertBlueMark {
+    background-color: #0000ff;
+    color: #ffffff;
+}
 
 #markWord {
-  color: #ff0000; }
+    color: #ff0000;
+}
 
 #howContent {
-  padding-top: 50px;
-  margin-left: 2%; }
+    padding-left: 2%;
+}
 
 #bars {
-  width: 26%;
-  float: left; }
+    width: 26%;
+    float: left;
+}
 
 #bad_words {
-  width: 74%;
-  float: left; }
+    width: 74%;
+    float: left;
+}
 
-#barBadWord {
-  font-size: 2.00em;
-  color: #ff0000;
-  padding-bottom: 7px; }
+.barBadWord {
+    font-size: 2.00em;
+    color: #ff0000;
+    margin-bottom: 7px;
+    margin-top: 0;
+}
 
-#barWordCount {
-  font-size: 1.17em;
-  color: #4c4c61;
-  padding-bottom: 7px; }
+.barWordCount {
+    font-size: 1.17em;
+    color: #4c4c61;
+    margin-bottom: 7px;
+}
 
 .TickerNews {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  padding-bottom: 40px;
-  color: #ffffff;
-  font-size: 3em; }
+    width: 100%;
+    height: 100%;
+    margin-bottom: 52px;
+    color: #ffffff;
+    font-size: 3em;
+    line-height: 75%;
+}
 
 .ti_wrapper {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  height: 50px; }
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+}
 
 .ti_slide {
-  width: 30000px;
-  position: relative;
-  left: 0;
-  top: 0; }
+    width: 30000px;
+    position: relative;
+    left: 0;
+    top: 0;
+}
 
 .ti_content {
-  width: 8000px;
-  position: relative;
-  float: left; }
+    width: 8000px;
+    position: relative;
+    float: left;
+}
 
 .ti_news {
-  float: left; }
+    float: left;
+}
 
 .bar_chart {
-  color: #ffffff;
-  background-color: #ff0000;
-  height: 7px;
-  margin-bottom: 7px; }
+    color: #ffffff;
+    background-color: #ff0000;
+    height: 7px;
+    margin-bottom: 7px;
+}
 
 #whatHeader {
-  color: #ffffff;
-  height: 150px;
-  padding-top: 100px;
-  margin-left: 2%; }
+    color: #ffffff;
+    height: 150px;
+    padding-top: 100px;
+    margin-left: 2%;
+}
 
 #whatnames {
-  float: left;
-  width: 26%; }
+    width: 26%;
+}
 
 #whatuserName {
-  font-size: 2.18em;
-  color: #0000ff; }
+    font-size: 2.18em;
+    color: #0000ff;
+}
 
 #whattwitterName {
-  color: #ffffff;
-  font-size: 1.09em; }
+    color: #ffffff;
+    font-size: 1.09em;
+}
 
 #whatfollowersCount {
-  color: #ffffff;
-  font-size: 1.09em;
-  padding-top: 10px; }
+    color: #ffffff;
+    font-size: 1.09em;
+    padding-top: 10px;
+}
 
 #picText {
-  color: #ffffff;
-  font-size: 1.09em; }
+    color: #ffffff;
+    font-size: 1.09em;
+}
 
 #hatedPeople {
-  float: left;
-  width: 21%;
-  padding-top: 50px; }
+    float: left;
+    width: 21%;
+    padding-top: 50px;
+}
 
 .pics {
-  width: 60px;
-  height: 63px;
-  float: left; }
+    width: 60px;
+    height: 63px;
+    float: left;
+}
 
 #whatText {
-  float: left;
-  width: 53%;
-  font-size: 1.50em;
-  color: #ffffff;
-  padding-top: 110px; }
+    float: left;
+    width: 53%;
+    font-size: 1.50em;
+    color: #ffffff;
+    padding-top: 110px;
+}
 
 #whatmark {
-  color: #4d4d4d; }
+    color: #4d4d4d;
+}
 
 .whatmark {
-  color: #4d4d4d;
+    color: #4d4d4d;
 }
 
 #whatmarkWord {
-  color: #0000ff; }
+    color: #0000ff;
+}
 
 #whatContent {
-  padding-top: 50px;
-  margin-left: 2%; }
+    padding-top: 50px;
+    margin-left: 2%;
+}
 
 #whatbars {
-  width: 26%;
-  float: left; }
+    width: 26%;
+}
 
 #whatbad_words {
-  width: 74%;
-  float: left; }
+    width: 74%;
+    float: left;
+}
 
 #whatbarBadWord {
-  font-size: 2.00em;
-  color: #0000ff;
-  padding-bottom: 7px; }
+    font-size: 2.00em;
+    color: #0000ff;
+    padding-bottom: 7px;
+}
 
 #whatbarWordCount {
-  font-size: 1.17em;
-  color: #ffffff;
-  padding-bottom: 7px; }
+    font-size: 1.17em;
+    color: #ffffff;
+    padding-bottom: 7px;
+}
 
 .whatbar_chart {
-  color: #ffffff;
-  background-color: #0000ff;
-  height: 7px;
-  margin-bottom: 7px; }
+    color: #ffffff;
+    background-color: #0000ff;
+    height: 7px;
+    margin-bottom: 7px;
+}
 
 #hatingTitle {
-  color: #0000ff;
-  font-size: 4.583em; }
+    color: #0000ff;
+    font-size: 4.583em;
+}
 
 #hatingTitle span {
-  color: #ffffff; }
+    color: #ffffff;
+}
 
 #searchBar {
-  float: right;
-  width: 30%;
-  padding-top: 27px;
-  border-bottom: 1px solid #0000ff; }
+    float: right;
+    width: 30%;
+    padding-top: 27px;
+    border-bottom: 1px solid #0000ff;
+}
 
 #searchBar input {
-  float: left;
-  font-size: 1.7em;
-  padding-top: 11px;
-  width: 85%;
-  color: #4d4d4d;
-  background-color: #000000;
-  border: 0px; }
+    float: left;
+    font-size: 1.7em;
+    padding-top: 11px;
+    width: 85%;
+    color: #4d4d4d;
+    background-color: #000000;
+    border: 0px;
+}
 
 #searchButton {
-  float: right; 
-  background: url('/images/search.png');
-  background-size: 100% 100%; 
-  width: 48px;
-  height: 42px;
-  border: none; }
+    float: right;
+    background: url('/images/search.png');
+    background-size: 100% 100%;
+    width: 48px;
+    height: 42px;
+    border: none;
+}
 
 #searchBar:focus {
-  outline: none;
-  border: 0px; }
+    outline: none;
+    border: 0px;
+}
 
 #location {
-  color: #000000;
-  font-size: 0.6em;
-  position: relative;
-  display: block; }
+    color: #000000;
+    font-size: 0.6em;
+    position: relative;
+    display: block;
+}
 
 #background {
-  background-color: #ffffff; }
+    background-color: #ffffff;
+}
 
 #userName {
-  margin-top: 143px;
-  left: 0;
-  right: 0;
-  color: #ffffff;
-  font-size: 2.291em;
-  text-align: center; }
+    margin-top: 143px;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 2.291em;
+    text-align: center;
+}
 
 .blackHighlight {
-  background-color: #0000ff;
-  display: inline; }
+    background-color: #0000ff;
+    display: inline;
+}

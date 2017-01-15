@@ -72,7 +72,7 @@ app.get('/whom', (req,res,next) => {
 
 app.get('/api/getCelebs', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/who.json', (err, json) => {
+		fs.readFile('D:/Shenkar/final_year/lab/projects/XisASimpleserver/app/static/data/who.json', (err, json) => {
 			if (err) {
 	        	throw err; 
 	    	}
@@ -94,7 +94,7 @@ app.get('/api/getCelebs', (req,res,next) => {
 
 app.get('/api/celeb/:name', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/how.json', (err, json) => {
+		fs.readFile('D:/Shenkar/final_year/lab/projects/XisASimpleserver/app/static/data/how.json', (err, json) => {
 			if (err) {
 	        	throw err; 
 	    	}
@@ -116,7 +116,7 @@ app.get('/api/celeb/:name', (req,res,next) => {
 
 app.get('/api/getUsers', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/users.json', (err, json) => {
+		fs.readFile('D:/Shenkar/final_year/lab/projects/XisASimpleserver/app/static/data/users.json', (err, json) => {
 			if (err) {
 	        	throw err; 
 	    	}
@@ -138,7 +138,7 @@ app.get('/api/getUsers', (req,res,next) => {
 
 app.get('/api/user/:name', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/user.json', (err, json) => {
+		fs.readFile('D:/Shenkar/final_year/lab/projects/XisASimpleserver/app/static/data/user.json', (err, json) => {
 			if (err) {
 	        	throw err; 
 	    	}

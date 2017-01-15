@@ -7,19 +7,16 @@
 		<script src="scripts/jquery.tickerNews.min.js"></script>
 		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
 		<script src="scripts/script.js"></script>
-	    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
 		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body ng-controller="howCtrl" id="how">
-		<div id="dimmer">
 			<nav ng-controller="navCtrl">
-				<p><a href="/whom"><img src="/images/redLOGO.png" alt="logo"></a></p>
+				<a id= "logo" href="/whom"><img src="/images/redLOGO.png" alt="logo"></a>
 				<ul>
 					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
-					<div class="claer"></div>
 				</ul>
-				<div class="claer"></div>
 			</nav>
 			<section id="howHeader">
 				<section id="names">
@@ -36,6 +33,5 @@
 				<section id="bars"></section>
 				<section id="bad_words"></section>
 			</section>
-		</div>
 	</body>
 </html>
