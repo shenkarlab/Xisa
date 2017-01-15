@@ -186,7 +186,7 @@ app.controller('whatCtrl', function($scope, $http) {
       texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
       var k = 0;
       data.texts.forEach(function(text){
-        texts += '<div class="ti_news" id="ti_news'+k+'">';
+        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
         text.tweet.split(" ").forEach(function(word){
           if(word == data.word){
             texts += '<span id="whatmarkWord">'+word.toUpperCase()+'&nbsp</span>'
