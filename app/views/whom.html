@@ -2,35 +2,34 @@
 <html ng-app="xisa">
 	<head>
 		<title>XISA</title>
-		<script
-		  src="https://code.jquery.com/jquery-3.1.1.min.js"
-		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		  crossorigin="anonymous">
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="scripts/jquery.min.js"></script>
+		<script src="scripts/angular.min.js"></script>
 		<script src="scripts/script.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
-	<body ng-controller="whomCtrl" id="whom">
+	<body ng-controller="whomCtrl" id="who">
 		<div id="wrapper">
 			<nav ng-controller="navCtrl">
-				<p>according to Twitter</p>
+				<p><a href="/whom"><img src="/images/blueLOGO.png" alt="logo"></a></p>
 				<ul>
-					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
 					<div class="claer"></div>
 				</ul>
 				<div class="claer"></div>
 			</nav>
-			<section id="whomheader">
-				<section id="whomtitle"><b>{{mostOffencive}}</b> <span>{{users}}</span></section>
-				<section id="whomretweets">
-					<p id="left">{{ lowerFollowers }}</p>
-					<p id="right">{{ higherFollowers }}</p><br>
+			<section id="header">
+				<section id="leftText">
+					<p id="hatingTitle"><b>{{ mostHating }}</b> <span>{{ users }}</span><p>
+					<p id="lastSeven">{{ past }}</p>
+				</section>
+				<section id="searchBar">
+					<input type="text" name="userSearch" placeholder="TYPE ANY @USERNAME">
+					<button id="searchButton"></button>
 				</section>
 				<div class="clear"></div>
 			</section>
-			<section id="whomcubeContainer"></section>
+			<section id="cubeContainer"></section>
 		</div>
 	</body>
 </html>

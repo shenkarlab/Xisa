@@ -2,12 +2,8 @@
 <html ng-app="xisa">
 	<head>
 		<title>XISA</title>
-		<script
-		  src="https://code.jquery.com/jquery-3.1.1.min.js"
-		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		  crossorigin="anonymous">
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="scripts/jquery.min.js"></script>
+		<script src="scripts/angular.min.js"></script>
 		<script src="scripts/script.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -15,18 +11,25 @@
 	<body ng-controller="whoCtrl" id="who">
 		<div id="wrapper">
 			<nav ng-controller="navCtrl">
-				<p>according to Twitter</p>
+				<p><a href="/"><img src="/images/redLOGO.png" alt="logo"></a></p>
 				<ul>
-					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
 					<div class="claer"></div>
 				</ul>
 				<div class="claer"></div>
 			</nav>
 			<section id="header">
-				<section id="title"><b>{{mostHated}}</b> <span>{{people}}</span></section>
-				<section id="retweets">
-					<p id="left">{{ lowerBuzz }}</p>
-					<p id="right">{{ higherBuzz }}</p><br>
+				<section id="leftText">
+					<p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
+					<p id="lastSeven">{{ past }}</p>
+				</section>
+				<section id="filter" ng-controller="filterCtrl">
+					<section id="closeFilter"><button id="close" class="hidden"><b>X</b></button></section>
+					<button class="filterOptions">SELECT FILTER<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
+					<ul class="filterItem">
+						<li ng-repeat="filterButton in filterButtons"><button id="{{ filterButton.Id }}" class="filterItemButton">{{ filterButton.Name }}</button></li>
+						<div class="claer"></div>
+					</ul>
 				</section>
 				<div class="clear"></div>
 			</section>
