@@ -97,8 +97,9 @@ app.controller('howCtrl', function($scope, $http) {
       $("#bars").append(barDiv);
       var texts = "";
       texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
+      var k = 0;
       data.texts.forEach(function(text){
-        texts += '<div class="ti_news">';
+        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
         text.split(" ").forEach(function(word){
           if(word == data.word){
             texts += '<span id="markWord">'+word.toUpperCase()+'&nbsp</span>'
@@ -109,6 +110,7 @@ app.controller('howCtrl', function($scope, $http) {
           }
         })
         texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+        k++;
       });
       texts += '</div> </div> </div> </div>';
       $("#bad_words").append(texts);
@@ -116,7 +118,7 @@ app.controller('howCtrl', function($scope, $http) {
       $("#text_move"+(i+1)).hover(function(){
        news[0].pauseTicker();
        for(var l = 0; l < k; l++){
-        var ref = $('#ti_news'+(l+1)+' .whatmark');
+        var ref = $('#ti_news'+(l+1)+'.whatmark');
           ref.hover(function(){
             ref.removeClass('whatmark');
             ref.addClass('redUnder');
@@ -131,10 +133,9 @@ app.controller('howCtrl', function($scope, $http) {
         }, function(){
         news[0].startTicker();
       });
+      i++;
     })
-    i++;
     $('#howContent').append('<div class="clear"></div>');
-    $("#text_move1,#text_move2,#text_move3,#text_move4,#text_move5").newsTicker();
   },function (error){
       $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
   });
@@ -153,7 +154,6 @@ app.controller('whatCtrl', function($scope, $http) {
     $('body').css('background',urlAppend);
     $('body').css('background-repeat','no-repeat');
     $('body').css('background-size','100% 100%');
-    console.log(response.data);
     $scope.firstName = response.data.user_details.name.split(" ")[0].toUpperCase();
     $scope.lastName = ($scope.firstName.length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
     $scope.twitterName = '@'+response.data.user_details.screen_name;
@@ -199,7 +199,7 @@ app.controller('whatCtrl', function($scope, $http) {
       $("#text_move"+(i+1)).hover(function(){
        news[0].pauseTicker();
        for(var l = 0; l < k; l++){
-        var ref = $('#ti_news'+(l+1)+' .whatmark');
+        var ref = $('#ti_news'+(l+1)+'.whatmark');
           ref.hover(function(){
             ref.removeClass('whatmark');
             ref.addClass('redUnder');
