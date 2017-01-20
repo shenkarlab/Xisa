@@ -1,0 +1,22 @@
+{
+  "name": "hatesprd",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Gregory Kondratenko"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kogrego/XisASimpleserver",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular": "^1.6.1",
+    "jquery": "^3.1.1"
+  }
+}

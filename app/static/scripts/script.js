@@ -56,9 +56,6 @@ function setMovingTextClass(news, i){
         $(grandchild).hover(function(){
           $(this).removeClass('whatmark');
           $(this).addClass('redUnder');
-          $(this).click(function(){
-            window.location.href = '/what?name='+child.html();
-          })
         }, function(){
           $(this).first().removeClass('redUnder');
           $(this).first().addClass('whatmark');
@@ -71,29 +68,29 @@ function setMovingTextClass(news, i){
 }
 
 app.controller('whoCtrl', function($scope, $http) {
-    $http.get('/api/getCelebs').then(function (response){
-      $scope.mostHated = 'MOST HATED';
-      $scope.people = 'PEOPLE';
-      $scope.past = 'The past 7 days on Twitter';  
-  		var i = 1;
-    	angular.forEach(response.data, function(value){
-    		var cube =	'<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
-    	    						'<section class="cube" id="cube'+i+'">'+
-      									'<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
-                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
-      								'</section>'+
-      							'<a>';
-				$('#cubeContainer').append(cube);
-        var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
-				i++;
-    	})
-    },function (error){
-      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+  $http.get('/api/getCelebs').then(function (response){
+    $scope.mostHated = 'MOST HATED';
+    $scope.people = 'PEOPLE';
+    $scope.past = 'The past 7 days on Twitter';  
+		var i = 1;
+  	angular.forEach(response.data, function(value){
+  		var cube =	'<a href="/how?name='+value.name+'">'+
+  	    						'<section class="cube" id="cube'+i+'">'+
+    									'<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
+                      '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+    								'</section>'+
+    							'<a>';
+			$('#cubeContainer').append(cube);
+      var url = 'url('+value.image+')';
+      $('#cube'+i).css('background',url);
+			i++;
+  	})
+  },function (error){
+    $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
 	});
 });
 
-app.controller('howCtrl', function($scope, $http) {
+app.controller('howCtrl', function($scope, $http, $compile) {
    var lastName = getUrlParameter('name').split("%20");
    lastName = lastName[lastName.length -1];
    if(lastName == null){
@@ -101,20 +98,20 @@ app.controller('howCtrl', function($scope, $http) {
    }
    var request = decodeURIComponent('/api/celeb/'+lastName);
    $http.get(request).then(function (response){
-    var url = getUrlParameter('url');
+    var url = response.data.celeb_details.image;
     var urlAppend = 'url('+url+')';
     $('body').css('width', '100vw');
     $('body').css('height', '100vh');
     $('body').css('background', '#464646 ' + urlAppend + ' no-repeat fixed center center');
     $('body').css('background-size', 'cover');
-  	var badWord = getUrlParameter('word');
-  	$scope.celebName = decodeURIComponent(getUrlParameter('name')).toUpperCase();
-   	$scope.twitterName = '@'+decodeURIComponent(getUrlParameter('name'));
+    var badWord = response.data.mostUsedWord;
+    $scope.celebName = response.data.celeb_details.name;
+    $scope.twitterName = '@'+response.data.celeb_details.twitter_name;
     $scope.numOfPeople = 'This week, People said 100 times That he is ';
     $scope.badWord = badWord;
     $scope.also = 'They also said about him:';
     var i = 0;
-    angular.forEach(response.data, function(data){
+    angular.forEach(response.data.wordsWithTweets, function(data){
       var barDiv =  '<p class="barBadWord">'+data.word.toUpperCase()+'</p>'+
                     '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
                     '<p class="barWordCount">'+data.bad_words_count+' times</p>';
@@ -126,9 +123,9 @@ app.controller('howCtrl', function($scope, $http) {
         texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
         text.split(" ").forEach(function(word){
           if(word == data.word){
-            texts += '<span id="markWord">'+word.toUpperCase()+'&nbsp</span>'
+            texts += '<span id="markWord" ng-click="showAdvanced($event)">'+word.toUpperCase()+'&nbsp</span>';
           } else if(word.startsWith('@')) {
-            texts += '<span class="whatmark">'+word.toUpperCase()+'&nbsp</span>'
+            texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
           } else {
             texts += word.toUpperCase() + '&nbsp';
           }
@@ -137,7 +134,8 @@ app.controller('howCtrl', function($scope, $http) {
         k++;
       });
       texts += '</div> </div> </div> </div>';
-      $("#bad_words").append(texts);
+      var compiled = $compile(texts)($scope);
+      $("#bad_words").append(compiled);
       var news = $("#text_move"+(i+1)).newsTicker();
       setMovingTextClass(news, i);
       i++;
@@ -148,7 +146,7 @@ app.controller('howCtrl', function($scope, $http) {
   });
 });
 
-app.controller('whatCtrl', function($scope, $http) {
+app.controller('whatCtrl', function($scope, $http, $compile) {
    var lastName = getUrlParameter('name').split("%20");
    lastName = lastName[lastName.length -1];
    if(lastName == null){
@@ -162,7 +160,7 @@ app.controller('whatCtrl', function($scope, $http) {
     $('body').css('background-repeat','no-repeat');
     $('body').css('background-size','100% 100%');
     $scope.firstName = response.data.user_details.name.split(" ")[0].toUpperCase();
-    $scope.lastName = ($scope.firstName.length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
+    $scope.lastName = (response.data.user_details.name.split(" ").length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
     $scope.twitterName = '@'+response.data.user_details.screen_name;
     $scope.followersCount = response.data.user_details.followers_count + ' followers';
     $scope.numOfPeople = 'This week, '+$scope.twitterName+' said ';
@@ -172,7 +170,7 @@ app.controller('whatCtrl', function($scope, $http) {
     var badWordCount = 0;
     for (var j = 0; j < 5; j++){
       var pic = '';
-      pic += '<section id="redDimmer" class="pics" style="background: url('+url+'); background-size: contain;">';
+      pic += '<section class="pics" style="background: url('+response.data.images[j]+'); background-size: contain;">';
       pic += '</section>';
       $('#pics').append(pic);
     }
@@ -192,7 +190,7 @@ app.controller('whatCtrl', function($scope, $http) {
           if(word == data.word){
             texts += '<span id="whatmarkWord">'+word.toUpperCase()+'&nbsp</span>'
           } else if(word.startsWith('@')) {
-            texts += '<span class="whatmark">'+word.toUpperCase()+'&nbsp</span>'
+            texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>';
           } else {
             texts += word.toUpperCase() + '&nbsp';
           }
@@ -201,7 +199,8 @@ app.controller('whatCtrl', function($scope, $http) {
         k++;
       });
       texts += '</div> </div> </div> </div>';
-      $("#whatbad_words").append(texts);
+      var compiled = $compile(texts)($scope);
+      $("#whatbad_words").append(compiled);
       var news = $("#text_move"+(i+1)).newsTicker();
       setMovingTextClass(news, i);
       i++;
@@ -298,7 +297,7 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
     }
   });
 
-  $('#close').click(function(){
+  function show(){
     if(flag){
       $('nav ul').css('opacity', '1');
       $('#leftText').css('opacity', '1');
@@ -308,5 +307,85 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
       $('.filterItem').slideToggle(200);
       flag = false;
     }
+  }
+
+  $('#close').click(function(){
+    show();
+  });
+  $('filterBody').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs').then(function (response){
+      $scope.mostHated = 'MOST HATED';
+      $scope.people = 'PEOPLE';
+      $scope.past = 'The past 7 days on Twitter';  
+      var i = 1;
+      angular.forEach(response.data, function(value){
+        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
+                      '<section class="cube" id="cube'+i+'">'+
+                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
+                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+                      '</section>'+
+                    '<a>';
+        $('#cubeContainer').append(cube);
+        var url = 'url('+value.image+')';
+        $('#cube'+i).css('background',url);
+        i++;
+      })
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+  $('filterGender').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs').then(function (response){
+      $scope.mostHated = 'MOST HATED';
+      $scope.people = 'PEOPLE';
+      $scope.past = 'The past 7 days on Twitter';  
+      var i = 1;
+      angular.forEach(response.data, function(value){
+        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
+                      '<section class="cube" id="cube'+i+'">'+
+                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
+                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+                      '</section>'+
+                    '<a>';
+        $('#cubeContainer').append(cube);
+        var url = 'url('+value.image+')';
+        $('#cube'+i).css('background',url);
+        i++;
+      })
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+  $('filterVictim').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs').then(function (response){
+      $scope.mostHated = 'MOST HATED';
+      $scope.people = 'PEOPLE';
+      $scope.past = 'The past 7 days on Twitter';  
+      var i = 1;
+      angular.forEach(response.data, function(value){
+        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
+                      '<section class="cube" id="cube'+i+'">'+
+                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
+                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+                      '</section>'+
+                    '<a>';
+        $('#cubeContainer').append(cube);
+        var url = 'url('+value.image+')';
+        $('#cube'+i).css('background',url);
+        i++;
+      })
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
   });
 }]);
+
+// app.controller('popupCtrl', function($scope){
+
+// });

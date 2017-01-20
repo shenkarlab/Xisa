@@ -21,8 +21,6 @@ nav {
     flex-direction: row;
 }
 
-nav p {
-}
 
 nav ul {
     list-style-type: none;
@@ -56,7 +54,6 @@ nav ul li a.active {
 
 #wrapper {
     margin: 0px auto;
-    text-align: center;
     width: 95%;
 }
 
@@ -75,22 +72,26 @@ nav ul li a.active {
 }
 
 #header {
-    padding-top: 7%;
+   display: flex;
+   flex-direction: row;
+   padding-left: 2%;
+   margin-top: 2%;
 }
 
 #leftText {
-    float: left;
+    flex: 1;
+    margin: 0;
 }
 
 #hatedTitle {
     color: #ff0000;
+    margin: 0;
     font-size: 4.583em;
 }
 
 #lastSeven {
     color: #4d4d4d;
     font-size: 1.666em;
-    float: left;
 }
 
 #hatedTitle span {
@@ -98,9 +99,7 @@ nav ul li a.active {
 }
 
 #filter {
-    float: right;
     width: 20%;
-    padding-top: 27px;
     cursor: pointer;
 }
 
@@ -120,7 +119,6 @@ nav ul li a.active {
     background: #000000;
     border: 0px;
     border-bottom: 1px solid #ff0000;
-    width: 85%;
     font-size: 1.8em;
     cursor: pointer;
     text-align: left;
@@ -156,7 +154,66 @@ nav ul li a.active {
     padding-bottom: 3px;
 }
 
+#filter {
+    float: right;
+    width: 20%;
+    padding-top: 27px;
+    cursor: pointer;
+}
+
+.filterItem {
+    float: right;
+    list-style-type: none;
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.filterItemButton {
+    float: right;
+    color: #ff0000;
+    background: #000000;
+    border: 0px;
+    border-bottom: 1px solid #ff0000;
+    font-size: 1.8em;
+    padding-top: 5px;
+    margin-right: 75px;
+    cursor: pointer;
+}
+
+#close {
+    font-size: 2.5em;
+    color: #4d4d4d;
+    width: 50px;
+    height: 50px;
+    right: 100px;
+    top: 100px;
+    position: absolute;
+    background-color: #000000;
+    border: 0px;
+    cursor: pointer;
+}
+
+#arrow {
+    padding-left: 7px;
+    padding-bottom: 3px;
+}
+
+.ti_news a {
+	text-decoration:none;
+	color:#ffffff;
+}
+
+.ti_news a:hover {
+	text-decoration: none;
+	color: #ff0000;
+	border-bottom: 4px solid #ff0000;
+}
+
 #cubeContainer {
+    padding-left: 2%;
     margin-top: 3.3%;
 }
 

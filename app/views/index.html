@@ -9,30 +9,27 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body ng-controller="whoCtrl" id="who">
-		<div id="wrapper">
-			<nav ng-controller="navCtrl">
-				<a id="logo" href="/"><img src="/images/redLOGO.png" alt="logo"></a>
-				<ul>
-					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
-				</ul>
-				<div class="claer"></div>
-			</nav>
-			<section id="header">
-				<section id="leftText">
-					<p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
-					<p id="lastSeven">{{ past }}</p>
-				</section>
-				<section id="filter" ng-controller="filterCtrl">
-					<section id="closeFilter"><button id="close" class="hidden"><b>X</b></button></section>
-					<button class="filterOptions">SELECT FILTER<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
-					<ul class="filterItem">
-						<li ng-repeat="filterButton in filterButtons"><button id="{{ filterButton.Id }}" class="filterItemButton">{{ filterButton.Name }}</button></li>
-						<div class="claer"></div>
-					</ul>
-				</section>
-				<div class="clear"></div>
+		<nav ng-controller="navCtrl">
+			<a id="logo" href="/"><img src="/images/redLOGO.png" alt="logo"></a>
+			<ul>
+				<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
+			</ul>
+		</nav>
+		<section id="header">
+			<section id="leftText">
+				<p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
+				<p id="lastSeven">{{ past }}</p>
 			</section>
-			<section id="cubeContainer"></section>
-		</div>
+			<section id="filter" ng-controller="filterCtrl">
+				<section id="closeFilter"><button id="close" class="hidden"><b>X</b></button></section>
+				<button class="filterOptions">SELECT FILTER<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
+				<ul class="filterItem">
+					<li ng-repeat="filterButton in filterButtons"><button id="{{ filterButton.Id }}" class="filterItemButton">{{ filterButton.Name }}</button></li>
+					<div class="claer"></div>
+				</ul>
+			</section>
+			<div class="clear"></div>
+		</section>
+		<section id="cubeContainer"></section>
 	</body>
 </html>
