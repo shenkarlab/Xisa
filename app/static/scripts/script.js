@@ -3,6 +3,7 @@
 var app = angular.module('xisa', []);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var flag = false;
+var hatedArray = [];
 
 function getUrlParameter(param) {
   var sPageURL = window.location.search.substring(1),
@@ -67,7 +68,7 @@ function setMovingTextClass(news, i){
   });
 }
 
-app.controller('whoCtrl', function($scope, $http) {
+app.controller('whoCtrl', function($scope, $http, $compile) {
   $http.get('/api/getCelebs').then(function (response){
     $scope.mostHated = 'MOST HATED';
     $scope.people = 'PEOPLE';
@@ -80,9 +81,23 @@ app.controller('whoCtrl', function($scope, $http) {
                       '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
     								'</section>'+
     							'<a>';
-			$('#cubeContainer').append(cube);
+      hatedArray.push(value.name);
+      var compiled = $compile(cube)($scope);
+			$('#cubeContainer').append(compiled);
       var url = 'url('+value.image+')';
-      $('#cube'+i).css('background',url);
+      var cubeId = '#cube'+i;
+      $(cubeId).css('background',url);
+      $('#cubeContainer').on('mouseenter', cubeId, function(){
+        $(cubeId+' #hashtag span').removeClass('highlight');
+        $(cubeId+' #celebName span').removeClass('highlight');
+        $(cubeId+' #hashtag span').addClass('whiteHighlight');
+        $(cubeId+' #celebName span').addClass('whiteHighlight');
+      }).on('mouseleave', cubeId, function(){
+        $(cubeId+' #hashtag span').addClass('highlight');
+        $(cubeId+' #celebName span').addClass('highlight');
+        $(cubeId+' #hashtag span').removeClass('whiteHighlight');
+        $(cubeId+' #celebName span').removeClass('whiteHighlight');
+      });
 			i++;
   	})
   },function (error){
@@ -98,49 +113,65 @@ app.controller('howCtrl', function($scope, $http, $compile) {
    }
    var request = decodeURIComponent('/api/celeb/'+lastName);
    $http.get(request).then(function (response){
-    var url = response.data.celeb_details.image;
-    var urlAppend = 'url('+url+')';
-    $('body').css('width', '100vw');
-    $('body').css('height', '100vh');
-    $('body').css('background', '#464646 ' + urlAppend + ' no-repeat fixed center center');
-    $('body').css('background-size', 'cover');
-    var badWord = response.data.mostUsedWord;
-    $scope.celebName = response.data.celeb_details.name;
-    $scope.twitterName = '@'+response.data.celeb_details.twitter_name;
-    $scope.numOfPeople = 'This week, People said 100 times That he is ';
-    $scope.badWord = badWord;
-    $scope.also = 'They also said about him:';
-    var i = 0;
-    angular.forEach(response.data.wordsWithTweets, function(data){
-      var barDiv =  '<p class="barBadWord">'+data.word.toUpperCase()+'</p>'+
-                    '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
-                    '<p class="barWordCount">'+data.bad_words_count+' times</p>';
-      $("#bars").append(barDiv);
-      var texts = "";
-      texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
-      var k = 0;
-      data.texts.forEach(function(text){
-        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
-        text.split(" ").forEach(function(word){
-          if(word == data.word){
-            texts += '<span id="markWord" ng-click="showAdvanced($event)">'+word.toUpperCase()+'&nbsp</span>';
-          } else if(word.startsWith('@')) {
-            texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
-          } else {
-            texts += word.toUpperCase() + '&nbsp';
-          }
-        })
-        texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
-        k++;
-      });
-      texts += '</div> </div> </div> </div>';
-      var compiled = $compile(texts)($scope);
-      $("#bad_words").append(compiled);
-      var news = $("#text_move"+(i+1)).newsTicker();
-      setMovingTextClass(news, i);
-      i++;
-    })
-    $('#howContent').append('<div class="clear"></div>');
+    if(responsedata == null){
+        $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
+    }
+    else {
+      var url = response.data.celeb_details.image;
+      var urlAppend = 'url('+url+')';
+      $('body').css('width', '100vw');
+      $('body').css('height', '100vh');
+      $('body').css('background', '#464646 ' + urlAppend + ' no-repeat fixed center center');
+      $('body').css('background-size', 'cover');
+      var badWord = response.data.mostUsedWord;
+      $scope.celebName = response.data.celeb_details.name;
+      $scope.twitterName = '@'+response.data.celeb_details.twitter_name;
+      $scope.numOfPeople = 'This week, People said 100 times That he is ';
+      $scope.badWord = badWord;
+      $scope.also = 'They also said about him:';
+      var i = 0;
+      angular.forEach(response.data.wordsWithTweets, function(data){
+        if(data.texts == null){
+          $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
+        }
+        else {
+          var barDiv =  '<p class="barBadWord">'+data.word.toUpperCase()+'</p>'+
+                        '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
+                        '<p class="barWordCount">'+data.bad_words_count+' times</p>';
+          $("#bars").append(barDiv);
+          var texts = "";
+          texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
+          var k = 0;
+          data.texts.forEach(function(text){
+            texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
+            text.split(" ").forEach(function(word){
+              if(word == data.word){
+                texts += '<span id="markWord" ng-click="showAdvanced($event)">'+word.toUpperCase()+'&nbsp</span>';
+              } else if(word.startsWith('@')) {
+                var found = $.inArray(word, hatedArray) > -1;
+                if(found){
+                  texts += '<a href="/how?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                } 
+                else{
+                  texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                }
+              } else {
+                texts += word.toUpperCase() + '&nbsp';
+              }
+            })
+            texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+            k++;
+          });
+          texts += '</div> </div> </div> </div>';
+          var compiled = $compile(texts)($scope);
+          $("#bad_words").append(compiled);
+          var news = $("#text_move"+(i+1)).newsTicker();
+          setMovingTextClass(news, i);
+        }
+        i++;
+      })
+      $('#howContent').append('<div class="clear"></div>');
+    }
   },function (error){
       $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
   });
@@ -154,59 +185,75 @@ app.controller('whatCtrl', function($scope, $http, $compile) {
    }
    var request = decodeURIComponent('/api/user/'+lastName);
    $http.get(request).then(function (response){
-    var url = response.data.user_details.image;
-    var urlAppend = 'url('+url+')';
-    $('body').css('background',urlAppend);
-    $('body').css('background-repeat','no-repeat');
-    $('body').css('background-size','100% 100%');
-    $scope.firstName = response.data.user_details.name.split(" ")[0].toUpperCase();
-    $scope.lastName = (response.data.user_details.name.split(" ").length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
-    $scope.twitterName = '@'+response.data.user_details.screen_name;
-    $scope.followersCount = response.data.user_details.followers_count + ' followers';
-    $scope.numOfPeople = 'This week, '+$scope.twitterName+' said ';
-    $scope.picText = "She doesn't like these people: "
-    $scope.also = ' offensive words';
-    var i = 0;
-    var badWordCount = 0;
-    for (var j = 0; j < 5; j++){
-      var pic = '';
-      pic += '<section class="pics" style="background: url('+response.data.images[j]+'); background-size: contain;">';
-      pic += '</section>';
-      $('#pics').append(pic);
+    if(responsedata == null){
+        $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
     }
-    $('#pics').append('<div class="clear"></div>');
-    angular.forEach(response.data.words_with_texts, function(data){
-      badWordCount += data.count;
-      var barDiv =  '<p class="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
-                    '<div class="whatbar_chart" style="width:'+data.count*3+'px;"></div>'+
-                    '<p class="whatbarWordCount">'+data.count+' times</p>';
-      $("#whatbars").append(barDiv);
-      var texts = "";
-      texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
-      var k = 0;
-      data.texts.forEach(function(text){
-        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
-        text.tweet.split(" ").forEach(function(word){
-          if(word == data.word){
-            texts += '<span id="whatmarkWord">'+word.toUpperCase()+'&nbsp</span>'
-          } else if(word.startsWith('@')) {
-            texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>';
-          } else {
-            texts += word.toUpperCase() + '&nbsp';
-          }
-        })
-        texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
-        k++;
+    else {
+      var url = response.data.user_details.image;
+      var urlAppend = 'url('+url+')';
+      $('body').css('background',urlAppend);
+      $('body').css('background-repeat','no-repeat');
+      $('body').css('background-size','100% 100%');
+      $scope.firstName = response.data.user_details.name.split(" ")[0].toUpperCase();
+      $scope.lastName = (response.data.user_details.name.split(" ").length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
+      $scope.twitterName = '@'+response.data.user_details.screen_name;
+      $scope.followersCount = response.data.user_details.followers_count + ' followers';
+      $scope.numOfPeople = 'This week, '+$scope.twitterName+' said ';
+      $scope.picText = "She doesn't like these people: "
+      $scope.also = ' offensive words';
+      var i = 0;
+      var badWordCount = 0;
+      for (var j = 0; j < 5; j++){
+        var pic = '';
+        pic += '<section class="pics" style="background: url('+response.data.images[j]+'); background-size: contain;">';
+        pic += '</section>';
+        $('#pics').append(pic);
+      }
+      $('#pics').append('<div class="clear"></div>');
+      angular.forEach(response.data.words_with_texts, function(data){
+        if(data.texts == null){
+          $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
+        }
+        else {
+          badWordCount += data.count;
+          var barDiv =  '<p class="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
+                        '<div class="whatbar_chart" style="width:'+data.count*3+'px;"></div>'+
+                        '<p class="whatbarWordCount">'+data.count+' times</p>';
+          $("#whatbars").append(barDiv);
+          var texts = "";
+          texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
+          var k = 0;
+          data.texts.forEach(function(text){
+            texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
+            text.tweet.split(" ").forEach(function(word){
+              if(word == data.word){
+                texts += '<span id="whatmarkWord">'+word.toUpperCase()+'&nbsp</span>'
+              } else if(word.startsWith('@')) {
+                var found = $.inArray(word, hatedArray) > -1;
+                if(found){
+                  texts += '<a href="/how?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                } 
+                else{
+                  texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>';
+                }
+              } else {
+                texts += word.toUpperCase() + '&nbsp';
+              }
+            })
+            texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+            k++;
+          });
+          texts += '</div> </div> </div> </div>';
+          var compiled = $compile(texts)($scope);
+          $("#whatbad_words").append(compiled);
+          var news = $("#text_move"+(i+1)).newsTicker();
+          setMovingTextClass(news, i);
+        }
+        i++;
       });
-      texts += '</div> </div> </div> </div>';
-      var compiled = $compile(texts)($scope);
-      $("#whatbad_words").append(compiled);
-      var news = $("#text_move"+(i+1)).newsTicker();
-      setMovingTextClass(news, i);
-      i++;
-    });
-    $scope.badWordCount = badWordCount;
-    $('#whatContent').append('<div class="clear"></div>');
+      $scope.badWordCount = badWordCount;
+      $('#whatContent').append('<div class="clear"></div>');
+      }
     },function (error){
       $('#whatContent').append('<section class="error">500<br>Twitter connection error</section>');
   });

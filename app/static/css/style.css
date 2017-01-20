@@ -197,6 +197,11 @@ nav ul li a.active {
     display: inline;
 }
 
+.whiteHighlight {
+   background-color: #ffffff;
+   color: #000000; 
+}
+
 .cube {
     width: 348px;
     height: 367px;
