@@ -269,18 +269,11 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
     };   
 }]);
 
-app.controller('filterCtrl', ['$scope', function ($scope, $location) {
-
-    $scope.filterButtons = [{
-      Name: 'BODY',
-      Id: 'filterBody',  
-    },{
-      Name: 'GENDER',
-      Id: 'filterGender', 
-    },{
-      Name: 'VICTIM',
-      Id: 'filterVictim',
-    }];
+app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+  $scope.selectFilter = 'SELECT FILTER';
+  $scope.body = 'BODY';
+  $scope.gender = 'GENDER';  
+  $scope.victim = 'VICTIM';
   
   $('.filterOptions').click(function() {
     if(!flag){
@@ -312,13 +305,10 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
   $('#close').click(function(){
     show();
   });
-  $('filterBody').click(function(){
+  $('#filterBody').click(function(){
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs').then(function (response){
-      $scope.mostHated = 'MOST HATED';
-      $scope.people = 'PEOPLE';
-      $scope.past = 'The past 7 days on Twitter';  
       var i = 1;
       angular.forEach(response.data, function(value){
         var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
@@ -336,13 +326,10 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
   });
-  $('filterGender').click(function(){
+  $('#filterGender').click(function(){
     show();
     $('#cubeContainer').empty();
-    $http.get('/api/getCelebs').then(function (response){
-      $scope.mostHated = 'MOST HATED';
-      $scope.people = 'PEOPLE';
-      $scope.past = 'The past 7 days on Twitter';  
+    $http.get('/api/getCelebs').then(function (response){ 
       var i = 1;
       angular.forEach(response.data, function(value){
         var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
@@ -360,13 +347,10 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
   });
-  $('filterVictim').click(function(){
+  $('#filterVictim').click(function(){
     show();
     $('#cubeContainer').empty();
-    $http.get('/api/getCelebs').then(function (response){
-      $scope.mostHated = 'MOST HATED';
-      $scope.people = 'PEOPLE';
-      $scope.past = 'The past 7 days on Twitter';  
+    $http.get('/api/getCelebs').then(function (response){ 
       var i = 1;
       angular.forEach(response.data, function(value){
         var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
@@ -385,7 +369,3 @@ app.controller('filterCtrl', ['$scope', function ($scope, $location) {
     });
   });
 }]);
-
-// app.controller('popupCtrl', function($scope){
-
-// });

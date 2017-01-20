@@ -22,13 +22,13 @@
 			</section>
 			<section id="filter" ng-controller="filterCtrl">
 				<section id="closeFilter"><button id="close" class="hidden"><b>X</b></button></section>
-				<button class="filterOptions">SELECT FILTER<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
+				<button class="filterOptions">{{ selectFilter }}<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
 				<ul class="filterItem">
-					<li ng-repeat="filterButton in filterButtons"><button id="{{ filterButton.Id }}" class="filterItemButton">{{ filterButton.Name }}</button></li>
-					<div class="claer"></div>
+					<li><button id="filterBody" class="filterItemButton">{{ body }}</button></li>
+					<li><button id="filterGender" class="filterItemButton">{{ gender }}</button></li>
+					<li><button id="filterVictim" class="filterItemButton">{{ victim }}</button></li>
 				</ul>
 			</section>
-			<div class="clear"></div>
 		</section>
 		<section id="cubeContainer"></section>
 	</body>
