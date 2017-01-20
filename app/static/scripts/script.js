@@ -38,7 +38,8 @@ function filterBtnClick(filter){
                     '<a>';
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-image',url);
+        $('#cube'+i).css('background-size', 'cover');
         i++;
       })
     },function (error){
@@ -86,7 +87,8 @@ app.controller('whoCtrl', function($scope, $http, $compile) {
 			$('#cubeContainer').append(compiled);
       var url = 'url('+value.image+')';
       var cubeId = '#cube'+i;
-      $(cubeId).css('background',url);
+      $(cubeId).css('background-image',url);
+      $(cubeId).css('background-size','cover');
       $('#cubeContainer').on('mouseenter', cubeId, function(){
         $(cubeId+' #hashtag span').removeClass('highlight');
         $(cubeId+' #celebName span').removeClass('highlight');
@@ -113,7 +115,7 @@ app.controller('howCtrl', function($scope, $http, $compile) {
    }
    var request = decodeURIComponent('/api/celeb/'+lastName);
    $http.get(request).then(function (response){
-    if(responsedata == null){
+    if(response.data == null){
         $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
     }
     else {
@@ -185,7 +187,7 @@ app.controller('whatCtrl', function($scope, $http, $compile) {
    }
    var request = decodeURIComponent('/api/user/'+lastName);
    $http.get(request).then(function (response){
-    if(responsedata == null){
+    if(response.data == null){
         $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
     }
     else {
@@ -284,7 +286,8 @@ app.controller('whomCtrl', function($scope, $http) {
                   '<a>';
       $('#cubeContainer').append(cube);
       var url = 'url('+value.image+')';
-      $('#cube'+i).css('background',url);
+      $('#cube'+i).css('background-image',url);
+      $('#cube'+i).css('background-size','cover');
       i++;
     })
   },function (error){
@@ -366,7 +369,8 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
                     '<a>';
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-image',url);
+        $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){
@@ -388,6 +392,7 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
         $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){
@@ -409,6 +414,7 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
         $('#cube'+i).css('background',url);
+          $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){

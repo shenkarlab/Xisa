@@ -84,7 +84,7 @@ app.get('/whom', (req,res,next) => {
 
 app.get('/api/getCelebs', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/who.json', (error, json) => {
+		fs.readFile('./celebs.json', (error, json) => {
 			if (error) {
 	        	var err = new Error();
   				err.status = 500;
@@ -117,7 +117,7 @@ app.get('/api/getCelebs', (req,res,next) => {
 
 app.get('/api/getCelebs/:category', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/who.json', (error, json) => {
+		fs.readFile('./celebs.json', (error, json) => {
 			if (error) {
 	        	var err = new Error();
   				err.status = 500;
@@ -150,7 +150,7 @@ app.get('/api/getCelebs/:category', (req,res,next) => {
 
 app.get('/api/celeb/:name', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/how.json', (error, json) => {
+		fs.readFile('./celeb.json', (error, json) => {
 			if (error) {
 	        	var err = new Error();
   				err.status = 500;
@@ -183,7 +183,7 @@ app.get('/api/celeb/:name', (req,res,next) => {
 
 app.get('/api/getUsers', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/users.json', (error, json) => {
+		fs.readFile('./users.json', (error, json) => {
 			if (error) {
 	        	var err = new Error();
   				err.status = 500;
@@ -216,7 +216,7 @@ app.get('/api/getUsers', (req,res,next) => {
 
 app.get('/api/user/:name', (req,res,next) => {
 	if(DEBUG){
-		fs.readFile('D:/Shenkar/XISA/source/user.json', (error, json) => {
+		fs.readFile('./user.json', (error, json) => {
 			if (error) {
 	        	var err = new Error();
   				err.status = 500;
