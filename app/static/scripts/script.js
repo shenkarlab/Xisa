@@ -303,6 +303,19 @@ app.controller('whomCtrl', function($scope, $http) {
   });
 });
 
+app.controller('searchCtrl', ['$scope', '$location', function ($scope, $location) {
+  $('#serchInput').focusin(function(){
+    $('nav ul').css('opacity', '0.1');
+    $('#leftText').css('opacity', '0.1');
+    $('#cubeContainer').css('opacity', '0.1');
+  });
+
+  $('#serchInput').focusout(function(){
+    $('nav ul').css('opacity', '1');
+    $('#leftText').css('opacity', '1');
+    $('#cubeContainer').css('opacity', '1');
+  });
+}]);
 app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 
     $scope.navLinks = [{
@@ -346,9 +359,6 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
       $('nav ul').css('opacity', '0.1');
       $('#leftText').css('opacity', '0.1');
       $('#cubeContainer').css('opacity', '0.1');
-      $("#filterBody").click(filterBtnClick('body'));
-      $("#filterGender").click(filterBtnClick('gender'));
-      $("#filterVictim").click(filterBtnClick('victim'));
       flag = true;
     }
   });

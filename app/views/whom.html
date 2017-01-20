@@ -23,9 +23,9 @@
 					<p id="hatingTitle"><b>{{ mostHating }}</b> <span>{{ users }}</span><p>
 					<p id="lastSeven">{{ past }}</p>
 				</section>
-				<section id="searchBar">
+				<section id="searchBar" ng-controller="searchCtrl">
 					<form action="/what" method="get">
-						<input type="text" name="name" placeholder="TYPE ANY @USERNAME" required="true">
+						<input id="serchInput" type="text" name="name" placeholder="TYPE ANY @USERNAME" required="true">
 						<button id="searchButton"></button>
 					</form>
 				</section>
