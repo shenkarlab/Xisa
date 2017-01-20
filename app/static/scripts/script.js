@@ -37,7 +37,8 @@ function filterBtnClick(filter){
                     '<a>';
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-image',url);
+        $('#cube'+i).css('background-size', 'cover');
         i++;
       })
     },function (error){
@@ -82,7 +83,8 @@ app.controller('whoCtrl', function($scope, $http) {
     							'<a>';
 			$('#cubeContainer').append(cube);
       var url = 'url('+value.image+')';
-      $('#cube'+i).css('background',url);
+      $('#cube'+i).css('background-image',url);
+      $('#cube'+i).css('background-size','cover');
 			i++;
   	})
   },function (error){
@@ -237,7 +239,8 @@ app.controller('whomCtrl', function($scope, $http) {
                   '<a>';
       $('#cubeContainer').append(cube);
       var url = 'url('+value.image+')';
-      $('#cube'+i).css('background',url);
+      $('#cube'+i).css('background-image',url);
+      $('#cube'+i).css('background-size','cover');
       i++;
     })
   },function (error){
@@ -319,7 +322,8 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
                     '<a>';
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-image',url);
+        $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){
@@ -341,6 +345,7 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
         $('#cube'+i).css('background',url);
+        $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){
@@ -362,6 +367,7 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         $('#cubeContainer').append(cube);
         var url = 'url('+value.image+')';
         $('#cube'+i).css('background',url);
+          $('#cube'+i).css('background-size','cover');
         i++;
       })
     },function (error){
