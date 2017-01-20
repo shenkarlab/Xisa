@@ -1,8 +1,9 @@
-var express	= require('express'),
-	path	= require('path');
-	fs		= require('fs');
-	cors 	= require('cors'),
-	request = require('request');
+var express		= require('express'),
+	path		= require('path');
+	fs			= require('fs');
+	cors 		= require('cors'),
+	request 	= require('request'),
+	bodyParser 	= require('body-parser');
 
 var port 				= process.env.PORT || 3000,
 	app 				= express(),
@@ -12,6 +13,7 @@ var port 				= process.env.PORT || 3000,
 	DEBUG				= true;
 
 //server config
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(__dirname + '/app/static'));
 app.use(cors());
 app.use(function(req, res, next) {
@@ -57,6 +59,19 @@ app.get('/how', (req,res,next) => {
 });
 
 app.get('/what', (req,res,next) => {
+	fs.readFile(clientRootPath + 'views/what.html', (error, html) => {
+		if (error) {
+        	var err = new Error();
+			err.status = 500;
+			err.message = error.message;
+			next(err); 
+    	}
+    	res.write(html);
+    	res.end();  
+	});
+});
+
+app.post('/what', (req,res,next) => {
 	fs.readFile(clientRootPath + 'views/what.html', (error, html) => {
 		if (error) {
         	var err = new Error();

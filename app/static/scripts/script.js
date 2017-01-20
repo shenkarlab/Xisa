@@ -30,7 +30,7 @@ function filterBtnClick(filter){
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs').then(function (response){
       angular.forEach(response.data, function(value){
-        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
+        var cube =  '<a href="/how?name='+value.name+'">'+
                       '<section class="cube" id="cube'+i+'">'+
                         '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
                         '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
@@ -148,7 +148,7 @@ app.controller('howCtrl', function($scope, $http, $compile) {
             texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
             text.split(" ").forEach(function(word){
               if(word == data.word){
-                texts += '<span id="markWord" ng-click="showAdvanced($event)">'+word.toUpperCase()+'&nbsp</span>';
+                texts += '<span id="markWord">'+word.toUpperCase()+'&nbsp</span>';
               } else if(word.startsWith('@')) {
                 var found = $.inArray(word, hatedArray) > -1;
                 if(found){
@@ -272,7 +272,7 @@ app.controller('whomCtrl', function($scope, $http) {
       var name = "";
       angular.forEach(names, function(val){
         if(names.length <= 1){
-          name = names[0] + '<br>';
+          name = names[0];
         }
         else{
           name += val + '<br>';
@@ -286,8 +286,16 @@ app.controller('whomCtrl', function($scope, $http) {
                   '<a>';
       $('#cubeContainer').append(cube);
       var url = 'url('+value.image+')';
-      $('#cube'+i).css('background-image',url);
-      $('#cube'+i).css('background-size','cover');
+      var cubeId = '#cube'+i;
+      $(cubeId).css('background-image',url);
+      $(cubeId).css('background-size','cover');
+      $('#cubeContainer').on('mouseenter', cubeId, function(){
+        $(cubeId+' #userName span:first-child').removeClass('blackHighlight');
+        $(cubeId+' #userName span:first-child').addClass('whiteHighlight');
+      }).on('mouseleave', cubeId, function(){
+        $(cubeId+' #userName span:first-child').addClass('blackHighlight');
+        $(cubeId+' #userName span:first-child').removeClass('whiteHighlight');
+      });
       i++;
     })
   },function (error){
@@ -320,10 +328,15 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 }]);
 
 app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-  $scope.selectFilter = 'SELECT FILTER';
-  $scope.body = 'BODY';
-  $scope.gender = 'GENDER';  
-  $scope.victim = 'VICTIM';
+  $scope.selectFilter = 'CATEGORIES';
+  $scope.bodyParts = 'BODY PARTS';
+  $scope.gay = 'GAY/SEXUALTITY'; 
+  $scope.charecteristics = 'CHARECTERISTICS'; 
+  $scope.others = 'OTHERS';
+  $scope.crazy = 'CRAZY/ILL';
+  $scope.belief = 'BELIEF/AGENDA';
+  $scope.mysogenist = 'MYSOGENIST';
+  $scope.animal = 'ANIMAL';
   
   $('.filterOptions').click(function() {
     if(!flag){
@@ -355,70 +368,102 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
   $('#close').click(function(){
     show();
   });
-  $('#filterBody').click(function(){
+
+  $('#filterAnimal').click(function(){
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs').then(function (response){
-      var i = 1;
-      angular.forEach(response.data, function(value){
-        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
-                      '<section class="cube" id="cube'+i+'">'+
-                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
-                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
-                      '</section>'+
-                    '<a>';
-        $('#cubeContainer').append(cube);
-        var url = 'url('+value.image+')';
-        $('#cube'+i).css('background-image',url);
-        $('#cube'+i).css('background-size','cover');
-        i++;
-      })
+      buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
   });
-  $('#filterGender').click(function(){
+
+  $('#filterBody').click(function(){
     show();
     $('#cubeContainer').empty();
-    $http.get('/api/getCelebs').then(function (response){ 
-      var i = 1;
-      angular.forEach(response.data, function(value){
-        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
-                      '<section class="cube" id="cube'+i+'">'+
-                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
-                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
-                      '</section>'+
-                    '<a>';
-        $('#cubeContainer').append(cube);
-        var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
-        $('#cube'+i).css('background-size','cover');
-        i++;
-      })
+    $http.get('/api/getCelebs/body').then(function (response){
+      buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
   });
-  $('#filterVictim').click(function(){
+
+  $('#filterCharacter').click(function(){
     show();
     $('#cubeContainer').empty();
-    $http.get('/api/getCelebs').then(function (response){ 
-      var i = 1;
-      angular.forEach(response.data, function(value){
-        var cube =  '<a href="/how?name='+value.name+'&word='+value.word+'&url='+value.image+'">'+
-                      '<section class="cube" id="cube'+i+'">'+
-                        '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
-                        '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
-                      '</section>'+
-                    '<a>';
-        $('#cubeContainer').append(cube);
-        var url = 'url('+value.image+')';
-        $('#cube'+i).css('background',url);
-          $('#cube'+i).css('background-size','cover');
-        i++;
-      })
+    $http.get('/api/getCelebs/charecteristics').then(function (response){
+      buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
   });
+
+  $('#filterGay').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/gay').then(function (response){
+      buildCubes(response.data)
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+
+  $('#filterOther').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/others').then(function (response){
+      buildCubes(response.data)
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+
+  $('#filterCrazy').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/crazy').then(function (response){
+      buildCubes(response.data)
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+
+  $('#filterBelief').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/belief').then(function (response){
+      buildCubes(response.data)
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+
+  $('#filterMysogenist').click(function(){
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/mysogenist').then(function (response){
+      buildCubes(response.data)
+    },function (error){
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+    });
+  });
+ 
 }]);
+
+function buildCubes(data){
+var i = 1;
+  angular.forEach(data, function(value){
+    var cube =  '<a href="/how?name='+value.name+'">'+
+                  '<section class="cube" id="cube'+i+'">'+
+                    '<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
+                    '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+                  '</section>'+
+                '<a>';
+    $('#cubeContainer').append(cube);
+    var url = 'url('+value.image+')';
+    $('#cube'+i).css('background',url);
+      $('#cube'+i).css('background-size','cover');
+    i++;
+  })
+}

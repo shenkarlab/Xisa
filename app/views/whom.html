@@ -24,8 +24,10 @@
 					<p id="lastSeven">{{ past }}</p>
 				</section>
 				<section id="searchBar">
-					<input type="text" name="userSearch" placeholder="TYPE ANY @USERNAME">
-					<button id="searchButton"></button>
+					<form action="/what" method="get">
+						<input type="text" name="name" placeholder="TYPE ANY @USERNAME" required="true">
+						<button id="searchButton"></button>
+					</form>
 				</section>
 				<div class="clear"></div>
 			</section>
