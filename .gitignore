@@ -1,4 +1,8 @@
 node_modules
-dev
 bower_components
-.idea
+build/
+/bower.json
+*sass-cashe
+*.css.map
+.ideas
+source/template/

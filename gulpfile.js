@@ -10,13 +10,13 @@ var gulp 		= require('gulp'),
 	pkg			= require('./package.json'); 
 
 //file location
-var devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() != 'production')
-	source = 'dev/',
-	dest   = '../XISA/build/',
+var devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() != 'production'),
+	source = 'source/',
+	dest   = 'build/',
 	images = {
 		in: source + 'images/*.*',
 		out: dest + 'images/'
-	};
+	},
 	html = {
 		in: source + '*.html',
 		watch: [source + '*.html', source + 'template/**/*'],
@@ -79,7 +79,7 @@ gulp.task('default', ['html','sass','js','images'], function(){
 	gulp.watch(html.watch, ['html']);
 
 	//sass changes
-	gulp.watch(css.watch, ['sass'])
+	gulp.watch(css.watch, ['sass']);
 
 	//js changes
 	gulp.watch(js.watch, ['js']);

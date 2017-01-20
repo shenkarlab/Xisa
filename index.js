@@ -7,14 +7,14 @@ var express		= require('express'),
 
 var port 				= process.env.PORT || 3000,
 	app 				= express(),
-	clientRootPath 		= __dirname + '/app/',
+	clientRootPath 		= __dirname + '/build/',
 	apiPath 			= 'https://xisaapi.herokuapp.com',
 	clientPort 			= 8080,
 	DEBUG				= true;
 
 //server config
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(express.static(__dirname + '/app/static'));
+app.use(express.static(__dirname + '/build/'));
 app.use(cors());
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,7 +33,7 @@ app.all('/api/*', (req,res,next) => {
 });
 
 app.get('/', (req,res,next) => {
-	fs.readFile(clientRootPath + 'views/index.html', (error, html) => {
+	fs.readFile(clientRootPath + 'index.html', (error, html) => {
 		if (error) {
         	var err = new Error();
 			err.status = 500;
@@ -46,7 +46,7 @@ app.get('/', (req,res,next) => {
 });
 
 app.get('/how', (req,res,next) => {
-	fs.readFile(clientRootPath + 'views/how.html', (error, html) => {
+	fs.readFile(clientRootPath + 'how.html', (error, html) => {
 		if (err) {
         	var err = new Error();
 			err.status = 500;
@@ -59,7 +59,7 @@ app.get('/how', (req,res,next) => {
 });
 
 app.get('/what', (req,res,next) => {
-	fs.readFile(clientRootPath + 'views/what.html', (error, html) => {
+	fs.readFile(clientRootPath + 'what.html', (error, html) => {
 		if (error) {
         	var err = new Error();
 			err.status = 500;
@@ -72,7 +72,7 @@ app.get('/what', (req,res,next) => {
 });
 
 app.post('/what', (req,res,next) => {
-	fs.readFile(clientRootPath + 'views/what.html', (error, html) => {
+	fs.readFile(clientRootPath + 'what.html', (error, html) => {
 		if (error) {
         	var err = new Error();
 			err.status = 500;
@@ -85,7 +85,7 @@ app.post('/what', (req,res,next) => {
 });
 
 app.get('/whom', (req,res,next) => {
-	fs.readFile(clientRootPath + 'views/whom.html', (error, html) => {
+	fs.readFile(clientRootPath + 'whom.html', (error, html) => {
 		if (error) {
         	var err = new Error();
 			err.status = 500;
