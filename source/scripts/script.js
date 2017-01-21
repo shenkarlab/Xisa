@@ -70,44 +70,6 @@ function setMovingTextClass(news, i) {
     });
 }
 
-// <<<<<<< HEAD
-// app.controller('whoCtrl', function($scope, $http, $compile) {
-//   $http.get('/api/getCelebs').then(function (response){
-//     $scope.mostHated = 'MOST HATED';
-//     $scope.people = 'PEOPLE';
-//     $scope.past = 'The past 7 days on Twitter';  
-// 		var i = 1;
-//   	angular.forEach(response.data, function(data){
-//   		var cube =	'<a href="/how?name='+data.name+'">'+
-//   	    						'<section class="cube" id="cube'+i+'">'+
-//     									'<p id="hashtag"><span class="highlight">'+data.word+'</span></p>'+
-//                       '<p id="celebName"><span class="highlight">'+data.name+'</span></p>'+
-//     								'</section>'+
-//     							'<a>';
-//       hatedArray.push(data.name);
-//       var compiled = $compile(cube)($scope);
-// 			$('#cubeContainer').append(compiled);
-//       var url = 'url('+data.image+')';
-//       var cubeId = '#cube'+i;
-//       $(cubeId).css('background-image',url);
-//       $(cubeId).css('background-size','cover');
-//       $('#cubeContainer').on('mouseenter', cubeId, function(){
-//         $(cubeId+' #hashtag span').removeClass('highlight');
-//         $(cubeId+' #celebName span').removeClass('highlight');
-//         $(cubeId+' #hashtag span').addClass('whiteHighlight');
-//         $(cubeId+' #celebName span').addClass('whiteHighlight');
-//       }).on('mouseleave', cubeId, function(){
-//         $(cubeId+' #hashtag span').addClass('highlight');
-//         $(cubeId+' #celebName span').addClass('highlight');
-//         $(cubeId+' #hashtag span').removeClass('whiteHighlight');
-//         $(cubeId+' #celebName span').removeClass('whiteHighlight');
-//       });
-// 			i++;
-//   	})
-//   },function (error){
-//     $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-// 	});
-// =======
 app.controller('whoCtrl', function ($scope, $http, $compile) {
     $http.get('/api/getCelebs').then(function (response) {
         $scope.mostHated = 'MOST HATED';
@@ -416,7 +378,6 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         show();
     });
 
-<<<<<<< HEAD
 
   $('#filterBody').click(function(){
     show();
@@ -437,7 +398,6 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
         });
     });
 
-<<<<<<< HEAD
   $('#filterCrazy').click(function(){
     show();
     $('#cubeContainer').empty();
