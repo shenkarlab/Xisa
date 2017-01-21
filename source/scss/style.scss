@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import "colors";
+@import "header";
 
 body {
   margin: 0;
@@ -8,49 +9,8 @@ body {
   padding: 3.3% 2%;
 }
 
-#logo {
-  flex: 1;
-}
-
 section header nav a {
   display: block;
-}
-
-nav {
-  display: flex;
-  flex-direction: row;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 230px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-}
-
-nav ul li {
-  padding-left: 10%;
-}
-
-nav ul li a {
-  display: block;
-  color: #4d4d4d;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none;
-}
-
-nav ul li a.active {
-  display: block;
-  color: #ffffff;
-  text-align: center;
-  font-size: 1.666em;
-  text-decoration: none;
 }
 
 #wrapper {

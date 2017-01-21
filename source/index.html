@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html ng-app="xisa">
-	<head>
-		<title>XISA</title>
-		<script src="scripts/jquery.min.js"></script>
-		<script src="scripts/angular.min.js"></script>
-		<script src="scripts/script.js"></script>
-		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body ng-controller="whoCtrl" id="who">
-		<nav ng-controller="navCtrl">
-			<a id="logo" href="/"><img src="/images/redLOGO.png" alt="logo"></a>
-			<ul>
-				<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{ navLink.LinkText }}</a></li>
-			</ul>
-		</nav>
-		<section id="header">
-			<section id="leftText">
-				<p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
-				<p id="lastSeven">{{ past }}</p>
-			</section>
-			<section id="filter" ng-controller="filterCtrl">
-				<section id="closeFilter"><button id="close" class="hidden"><b>X</b></button></section>
-				<button class="filterOptions">{{ selectFilter }}<img id="arrow" src="images/categories.png" alt="categoriesArrow"></button>
-				<ul class="filterItem">
-					<li><button id="filterBody" class="filterItemButton">{{ bodyParts }}</button></li>
-					<li><button id="filterCharacter" class="filterItemButton">{{ charecteristics }}</button></li>
-					<li><button id="filterCrazy" class="filterItemButton">{{ crazy }}</button></li>
-					<li><button id="filterBelief" class="filterItemButton">{{ belief }}</button></li>
-					<li><button id="filterMysogenist" class="filterItemButton">{{ mysogenist }}</button></li>
-				</ul>
-			</section>
-		</section>
-		<section id="cubeContainer"></section>
-	</body>
+<head>
+    <title>HateSpread</title>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/script.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="whoCtrl" id="who">
+<header>
+    <a id="logo" href="/" title="logo" class="hated"></a>
+    <nav ng-controller="navCtrl">
+        <ul>
+            <li ng-repeat="navLink in navLinks"><a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{
+                navLink.LinkText }}</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="header">
+    <section id="leftText">
+        <p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
+        <p id="lastSeven">{{ past }}</p>
+    </section>
+    <section id="filter" ng-controller="filterCtrl">
+        <section id="closeFilter">
+            <button id="close" class="hidden"><b>X</b></button>
+        </section>
+        <button class="filterOptions">{{ selectFilter }}<img id="arrow" src="images/categories.png"
+                                                             alt="categoriesArrow"></button>
+        <ul class="filterItem">
+            <li>
+                <button id="filterBody" class="filterItemButton">{{ bodyParts }}</button>
+            </li>
+            <li>
+                <button id="filterCharacter" class="filterItemButton">{{ charecteristics }}</button>
+            </li>
+            <li>
+                <button id="filterCrazy" class="filterItemButton">{{ crazy }}</button>
+            </li>
+            <li>
+                <button id="filterBelief" class="filterItemButton">{{ belief }}</button>
+            </li>
+            <li>
+                <button id="filterMysogenist" class="filterItemButton">{{ mysogenist }}</button>
+            </li>
+        </ul>
+    </section>
+</section>
+<section id="cubeContainer"></section>
+</body>
 </html>
