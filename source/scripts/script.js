@@ -71,14 +71,14 @@ app.controller('howCtrl', function ($scope, $http, $compile) {
             $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
         }
         else {
-            var url = response.data.celeb_details.image;
+            var url = response.data.user_details.image;
             var urlAppend = 'url(' + url + ')';
             $('body').css('width', '100vw');
             $('body').css('height', '100vh');
             $('body').css('background', '#464646 ' + urlAppend + ' no-repeat fixed center center');
             $('body').css('background-size', 'cover');
-            $scope.celebName = response.data.celeb_details.name;
-            $scope.twitterName = '@' + response.data.celeb_details.twitter_name;
+            $scope.celebName = response.data.user_details.name;
+            $scope.twitterName = '@' + response.data.user_details.twitter_name;
             $scope.numOfPeople = 'This week, People said 100 times That he is ';
             $scope.badWord = response.data.mostUsedWord;;
             $scope.also = 'They also said about him:';
