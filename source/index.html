@@ -9,7 +9,7 @@
 </head>
 <body ng-controller="whoCtrl" id="who">
 <header>
-    <a id="logo" href="/" title="logo" class="hated"></a>
+    <a class="logo hated" href="/" title="logo"></a>
     <nav ng-controller="navCtrl">
         <ul>
             <li ng-repeat="navLink in navLinks"><a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{
@@ -17,36 +17,39 @@
         </ul>
     </nav>
 </header>
-<section id="header">
-    <section id="leftText">
-        <h1><span class="hated-text">{{ mostHated }}</span> {{ people }}</h1>
-        <p>The past 7 days on twitter</p>
-    </section>
-    <section id="filter" ng-controller="filterCtrl">
-        <section id="closeFilter">
-            <button id="close" class="hidden"><b>X</b></button>
+<section id="content">
+    <div id="topbar">
+        <section id="title">
+            <h1><span class="hated-text">{{ mostHated }}</span> {{ people }}</h1>
+            <p>{{past}}</p>
         </section>
-        <button class="filterOptions">{{ selectFilter }}<img id="arrow" src="images/categories.png"
-                                                             alt="categoriesArrow"></button>
-        <ul class="filterItem">
-            <li>
-                <button id="filterBody" class="filterItemButton">{{ bodyParts }}</button>
-            </li>
-            <li>
-                <button id="filterCharacter" class="filterItemButton">{{ charecteristics }}</button>
-            </li>
-            <li>
-                <button id="filterCrazy" class="filterItemButton">{{ crazy }}</button>
-            </li>
-            <li>
-                <button id="filterBelief" class="filterItemButton">{{ belief }}</button>
-            </li>
-            <li>
-                <button id="filterMysogenist" class="filterItemButton">{{ mysogenist }}</button>
-            </li>
-        </ul>
-    </section>
+        <section id="filter" ng-controller="filterCtrl">
+            <div id="filter-btn" ng-click="hideOptions = !hideOptions">
+                <a href="#">{{ selectFilter }}</a>
+                <img src="images/categories.png" alt="categoriesArrow">
+            </div>
+            <section id="filterOptions" ng-show="hideOptions">
+                <header>
+                    <a class="logo hated" href="/" title="logo"></a>
+                    <a href="#" id="close" ng-click="hideOptions = !hideOptions">X</a>
+                </header>
+                <ul>
+                    <li class="selected">
+                        <span>{{ selectFilter }}
+                            <img src="images/categories.png" alt="categoriesArrow">
+                        </span>
+
+                    </li>
+                    <li id="filterBody"><span>{{ bodyParts }}</span></li>
+                    <li id="filterCharacter"><span>{{ charecteristics }}</span></li>
+                    <li id="filterCrazy"><span>{{ crazy }}</span></li>
+                    <li id="filterBelief"><span>{{ belief }}</span></li>
+                    <li id="filterMysogenist"><span>{{ mysogenist }}</span></li>
+                </ul>
+            </section>
+        </section>
+    </div>
+    <section id="cubeContainer"></section>
 </section>
-<section id="cubeContainer"></section>
 </body>
 </html>

@@ -1,0 +1,71 @@
+@import "colors";
+@import "fonts";
+
+header, nav, section, p, a, li, ul, h1, h2, button {
+  margin: 0;
+  padding: 0;
+  font-size: $base-font-size;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  font-family: $font-stack;
+  color: $text-color;
+  background: $app-background-color;
+}
+
+.logo {
+  width: 190px;
+  height: 73px;
+  margin-left: 48px;
+  margin-top: 59px;
+}
+
+.hated {
+  background: url('../images/redLOGO.png') no-repeat;
+}
+
+.hater {
+  background: url('../images/blueLOGO.png') no-repeat;
+}
+
+h1 {
+  font-size: 4.374em;
+  font-weight: 300;
+  color: #fff;
+  margin-left: 48px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hated-text {
+  color: $hated-color;
+  font-weight: 900;
+}
+
+.hater-text {
+  color: $hater-color;
+  font-weight: 900;
+}
+
+#title {
+  flex: 1;
+}
+
+#title p {
+  margin-left: 48px;
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 1.563em;
+}
+
+#topbar {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+}
+
+

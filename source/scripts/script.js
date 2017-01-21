@@ -31,8 +31,8 @@ function filterBtnClick(filter) {
         $('#cubeContainer').empty();
         $http.get('/api/getCelebs').then(function (response) {
             angular.forEach(response.data, function (value) {
-                var cube = '<a href="/how?name=' + value.name + '">' +
-                    '<section class="cube" id="cube' + i + '">' +
+                var cube = '<a id="cube' + i + '" href="/how?name=' + value.name + '">' +
+                    '<section class="cube">' +
                     '<p id="hashtag"><span class="highlight">' + value.word + '</span></p>' +
                     '<p id="celebName"><span class="highlight">' + value.name + '</span></p>' +
                     '</section>' +
@@ -77,10 +77,10 @@ app.controller('whoCtrl', function ($scope, $http, $compile) {
         $scope.past = 'The past 7 days on Twitter';
         var i = 1;
         angular.forEach(response.data, function (data) {
-            var cube = '<a href="/how?name=' + data.name + '">' +
-                '<section class="cube" id="cube' + i + '">' +
-                '<p id="hashtag"><span class="highlight">' + data.word + '</span></p>' +
-                '<p id="celebName"><span class="highlight">' + data.name + '</span></p>' +
+            var cube = '<a id="cube' + i + '" class="cube" href="/how?name=' + data.name + '">' +
+                '<section>' +
+                '<p>' + '<span id="hashtag">' + data.word + '</span>' + '</p>' +
+                '<p>' + '<span id="celebName">' + data.name + '</span>' + '</p>' +
                 '</section>' +
                 '<a>';
             hatedArray.push(data.name);
@@ -451,8 +451,8 @@ $('#filterCrazy').click(function () {
 function buildCubes(data) {
     var i = 1;
     angular.forEach(data, function (value) {
-        var cube = '<a href="/how?name=' + value.name + '">' +
-            '<section class="cube" id="cube' + i + '">' +
+        var cube = '<a id="cube' + i + '" href="/how?name=' + value.name + '">' +
+            '<section class="cube">' +
             '<p id="hashtag"><span class="highlight">' + value.word + '</span></p>' +
             '<p id="celebName"><span class="highlight">' + value.name + '</span></p>' +
             '</section>' +

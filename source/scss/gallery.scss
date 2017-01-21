@@ -1,0 +1,41 @@
+@import "colors";
+
+#cubeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 43px 48px 51px 48px;
+
+  a.cube {
+    width: 361px;
+    height: 361px;
+    display: block;
+  }
+
+  section {
+    margin-top: 134px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  #celebName {
+    color: #ffffff;
+    font-size: 1.255em;
+    font-weight: 500;
+    padding: 1px 8px 8px 8px;
+    background-color: $hated-color;
+  }
+
+  #hashtag {
+    color: #ffffff;
+    font-size: 3.124em;
+    font-weight: 400;
+    padding: 15px 8px 0 8px;
+    background-color: $hated-color;
+  }
+}
+
+
+

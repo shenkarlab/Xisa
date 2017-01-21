@@ -2,53 +2,33 @@ header {
   display: flex;
   flex-direction: row;
 
-  .hated {
-    flex: 1;
-    background: url('../images/redLOGO.png') no-repeat;
-    min-width: 190px;
-    height: 73px;
-  }
-
-  .hater {
-    flex: 1;
-    background: url('../images/blueLOGO.png') no-repeat;
-    min-width: 190px;
-    height: 73px;
-  }
-
   nav {
     display: flex;
-    flex-direction: row;
-    margin-left: 2%;
-    margin-right: 2%;
+    flex: 1;
+    flex-direction: row-reverse;
+    margin-right: 48px;
+    margin-top: 68px;
   }
 
     ul {
       list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 230px;
-      overflow: hidden;
       display: flex;
       flex-direction: row;
 
       li {
-        padding-left: 10%;
+        margin-left: 31px;
 
         a {
-          display: block;
           color: #4d4d4d;
-          text-align: center;
-          font-size: 1.666em;
-          text-decoration: none;
+          font-size: 1.25em;
+          line-height: 1.25em;
+          font-weight: 300;
         }
 
         a.active {
-          display: block;
           color: #ffffff;
-          text-align: center;
-          font-size: 1.666em;
-          text-decoration: none;
+          font-weight: 900;
+          line-height: 1.25em;
         }
       }
     }
