@@ -169,6 +169,14 @@ app.controller('howCtrl', function ($scope, $http, $compile) {
                             }
                         })
                         texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+                        var textId = "ti_news" + (k + 1);
+                        $("#howContent").mouseenter(textId, function () {
+                          $("#popup").css('visibility', 'visible');
+                          $("#tweetText").text(text);
+                          $("#tweetTime").text(new Date().getTime());
+                        }).mouseleave(textId, function () {
+                          $("#popup").css('visibility', 'hidden');
+                        });
                         k++;
                     });
                     texts += '</div> </div> </div> </div>';
@@ -179,7 +187,6 @@ app.controller('howCtrl', function ($scope, $http, $compile) {
                 }
                 i++;
             })
-            $('#howContent').append('<div class="clear"></div>');
         }
     }, function (error) {
         $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
@@ -195,7 +202,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
     var request = decodeURIComponent('/api/user/' + lastName);
     $http.get(request).then(function (response) {
         if (response.data == null) {
-            $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
+            $('#whatContent').append('<section class="error">500<br>Twitter connection error</section>');
         }
         else {
             var url = response.data.user_details.image;
@@ -224,10 +231,9 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                 pic += '</section>';
                 $('#pics').append(pic);
             }
-            $('#pics').append('<div class="clear"></div>');
             angular.forEach(response.data.words_with_texts, function (data) {
                 if (data.texts == null) {
-                    $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
+                    $('#whatContent').append('<section class="error">500<br>Twitter connection error</section>');
                 }
                 else {
                     badWordCount += data.count;
@@ -267,7 +273,6 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                 i++;
             });
             $scope.badWordCount = badWordCount;
-            $('#whatContent').append('<div class="clear"></div>');
         }
     }, function (error) {
         $('#whatContent').append('<section class="error">500<br>Twitter connection error</section>');
