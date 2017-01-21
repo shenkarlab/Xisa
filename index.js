@@ -71,19 +71,6 @@ app.get('/what', (req,res,next) => {
 	});
 });
 
-app.post('/what', (req,res,next) => {
-	fs.readFile(clientRootPath + 'what.html', (error, html) => {
-		if (error) {
-        	var err = new Error();
-			err.status = 500;
-			err.message = error.message;
-			next(err); 
-    	}
-    	res.write(html);
-    	res.end();  
-	});
-});
-
 app.get('/whom', (req,res,next) => {
 	fs.readFile(clientRootPath + 'whom.html', (error, html) => {
 		if (error) {

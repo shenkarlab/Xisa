@@ -4,6 +4,7 @@ var app = angular.module('xisa', []);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var flag = false;
 var hatedArray = [];
+var WIDTH_MULTIPLIER = 400;
 
 function getUrlParameter(param) {
   var sPageURL = window.location.search.substring(1),
@@ -75,17 +76,17 @@ app.controller('whoCtrl', function($scope, $http, $compile) {
     $scope.people = 'PEOPLE';
     $scope.past = 'The past 7 days on Twitter';  
 		var i = 1;
-  	angular.forEach(response.data, function(value){
-  		var cube =	'<a href="/how?name='+value.name+'">'+
+  	angular.forEach(response.data, function(data){
+  		var cube =	'<a href="/how?name='+data.name+'">'+
   	    						'<section class="cube" id="cube'+i+'">'+
-    									'<p id="hashtag"><span class="highlight">'+value.word+'</span></p>'+
-                      '<p id="celebName"><span class="highlight">'+value.name+'</span></p>'+
+    									'<p id="hashtag"><span class="highlight">'+data.word+'</span></p>'+
+                      '<p id="celebName"><span class="highlight">'+data.name+'</span></p>'+
     								'</section>'+
     							'<a>';
-      hatedArray.push(value.name);
+      hatedArray.push(data.name);
       var compiled = $compile(cube)($scope);
 			$('#cubeContainer').append(compiled);
-      var url = 'url('+value.image+')';
+      var url = 'url('+data.image+')';
       var cubeId = '#cube'+i;
       $(cubeId).css('background-image',url);
       $(cubeId).css('background-size','cover');
@@ -132,13 +133,19 @@ app.controller('howCtrl', function($scope, $http, $compile) {
       $scope.badWord = badWord;
       $scope.also = 'They also said about him:';
       var i = 0;
+      var maxLen = 0;
+      angular.forEach(response.data.wordsWithTweets, function(data){
+        if(data.bad_words_count > maxLen){
+          maxLen = data.bad_words_count;
+        }
+      });
       angular.forEach(response.data.wordsWithTweets, function(data){
         if(data.texts == null){
           $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
         }
         else {
           var barDiv =  '<p class="barBadWord">'+data.word.toUpperCase()+'</p>'+
-                        '<div class="bar_chart" style="width:'+data.bad_words_count*3+'px;"></div>'+
+                        '<div class="bar_chart" style="width:'+(data.bad_words_count/maxLen*WIDTH_MULTIPLIER)+'px;"></div>'+
                         '<p class="barWordCount">'+data.bad_words_count+' times</p>';
           $("#bars").append(barDiv);
           var texts = "";
@@ -212,6 +219,12 @@ app.controller('whatCtrl', function($scope, $http, $compile) {
         $('#pics').append(pic);
       }
       $('#pics').append('<div class="clear"></div>');
+      var maxLen = 0;
+      angular.forEach(response.data.words_with_texts, function(data){
+        if(data.count > maxLen){
+          maxLen = data.count;
+        }
+      });
       angular.forEach(response.data.words_with_texts, function(data){
         if(data.texts == null){
           $('#howContent').append('<section class="error">500<br>Twitter connection error</section>');
@@ -219,7 +232,7 @@ app.controller('whatCtrl', function($scope, $http, $compile) {
         else {
           badWordCount += data.count;
           var barDiv =  '<p class="whatbarBadWord">'+data.word.toUpperCase()+'</p>'+
-                        '<div class="whatbar_chart" style="width:'+data.count*3+'px;"></div>'+
+                        '<div class="whatbar_chart" style="width:'+(data.count/maxLen*WIDTH_MULTIPLIER)+'px;"></div>'+
                         '<p class="whatbarWordCount">'+data.count+' times</p>';
           $("#whatbars").append(barDiv);
           var texts = "";
@@ -343,13 +356,10 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   $scope.selectFilter = 'CATEGORIES';
   $scope.bodyParts = 'BODY PARTS';
-  $scope.gay = 'GAY/SEXUALTITY'; 
   $scope.charecteristics = 'CHARECTERISTICS'; 
-  $scope.others = 'OTHERS';
   $scope.crazy = 'CRAZY/ILL';
   $scope.belief = 'BELIEF/AGENDA';
   $scope.mysogenist = 'MYSOGENIST';
-  $scope.animal = 'ANIMAL';
   
   $('.filterOptions').click(function() {
     if(!flag){
@@ -379,20 +389,11 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
     show();
   });
 
-  $('#filterAnimal').click(function(){
-    show();
-    $('#cubeContainer').empty();
-    $http.get('/api/getCelebs').then(function (response){
-      buildCubes(response.data)
-    },function (error){
-      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-    });
-  });
 
   $('#filterBody').click(function(){
     show();
     $('#cubeContainer').empty();
-    $http.get('/api/getCelebs/body').then(function (response){
+    $http.get('/api/getCelebs/body_parts').then(function (response){
       buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
@@ -403,26 +404,6 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/charecteristics').then(function (response){
-      buildCubes(response.data)
-    },function (error){
-      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-    });
-  });
-
-  $('#filterGay').click(function(){
-    show();
-    $('#cubeContainer').empty();
-    $http.get('/api/getCelebs/gay').then(function (response){
-      buildCubes(response.data)
-    },function (error){
-      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-    });
-  });
-
-  $('#filterOther').click(function(){
-    show();
-    $('#cubeContainer').empty();
-    $http.get('/api/getCelebs/others').then(function (response){
       buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');

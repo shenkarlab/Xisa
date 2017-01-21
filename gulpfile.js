@@ -64,11 +64,11 @@ gulp.task('sass', function(){
 //build js files
 gulp.task('js', function () {
 	return gulp.src(js.in)
-    .pipe(minify({
-        ignoreFiles: [
-        '.min.js'
-        ]
-    }))
+    // .pipe(minify({
+    //     ignoreFiles: [
+    //     '*.min.js'
+    //     ]
+    // }))
     .pipe(gulp.dest(js.out));
 });
 
