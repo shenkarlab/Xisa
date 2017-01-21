@@ -40,16 +40,21 @@
                         </span>
 
                     </li>
-                    <li id="filterBody"><span>{{ bodyParts }}</span></li>
-                    <li id="filterCharacter"><span>{{ charecteristics }}</span></li>
-                    <li id="filterCrazy"><span>{{ crazy }}</span></li>
-                    <li id="filterBelief"><span>{{ belief }}</span></li>
-                    <li id="filterMysogenist"><span>{{ mysogenist }}</span></li>
+                    <li ng-repeat="category in categories" ng-click="getCelebs(category)"><span>{{category.name}}</span>
+                    </li>
                 </ul>
             </section>
         </section>
     </div>
-    <section id="cubeContainer"></section>
+    <section id="cubeContainer">
+        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
+           ng-style="{'background-image': 'url({{cube.image}})'}">
+            <section>
+                <p><span id="hashtag" class="hated-bg">{{cube.word}}</span></p>
+                <p><span id="celebName" class="hated-bg">{{cube.name}}</span></p>
+            </section>
+        </a>
+    </section>
 </section>
 </body>
 </html>
