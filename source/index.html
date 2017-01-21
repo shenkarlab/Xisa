@@ -5,7 +5,6 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/script.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whoCtrl" id="who">
@@ -20,8 +19,8 @@
 </header>
 <section id="header">
     <section id="leftText">
-        <p id="hatedTitle"><b>{{ mostHated }}</b> <span>{{ people }}</span></p>
-        <p id="lastSeven">{{ past }}</p>
+        <h1><span class="hated-text">{{ mostHated }}</span> {{ people }}</h1>
+        <p>The past 7 days on twitter</p>
     </section>
     <section id="filter" ng-controller="filterCtrl">
         <section id="closeFilter">
