@@ -11,14 +11,14 @@
 	</head>
 	<body ng-controller="whatCtrl" id="how">
 		<div id="dimmer">
-			<nav ng-controller="navCtrl">
-				<p><a href="/whom"><img src="/images/blueLOGO.png" alt="logo"></a></p>
-				<ul>
-					<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
-					<div class="claer"></div>
-				</ul>
-				<div class="claer"></div>
-			</nav>
+			<header>
+				<a href="/whom" id="logo" class="hater"></a>
+				<nav ng-controller="navCtrl">
+					<ul>
+						<li ng-repeat="navLink in navLinks" > <a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{navLink.LinkText}}</a></li>
+					</ul>
+				</nav>
+			</header>
 			<section id="whatHeader">
 				<section id="whatnames">
 					<p id="whatuserName">{{firstName}}</p>
