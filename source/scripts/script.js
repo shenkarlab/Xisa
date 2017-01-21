@@ -132,6 +132,12 @@ app.controller('howCtrl', function ($scope, $http, $compile) {
             $scope.numOfPeople = 'This week, People said 100 times That he is ';
             $scope.badWord = badWord;
             $scope.also = 'They also said about him:';
+            var maxLen = 0;
+            angular.forEach(response.data.wordsWithTweets, function (data) {
+              if(maxLen < data.bad_words_count){
+                maxLen = data.bad_words_count;
+              }
+            });
             var i = 0;
             angular.forEach(response.data.wordsWithTweets, function (data) {
                 if (data.texts == null) {
@@ -139,7 +145,7 @@ app.controller('howCtrl', function ($scope, $http, $compile) {
                 }
                 else {
                     var barDiv = '<p class="barBadWord">' + data.word.toUpperCase() + '</p>' +
-                        '<div class="bar_chart" style="width:' + data.bad_words_count * 3 + 'px;"></div>' +
+                        '<div class="bar_chart" style="width:' + (data.bad_words_count / maxLen * WIDTH_MULTIPLIER) + 'px;"></div>' +
                         '<p class="barWordCount">' + data.bad_words_count + ' times</p>';
                     $("#bars").append(barDiv);
                     var texts = "";
@@ -204,6 +210,12 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' said ';
             $scope.picText = "She doesn't like these people: "
             $scope.also = ' offensive words';
+            var maxLen = 0;
+            angular.forEach(response.data.wordsWithTweets, function (data) {
+              if(maxLen < data.bad_words_count){
+                maxLen = data.bad_words_count;
+              }
+            });
             var i = 0;
             var badWordCount = 0;
             for (var j = 0; j < 5; j++) {
@@ -220,7 +232,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                 else {
                     badWordCount += data.count;
                     var barDiv = '<p class="whatbarBadWord">' + data.word.toUpperCase() + '</p>' +
-                        '<div class="whatbar_chart" style="width:' + data.count * 3 + 'px;"></div>' +
+                        '<div class="whatbar_chart" style="width:' + (data.bad_words_count / maxLen * WIDTH_MULTIPLIER) + 'px;"></div>' +
                         '<p class="whatbarWordCount">' + data.count + ' times</p>';
                     $("#whatbars").append(barDiv);
                     var texts = "";
@@ -350,55 +362,56 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
   $scope.belief = 'BELIEF/AGENDA';
   $scope.mysogenist = 'MYSOGENIST';
 
-    $('.filterOptions').click(function () {
-        if (!flag) {
-            $('.filterOptions').addClass('active');
-            $('#close').removeClass('hidden');
-            $('.filterItem').slideToggle(200);
-            $('nav ul').css('opacity', '0.1');
-            $('#leftText').css('opacity', '0.1');
-            $('#cubeContainer').css('opacity', '0.1');
-            flag = true;
-        }
-    });
-
-    function show() {
-        if (flag) {
-            $('nav ul').css('opacity', '1');
-            $('#leftText').css('opacity', '1');
-            $('#cubeContainer').css('opacity', '1');
-            $('.filterOptions').removeClass('active');
-            $('#close').addClass('hidden');
-            $('.filterItem').slideToggle(200);
-            flag = false;
-        }
+  $('.filterOptions').click(function () {
+    if (!flag) {
+      $('.filterOptions').addClass('active');
+      $('#close').removeClass('hidden');
+      $('.filterItem').slideToggle(200);
+      $('nav ul').css('opacity', '0.1');
+      $('#leftText').css('opacity', '0.1');
+      $('#cubeContainer').css('opacity', '0.1');
+      flag = true;
     }
+  });
 
-    $('#close').click(function () {
-        show();
-    });
+  function show() {
+    if (flag) {
+      $('nav ul').css('opacity', '1');
+      $('#leftText').css('opacity', '1');
+      $('#cubeContainer').css('opacity', '1');
+      $('.filterOptions').removeClass('active');
+      $('#close').addClass('hidden');
+      $('.filterItem').slideToggle(200);
+      flag = false;
+    }
+  }
 
-
-  $('#filterBody').click(function(){
+  $('#close').click(function () {
     show();
+  });
+
+
+$('#filterBody').click(function () {
+  show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/body_parts').then(function (response){
       buildCubes(response.data)
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
+  });
 
-    $('#filterCharacter').click(function () {
-        show();
-        $('#cubeContainer').empty();
-        $http.get('/api/getCelebs/charecteristics').then(function (response) {
-            buildCubes(response.data)
-        }, function (error) {
-            $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-        });
-    });
+  $('#filterCharacter').click(function () {
+      show();
+      $('#cubeContainer').empty();
+      $http.get('/api/getCelebs/charecteristics').then(function (response) {
+        buildCubes(response.data)
+      }, function (error) {
+        $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
+      });
+  });
 
-  $('#filterCrazy').click(function(){
+$('#filterCrazy').click(function () {
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/crazy').then(function (response){
@@ -406,26 +419,27 @@ app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, 
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
+  });
 
-    $('#filterBelief').click(function () {
-        show();
-        $('#cubeContainer').empty();
-        $http.get('/api/getCelebs/belief').then(function (response) {
-            buildCubes(response.data)
-        }, function (error) {
-            $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-        });
+  $('#filterBelief').click(function () {
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/belief').then(function (response) {
+      buildCubes(response.data)
+    }, function (error) {
+      $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
+  });
 
-    $('#filterMysogenist').click(function () {
-        show();
-        $('#cubeContainer').empty();
-        $http.get('/api/getCelebs/mysogenist').then(function (response) {
-            buildCubes(response.data)
-        }, function (error) {
-            $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
-        });
+  $('#filterMysogenist').click(function () {
+    show();
+    $('#cubeContainer').empty();
+    $http.get('/api/getCelebs/mysogenist').then(function (response) {
+        buildCubes(response.data)
+    }, function (error) {
+        $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
+  });
 
 }]);
 
