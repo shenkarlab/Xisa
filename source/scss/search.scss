@@ -1,0 +1,32 @@
+@import "colors";
+
+#searchBar {
+  float: right;
+  width: 30%;
+  padding-top: 27px;
+  border-bottom: 1px solid #0000ff;
+}
+
+#searchBar input {
+  float: left;
+  font-size: 1.7em;
+  padding-top: 11px;
+  width: 85%;
+  color: #4d4d4d;
+  background-color: #000000;
+  border: 0px;
+}
+
+#searchButton {
+  float: right;
+  background: url('/images/search.png');
+  background-size: 100% 100%;
+  width: 48px;
+  height: 42px;
+  border: none;
+}
+
+#searchBar:focus {
+  outline: none;
+  border: 0px;
+}
