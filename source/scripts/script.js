@@ -40,7 +40,7 @@ function setMovingTextClass(news, i) {
     });
 }
 
-app.controller('whoCtrl', function ($scope, $http, $compile) {
+app.controller('whoCtrl', function ($scope, $http) {
     $http.get('/api/getCelebs').then(function (response) {
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
@@ -237,7 +237,7 @@ app.controller('whomCtrl', function ($scope, $http) {
         $scope.cubes = [];
         angular.forEach(response.data, function (data) {
             $scope.cubes.push({
-                name: data.tweeter_name.substring(0, 10),
+                name: data.twitter_name.substring(0, 10),
                 url: '/what?name=' + data.name ,
                 image: data.image,
                 followers: data.followers_count
@@ -285,7 +285,7 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
     };
 }]);
 
-app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http) {
 
     $scope.selectFilter = 'CATEGORIES';
     $scope.categories = [{name: 'BODY PARTS', ref: 'body_parts'}, {

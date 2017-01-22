@@ -10,7 +10,7 @@ var port 				= process.env.PORT || 3000,
 	clientRootPath 		= __dirname + '/build/',
 	apiPath 			= 'https://xisaapi.herokuapp.com',
 	clientPort 			= 8080,
-	DEBUG				= false;
+	DEBUG				= true;
 
 //server config
 app.use(bodyParser.urlencoded({ extended: true })); 
