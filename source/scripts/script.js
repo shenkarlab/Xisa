@@ -286,7 +286,7 @@ app.controller('whomCtrl', function ($scope, $http) {
         $scope.past = 'The past 7 days on Twitter';
         var i = 1;
         angular.forEach(response.data, function (value) {
-            var names = value.tweeter_name.split(" ");
+            var names = value.twitter_name.split(" ");
             var name = "";
             angular.forEach(names, function (val) {
                 if (names.length <= 1) {
@@ -297,7 +297,7 @@ app.controller('whomCtrl', function ($scope, $http) {
                 }
             });
             var followersCount = '<span id="location"><span id="background">' + value.followers_count + ' followers</span></span>';
-            var cube = '<a href="/what?name=' + value.tweeter_name + '">' +
+            var cube = '<a href="/what?name=' + value.twitter_name + '">' +
                 '<section class="cube" id="cube' + i + '">' +
                 '<p id="userName"><span class="blackHighlight">' + name.substring(0, 10) + '</span>' + followersCount + '</p>' +
                 '</section>' +
@@ -400,7 +400,7 @@ $('#filterBody').click(function () {
   show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/body_parts').then(function (response){
-      buildCubes(response.data)
+      buildCubes(response.data, 'body_parts');
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
@@ -410,7 +410,7 @@ $('#filterBody').click(function () {
       show();
       $('#cubeContainer').empty();
       $http.get('/api/getCelebs/charecteristics').then(function (response) {
-        buildCubes(response.data)
+        buildCubes(response.data, 'charecteristics');
       }, function (error) {
         $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
       });
@@ -420,7 +420,7 @@ $('#filterCrazy').click(function () {
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/crazy').then(function (response){
-      buildCubes(response.data)
+      buildCubes(response.data, 'crazy');
     },function (error){
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
@@ -430,7 +430,7 @@ $('#filterCrazy').click(function () {
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/belief').then(function (response) {
-      buildCubes(response.data)
+      buildCubes(response.data, 'belief');
     }, function (error) {
       $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
@@ -440,7 +440,7 @@ $('#filterCrazy').click(function () {
     show();
     $('#cubeContainer').empty();
     $http.get('/api/getCelebs/mysogenist').then(function (response) {
-        buildCubes(response.data)
+        buildCubes(response.data, 'mysogenist');
     }, function (error) {
         $('#cubeContainer').append('<section class="error">500<br>Twitter connection error</section>');
     });
@@ -448,10 +448,10 @@ $('#filterCrazy').click(function () {
 
 }]);
 
-function buildCubes(data) {
+function buildCubes(data, category) {
     var i = 1;
     angular.forEach(data, function (value) {
-        var cube = '<a id="cube' + i + '" href="/how?name=' + value.name + '">' +
+        var cube = '<a id="cube' + i + '" href="/how?name=' + value.name + '&category=' + category + '">' +
             '<section class="cube">' +
             '<p id="hashtag"><span class="highlight">' + value.word + '</span></p>' +
             '<p id="celebName"><span class="highlight">' + value.name + '</span></p>' +
