@@ -26,8 +26,6 @@ app.all('/api/*', (req,res,next) => {
 	res.setHeader("Content-Type", "application/json");
 	next()
 });
-console.log(ctrl);
-console.log(ctrl.indexPage);
 
 app.get('/', ctrl.inedxPage);
 
