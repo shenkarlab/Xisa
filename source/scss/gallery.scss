@@ -10,6 +10,15 @@
     width: 361px;
     height: 361px;
     display: block;
+    background-size: cover;
+  }
+
+  span.hater-bg {
+    background-color: $hater-color;
+  }
+
+  span.hated-bg {
+    background-color: $hated-color;
   }
 
   section {
@@ -25,15 +34,20 @@
     font-size: 1.255em;
     font-weight: 500;
     padding: 1px 8px 8px 8px;
-    background-color: $hated-color;
+  }
+
+  #followers {
+    background-color: #fff;
+    font-size: 1.255em;
+    font-weight: 500;
+    padding: 1px 8px 8px 8px;
   }
 
   #hashtag {
-    color: #ffffff;
+    color: #fff;
     font-size: 3.124em;
     font-weight: 400;
     padding: 15px 8px 0 8px;
-    background-color: $hated-color;
   }
 }
 
