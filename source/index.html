@@ -47,8 +47,7 @@
         </section>
     </div>
     <section id="cubeContainer">
-        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
-           ng-style="{'background-image': 'url({{cube.image}})'}">
+        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes" ng-style="{'background-image': 'url({{cube.image}})'}">
             <section>
                 <p><span id="hashtag" class="hated-bg">{{cube.word}}</span></p>
                 <p><span id="celebName" class="hated-bg">{{cube.name}}</span></p>
@@ -56,5 +55,6 @@
         </a>
     </section>
 </section>
+<section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
 </body>
 </html>

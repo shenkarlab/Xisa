@@ -3,3 +3,8 @@
 @import "filter";
 @import "gallery";
 @import "search";
+@import "how";
+
+.currentWord {
+  color: $hated-color;
+}
