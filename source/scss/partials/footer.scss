@@ -1,0 +1,27 @@
+footer section {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  margin: 4% 2%;
+}
+
+#studio {
+  color:  #ffffff;
+  font-size: 0.938em;
+  font-weight: 700;
+  line-height: 4.967;
+  text-align: left;
+  flex: 1;
+}
+
+#studio span {
+  font-weight: 900;
+}
+
+#sprd {
+  color:  #ffffff;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 3.726;
+  text-align: left;
+}
