@@ -47,6 +47,13 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
         }
     ];
 
+
+    var config = {
+        headers : {
+            'Content-Type': 'application/json'
+        }
+    };
+
     $http.get('/api/getCelebs').then(function (response) {
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
@@ -54,11 +61,6 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
         $scope.cubes = [];
         var hatedArray = [];
         $scope.isError = false;
-        var config = {
-            headers : {
-                'Content-Type': 'application/json'
-            }
-        };
         angular.forEach(response.data, function (data) {
             hatedArray.push({name: data.twitter_name});
             $scope.cubes.push({
