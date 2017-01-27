@@ -11,6 +11,18 @@
 .hater a#logo {
   background: url("../../images/blueLOGO.png") no-repeat; }
 
+#filter-btn {
+  margin-right: 48px; }
+  #filter-btn span {
+    color: #ff0000;
+    font-size: 3.124em;
+    font-weight: 900;
+    border-bottom: 3px solid #ff0000; }
+  #filter-btn img {
+    margin-left: 15px;
+    line-height: 100%;
+    vertical-align: middle; }
+
 header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
   padding: 0;

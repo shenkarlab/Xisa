@@ -11,6 +11,18 @@
 .hater a#logo {
   background: url("../../images/blueLOGO.png") no-repeat; }
 
+#filter-btn {
+  margin-right: 48px; }
+  #filter-btn span {
+    color: #ff0000;
+    font-size: 3.124em;
+    font-weight: 900;
+    border-bottom: 3px solid #ff0000; }
+  #filter-btn img {
+    margin-left: 15px;
+    line-height: 100%;
+    vertical-align: middle; }
+
 header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
   padding: 0;
@@ -80,54 +92,41 @@ header {
         line-height: 1.25em; }
 
 #filter {
-  margin-right: 48px;
-  cursor: pointer; }
-  #filter #filter-btn {
-    border-bottom: 3px solid #ff0000; }
-    #filter #filter-btn a {
-      color: #ff0000;
-      font-size: 3.124em;
-      font-weight: 900; }
-    #filter #filter-btn img {
-      margin-left: 15px; }
-  #filter #filterOptions {
-    background: #000;
-    opacity: 0.9;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-    bottom: 0;
-    left: 0; }
-    #filter #filterOptions header {
-      margin-top: 59px;
-      margin-bottom: 29px; }
-      #filter #filterOptions header #close {
-        flex: 1;
-        margin-right: 48px;
-        border: 0;
-        color: #4d4d4d;
-        font-size: 3.124em;
-        font-weight: 900;
-        line-height: 100%; }
-      #filter #filterOptions header .logo {
-        margin-top: 0; }
-    #filter #filterOptions ul {
-      list-style: none;
-      margin-right: 48px; }
-    #filter #filterOptions li {
-      font-size: 3.124em;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 33px; }
-      #filter #filterOptions li span {
-        border-bottom: 3px solid #fff; }
-    #filter #filterOptions .selected {
-      color: #ff0000; }
-      #filter #filterOptions .selected span {
-        border-bottom: 3px solid #ff0000; }
-      #filter #filterOptions .selected img {
-        margin-left: 0; }
+  background: #000;
+  opacity: 0.9;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+  bottom: 0;
+  left: 0; }
+  #filter header {
+    display: flex; }
+  #filter .logo {
+    background: url("../images/redLOGO.png") no-repeat;
+    width: 190px;
+    height: 73px;
+    margin-left: 48px;
+    margin-top: 59px; }
+  #filter ul {
+    list-style: none;
+    margin-right: 48px;
+    margin-top: 32px; }
+  #filter li {
+    font-size: 3.124em;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 33px; }
+    #filter li span {
+      border-bottom: 3px solid #fff; }
+  #filter .selected {
+    color: #ff0000; }
+    #filter .selected span {
+      border-bottom: 3px solid #ff0000; }
+    #filter .selected img {
+      margin-left: 15px;
+      line-height: 100%;
+      vertical-align: middle; }
 
 #cubeContainer {
   display: flex;
