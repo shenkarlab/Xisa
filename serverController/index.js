@@ -5,7 +5,7 @@ var express		= require('express'),
 
 var clientRootPath 		= __dirname + '/../build/',
 	apiPath 			= 'https://xisaapi.herokuapp.com',		
-	DEBUG				= false;
+	DEBUG				= true;
 
 var error = (next, msg, status) => {
 	var err = new Error();
@@ -47,6 +47,25 @@ var api = (req, res, next, path) => {
 	});
 };
 
+var saveFile = (req, res, next, fileName) => {
+	fs.writeFile(fileName, JSON.stringify(req.body), function(err) {
+		if(err) {
+			console.log(err);
+			res.sendStatus(500);
+		}
+		res.sendStatus(200);
+	});
+};
+
+var getFile = (req, res, next, fileName) => {
+	fs.readFile(fileName, 'utf8', (err, json) => {
+		if (err) {
+			error(next, err.message, 500);
+		}
+		res.json(JSON.parse(json));
+	});
+};
+
 exports.inedxPage = (req, res, next) => {
 	route(req, res, next, 'index.html');
 };
@@ -77,7 +96,7 @@ exports.getCategoryCelebs = (req,res,next) => {
 		localApi(req, res, next, './celebs.json'); 
 	}
 	else{
-		api(req, res, next, apiPath + '/getCelebs' + req.params.category);
+		api(req, res, next, apiPath + '/getCelebs/' + req.params.category);
 	}
 };
 
@@ -116,4 +135,14 @@ exports.getUsers = (req,res,next) => {
 		api(req, res, next, apiPath + '/getUsers');
 	}
 };
+
+exports.getHated = (req,res,next) => {
+	getFile(req, res, next, 'topHated.txt');
+};
+
+exports.saveHated = (req,res,next) => {
+	saveFile(req, res, next, 'topHated.txt');
+};
+
+
 

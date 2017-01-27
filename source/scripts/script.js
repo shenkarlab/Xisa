@@ -4,24 +4,6 @@ var app = angular.module('xisa', []);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var WIDTH_MULTIPLIER = 400;
 
-app.factory('hatedService', ['$rootScope', function ($rootScope) {
-    $rootScope.hated = [];
-
-    var setHated = function (hatedList) {
-        $rootScope.hated = hatedList;
-    };
-
-    var getAllHated = function () {
-        return $rootScope.hated;
-    };
-
-    return {
-        setHated: setHated,
-        getAllHated: getAllHated
-    }
-
-}]);
-
 function getUrlParameter(param) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split(/[&||?]/),
@@ -36,28 +18,32 @@ function getUrlParameter(param) {
     return res;
 }
 
-app.controller('whoCtrl', ['$scope', '$http', 'hatedService', function ($scope, $http, hatedService) {
+app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $http, $timeout) {
     $scope.selectFilter = 'CATEGORIES';
     $scope.categories = [
         {
             name: 'BODY PARTS',
-            ref: 'body_parts'
+            ref: 'body-parts'
         },
         {
-            name: 'CHARECTERISTICS',
-            ref: 'charecteristics'
+            name: 'CHARACTERISTICS',
+            ref: 'characteristics'
         },
         {
             name: 'CRAZY/ILL',
-            ref: 'crazy'
+            ref: 'crazy-ill'
+        },
+        {
+            name: 'GAY/SEXUALITY',
+            ref: 'gay-sexuality'
         },
         {
             name: 'BELIEF/AGENDA',
-            ref: 'belief'
+            ref: 'belief-agenda'
         },
         {
-            name: 'MYSOGENIST',
-            ref: 'mysogenist'
+            name: 'MISOGYNIST',
+            ref: 'misogynist'
         }
     ];
 
@@ -66,10 +52,15 @@ app.controller('whoCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
         $scope.people = 'PEOPLE';
         $scope.past = 'The past 7 days on Twitter';
         $scope.cubes = [];
+        var hatedArray = [];
         $scope.isError = false;
-        var hatedList = [];
+        var config = {
+            headers : {
+                'Content-Type': 'application/json'
+            }
+        };
         angular.forEach(response.data, function (data) {
-            hatedList.push(data.twitter_name);
+            hatedArray.push({name: data.twitter_name});
             $scope.cubes.push({
                 name: data.name,
                 word: data.word,
@@ -77,41 +68,55 @@ app.controller('whoCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
                 url: '/how?name=' + data.name
             });
         });
-        hatedService.setHated(hatedList);
+        $http.post('/local/hated', JSON.stringify(hatedArray), config).then(function(response){
+            console.log('hated file saved');
+        },function (response) {
+            console.log('error saving file');
+        });
     }, function (error) {
         $scope.isError = true;
     });
     $scope.getCelebs = function (category) {
-        $http.get('/api/getCelebs/'+category).then(function (response) {
-            $scope.mostHated = 'MOST HATED';
-            $scope.people = 'PEOPLE';
-            $scope.past = 'The past 7 days on Twitter';
-            $scope.cubes = [];
-            $scope.isError = false;
-            $scope.selectFilter = category.name;
-            $scope.hideOptions = false;
-            var hatedList = [];
-            angular.forEach(response.data, function (data) {
-                hatedList.push(data.twitter_name);
-                $scope.cubes.push({
-                    name: data.name,
-                    word: data.word,
-                    image: data.image,
-                    url: '/how?name=' + data.name
+        $http.get('/api/getCelebs/'+category.ref).then(function (response) {
+            $timeout(function(){
+                var hatedArray = [];
+                $scope.cubes = [];
+                $scope.isError = false;
+                $scope.selectFilter = category.name;
+                $scope.hideOptions = false;
+                angular.forEach(response.data, function (data) {
+                    hatedArray.push({name: data.twitter_name});
+                    $scope.cubes.push({
+                        name: data.name,
+                        word: data.word,
+                        image: data.image,
+                        url: '/how?name=' + data.name
+                    });
+                });
+                $http.post('/local/hated',JSON.stringify(hatedArray), config).then(function(response){
+                    console.log('hated file saved');
+                },function (response) {
+                    console.log('error saving file');
                 });
             });
-            hatedService.setHated(hatedList);
         }, function (error) {
             $scope.isError = true;
         });
-        $scope.$apply();
+
     };
 }]);
 
-app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, $http, hatedService) {
+app.controller('howCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.isError = false;
-    $scope.hated = hatedService.getAllHated();
     var lastName = getUrlParameter('name').split("%20");
+    var array = [];
+    $http.get('/local/hated').then(function (response) {
+        angular.forEach(response.data, function(data){
+            array.push(data.name);
+        });
+    },function (response) {
+        console.log('error getting hated array')
+    });
     lastName = lastName[lastName.length - 1];
     if (lastName == null) {
         lastName = getUrlParameter('name');
@@ -150,7 +155,7 @@ app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
                     angular.forEach(data.texts, function (text) {
                         var words = [];
                         text.tweet.split(" ").forEach(function (word) {
-                            var route = ($.inArray(word.substring(1), $scope.hated) > -1) ? "/how" : "/what";
+                            var route = ($.inArray(word.substring(1), array) > -1) ? "/how" : "/what";
                             words.push({
                                 word: word.toUpperCase(),
                                 url: word.substring(1),
@@ -230,7 +235,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                     angular.forEach(data.texts, function (text) {
                         var words = [];
                         text.tweet.split(" ").forEach(function (word) {
-                            var route = ($.inArray(word.substring(1), $scope.hated) > -1) ? "/how" : "/what";
+                            var route = ($.inArray(word.substring(1), hatedArray.array) > -1) ? "/how" : "/what";
                             words.push({
                                 word: word.toUpperCase(),
                                 url: word.substring(1),

@@ -27,6 +27,12 @@ app.all('/api/*', (req,res,next) => {
 	next()
 });
 
+app.all('/local/*', (req,res,next) => {
+	res.setHeader("Content-Type", "application/json");
+	next()
+});
+
+
 app.get('/', ctrl.inedxPage);
 
 app.get('/how', ctrl.howPage);
@@ -46,6 +52,10 @@ app.get('/api/celeb/:name/:category', ctrl.getCategoryCeleb);
 app.get('/api/getUsers', ctrl.getUsers);
 
 app.get('/api/user/:name', ctrl.getUser);
+
+app.get('/local/hated', ctrl.getHated);
+
+app.post('/local/hated', ctrl.saveHated);
 
 app.get('*', (req,res,next) => {
 	var err = new Error();
