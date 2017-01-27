@@ -7,15 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whomCtrl" id="who">
-<header>
-    <a class="logo hater" href="/" title="logo"></a>
-    <nav ng-controller="navCtrl">
-        <ul>
-            <li ng-repeat="navLink in navLinks"><a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{
-                navLink.LinkText }}</a></li>
-        </ul>
-    </nav>
-</header>
+<navbar class="hater"></navbar>
 <section id="content">
     <div id="topbar">
         <section id="title">

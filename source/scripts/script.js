@@ -4,14 +4,14 @@ var app = angular.module('xisa', []);
 var path = 'https://xisasimpleserver.herokuapp.com/api/';
 var WIDTH_MULTIPLIER = 400;
 
-app.factory('hatedService', ['$rootScope', function($rootScope) {
+app.factory('hatedService', ['$rootScope', function ($rootScope) {
     $rootScope.hated = [];
 
-    var setHated = function(hatedList) {
+    var setHated = function (hatedList) {
         $rootScope.hated = hatedList;
     };
 
-    var getAllHated = function() {
+    var getAllHated = function () {
         return $rootScope.hated;
     };
 
@@ -98,7 +98,8 @@ app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
             $scope.celebName = response.data.user_details.name;
             $scope.twitterName = '@' + response.data.user_details.twitter_name;
             $scope.numOfPeople = 'This week, People said 100 times That he is ';
-            $scope.badWord = response.data.mostUsedWord;;
+            $scope.badWord = response.data.mostUsedWord;
+            ;
             $scope.also = 'They also said about him:';
             var maxLen = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
@@ -119,7 +120,7 @@ app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
                         bad_words_count: data.bad_words_count
                     });
                     var texts = [];
-                    angular.forEach(data.texts, function(text){
+                    angular.forEach(data.texts, function (text) {
                         var words = [];
                         text.tweet.split(" ").forEach(function (word) {
                             var route = ($.inArray(word.substring(1), $scope.hated) > -1) ? "/how" : "/what";
@@ -139,10 +140,10 @@ app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
                     $scope.wrappers.push({texts: texts});
                 }
             });
-            $scope.shouldLink = function(word) {
+            $scope.shouldLink = function (word) {
                 return !!word.word.startsWith('@');
             };
-            $scope.wordClass = function(text, word) {
+            $scope.wordClass = function (text, word) {
                 return word.word.toUpperCase() === text.word.toUpperCase();
             }
         }
@@ -199,7 +200,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                         bad_words_count: data.bad_words_count
                     });
                     var texts = [];
-                    angular.forEach(data.texts, function(text){
+                    angular.forEach(data.texts, function (text) {
                         var words = [];
                         text.tweet.split(" ").forEach(function (word) {
                             var route = ($.inArray(word.substring(1), $scope.hated) > -1) ? "/how" : "/what";
@@ -219,10 +220,10 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                     $scope.wrappers.push({texts: texts});
                 }
             });
-            $scope.shouldLink = function(word) {
+            $scope.shouldLink = function (word) {
                 return !!word.word.startsWith('@');
             };
-            $scope.wordClass = function(text, word) {
+            $scope.wordClass = function (text, word) {
                 return word.word.toUpperCase() === text.word.toUpperCase();
             }
             $scope.badWordCount = badWordCount;
@@ -242,7 +243,7 @@ app.controller('whomCtrl', function ($scope, $http) {
         angular.forEach(response.data, function (data) {
             $scope.cubes.push({
                 name: data.twitter_name.substring(0, 10),
-                url: '/what?name=' + data.name ,
+                url: '/what?name=' + data.name,
                 image: data.image,
                 followers: data.followers_count
             });
@@ -265,6 +266,15 @@ app.controller('whomCtrl', function ($scope, $http) {
 //         $('#cubeContainer').css('opacity', '1');
 //     });
 // }]);
+
+
+app.component('navbar', {
+    bindings: {
+        items: '='
+    },
+    templateUrl: 'navbar.html'
+});
+
 app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 
     $scope.navLinks = [{
