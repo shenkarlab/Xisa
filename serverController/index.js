@@ -5,7 +5,7 @@ var express		= require('express'),
 
 var clientRootPath 		= __dirname + '/../build/',
 	apiPath 			= 'https://xisaapi.herokuapp.com',		
-	DEBUG				= true;
+	DEBUG				= false;
 
 var error = (next, msg, status) => {
 	var err = new Error();
@@ -34,7 +34,7 @@ var localApi = (req, res, next, path) => {
 };
 
 var api = (req, res, next, path) => {
-	request(apiPath + path, (err, response, body) => {
+	request(path, (err, response, body) => {
 		if(err){
 			error(next, err.message, 500);
 		}

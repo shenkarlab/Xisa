@@ -36,28 +36,31 @@ function getUrlParameter(param) {
     return res;
 }
 
-
-// function setMovingTextClass(news, i) {
-//     $("#text_move" + (i + 1)).hover(function () {
-//         news[0].pauseTicker();
-//         var content = $('#text_move' + (i + 1) + ' .ti_content').children('div');
-//         angular.forEach(content, function (child) {
-//             angular.forEach($(child).children('.whatmark'), function (grandchild) {
-//                 $(grandchild).hover(function () {
-//                     $(this).removeClass('whatmark');
-//                     $(this).addClass('redUnder');
-//                 }, function () {
-//                     $(this).first().removeClass('redUnder');
-//                     $(this).first().addClass('whatmark');
-//                 });
-//             });
-//         });
-//     }, function () {
-//         news[0].startTicker();
-//     });
-// }
-
 app.controller('whoCtrl', ['$scope', '$http', 'hatedService', function ($scope, $http, hatedService) {
+    $scope.selectFilter = 'CATEGORIES';
+    $scope.categories = [
+        {
+            name: 'BODY PARTS',
+            ref: 'body_parts'
+        },
+        {
+            name: 'CHARECTERISTICS',
+            ref: 'charecteristics'
+        },
+        {
+            name: 'CRAZY/ILL',
+            ref: 'crazy'
+        },
+        {
+            name: 'BELIEF/AGENDA',
+            ref: 'belief'
+        },
+        {
+            name: 'MYSOGENIST',
+            ref: 'mysogenist'
+        }
+    ];
+
     $http.get('/api/getCelebs').then(function (response) {
         $scope.mostHated = 'MOST HATED';
         $scope.people = 'PEOPLE';
@@ -78,6 +81,31 @@ app.controller('whoCtrl', ['$scope', '$http', 'hatedService', function ($scope, 
     }, function (error) {
         $scope.isError = true;
     });
+    $scope.getCelebs = function (category) {
+        $http.get('/api/getCelebs/'+category).then(function (response) {
+            $scope.mostHated = 'MOST HATED';
+            $scope.people = 'PEOPLE';
+            $scope.past = 'The past 7 days on Twitter';
+            $scope.cubes = [];
+            $scope.isError = false;
+            $scope.selectFilter = category.name;
+            $scope.hideOptions = false;
+            var hatedList = [];
+            angular.forEach(response.data, function (data) {
+                hatedList.push(data.twitter_name);
+                $scope.cubes.push({
+                    name: data.name,
+                    word: data.word,
+                    image: data.image,
+                    url: '/how?name=' + data.name
+                });
+            });
+            hatedService.setHated(hatedList);
+        }, function (error) {
+            $scope.isError = true;
+        });
+        $scope.$apply();
+    };
 }]);
 
 app.controller('howCtrl', ['$scope', '$http', 'hatedService', function ($scope, $http, hatedService) {
@@ -252,19 +280,6 @@ app.controller('whomCtrl', function ($scope, $http) {
     });
 });
 
-// app.controller('searchCtrl', ['$scope', '$location', function ($scope, $location) {
-//     $('#serchInput').focusin(function () {
-//         $('nav ul').css('opacity', '0.1');
-//         $('#leftText').css('opacity', '0.1');
-//         $('#cubeContainer').css('opacity', '0.1');
-//     });
-//
-//     $('#serchInput').focusout(function () {
-//         $('nav ul').css('opacity', '1');
-//         $('#leftText').css('opacity', '1');
-//         $('#cubeContainer').css('opacity', '1');
-//     });
-// }]);
 app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
 
     $scope.navLinks = [{
@@ -288,45 +303,3 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
         return page === currentRoute ? 'active' : '';
     };
 }]);
-
-app.controller('filterCtrl', ['$scope', '$http', '$location', function ($scope, $http) {
-
-    $scope.selectFilter = 'CATEGORIES';
-    $scope.categories = [{name: 'BODY PARTS', ref: 'body_parts'}, {
-        name: 'CHARECTERISTICS',
-        ref: 'charecteristics'
-    }, {name: 'CRAZY/ILL', ref: 'crazy'}, {name: 'BELIEF/AGENDA', ref: 'belief'}, {
-        name: 'MYSOGENIST',
-        ref: 'mysogenist'
-    }];
-
-    $scope.getCelebs = function (category) {
-
-        // $('#cubeContainer').empty();
-        // $http.get('/api/getCelebs/' + category.ref).then(function (response) {
-        //     // buildCubes(response.data);
-        //     $scope.selectFilter = category.name;
-        //     $scope.hideOptions = false;
-        // }, function (error) {
-        //     $scope.isError = true;
-        // });
-    };
-
-}]);
-
-// function buildCubes(data, category) {
-//     var i = 1;
-//     angular.forEach(data, function (value) {
-//         var cube = '<a id="cube' + i + '" href="/how?name=' + value.name + '&category=' + category + '">' +
-//             '<section class="cube">' +
-//             '<p id="hashtag"><span class="highlight">' + value.word + '</span></p>' +
-//             '<p id="celebName"><span class="highlight">' + value.name + '</span></p>' +
-//             '</section>' +
-//             '<a>';
-//         $('#cubeContainer').append(cube);
-//         var url = 'url(' + value.image + ')';
-//         $('#cube' + i).css('background', url);
-//         $('#cube' + i).css('background-size', 'cover');
-//         i++;
-//     })
-// }
