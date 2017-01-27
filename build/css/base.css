@@ -1,4 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Monsterat);
+#logo {
+  width: 190px;
+  height: 73px;
+  margin-left: 48px;
+  margin-top: 59px; }
+
+.hated a#logo {
+  background: url("../../images/redLOGO.png") no-repeat; }
+
+.hater a#logo {
+  background: url("../../images/blueLOGO.png") no-repeat; }
+
 header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
   padding: 0;
@@ -10,18 +22,6 @@ body {
   font-family: Montserrat, Halvetica, sans-serif;
   color: #4d4d4d;
   background: #000; }
-
-.logo {
-  width: 190px;
-  height: 73px;
-  margin-left: 48px;
-  margin-top: 59px; }
-
-.hated {
-  background: url("../images/redLOGO.png") no-repeat; }
-
-.hater {
-  background: url("../images/blueLOGO.png") no-repeat; }
 
 h1 {
   font-size: 4.374em;

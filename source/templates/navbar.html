@@ -1,0 +1,9 @@
+<header>
+    <a id="logo" href="/" title="logo"></a>
+    <nav ng-controller="navCtrl">
+        <ul>
+            <li ng-repeat="navLink in navLinks"><a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{
+                navLink.LinkText }}</a></li>
+        </ul>
+    </nav>
+</header>

@@ -8,15 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whoCtrl" id="who">
-<header>
-    <a class="logo hated" href="/" title="logo"></a>
-    <nav ng-controller="navCtrl">
-        <ul>
-            <li ng-repeat="navLink in navLinks"><a ng-class="navClass('{{navLink.Alias}}')" href='{{navLink.Title}}'>{{
-                navLink.LinkText }}</a></li>
-        </ul>
-    </nav>
-</header>
+<navbar class="hated"></navbar>
 <section id="content">
     <div id="topbar">
         <section id="title">
@@ -47,7 +39,8 @@
         </section>
     </div>
     <section id="cubeContainer">
-        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes" ng-style="{'background-image': 'url({{cube.image}})'}">
+        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
+           ng-style="{'background-image': 'url({{cube.image}})'}">
             <section>
                 <p><span id="hashtag" class="hated-bg">{{cube.word}}</span></p>
                 <p><span id="celebName" class="hated-bg">{{cube.name}}</span></p>
