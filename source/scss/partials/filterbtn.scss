@@ -1,0 +1,18 @@
+@import "../colors";
+
+#filter-btn {
+  margin-right: 48px;
+
+  span {
+    color: $hated-color;
+    font-size: 3.124em;
+    font-weight: 900;
+    border-bottom: 3px solid $hated-color;
+  }
+
+  img {
+    margin-left: 15px;
+    line-height: 100%;
+    vertical-align: middle;
+  }
+}

@@ -15,27 +15,9 @@
             <h1><span class="hated-text">{{ mostHated }}</span> {{ people }}</h1>
             <p>{{past}}</p>
         </section>
-        <section id="filter">
-            <div id="filter-btn" ng-click="hideOptions = !hideOptions">
-                <a href="#">{{ selectFilter }}</a>
-                <img src="images/categories.png" alt="categoriesArrow">
-            </div>
-            <section id="filterOptions" ng-show="hideOptions">
-                <header>
-                    <a class="logo hated" href="/" title="logo"></a>
-                </header>
-                <ul>
-                    <li class="selected">
-                        <span>{{ selectFilter }}
-                            <img src="images/categories.png" alt="categoriesArrow">
-                        </span>
-
-                    </li>
-                    <li ng-repeat="category in categories" ng-click="getCelebs(category)"><span>{{category.name}}</span>
-                    </li>
-                </ul>
-            </section>
-        </section>
+        <div id="filter-btn" ng-click="hideOptions = !hideOptions">
+            <span>{{ selectFilter }}<img src="images/categories.png" alt="categoriesArrow"></span>
+        </div>
     </div>
     <section id="cubeContainer">
         <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
@@ -48,5 +30,17 @@
     </section>
 </section>
 <section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
+<section id="filter" ng-show="hideOptions">
+    <header>
+        <a class="logo hated" href="/" title="logo"></a>
+    </header>
+    <ul>
+        <li class="selected">
+            <span>{{selectFilter}}<img src="images/categories.png" alt="categoriesArrow"></span>
+        </li>
+        <li ng-repeat="category in categories" ng-click="getCelebs(category)"><span>{{category.name}}</span>
+        </li>
+    </ul>
+</section>
 </body>
 </html>
