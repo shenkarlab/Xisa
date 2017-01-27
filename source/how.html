@@ -20,12 +20,12 @@
         <p>{{also}}</p>
     </section>
 </section>
-<section id="content">
+<section id="howContent">
     <section id="bars">
         <section class="bar" ng-repeat="bar in bars">
             <p class="barBadWord">{{bar.word}}</p>
             <div class="bar_chart" ng-style={{bar.width}}></div>
-            <p class="barWordCount">{{bar.bad_words_count}}</p>
+            <p class="barWordCount">{{bar.bad_words_count}} times</p>
         </section>
     </section>
     <section id="bad_words">

@@ -9,6 +9,10 @@ header, nav, section, p, a, li, ul, h1, h2, button {
   font-size: $base-font-size;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   position: relative;
@@ -54,5 +58,10 @@ a {
   display: flex;
   flex-direction: row;
 }
+
+
+
+
+
 
 

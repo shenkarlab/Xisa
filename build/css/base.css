@@ -11,6 +11,31 @@
 .hater a#logo {
   background: url("../../images/blueLOGO.png") no-repeat; }
 
+header {
+  display: flex;
+  flex-direction: row; }
+  header nav {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+    margin-right: 48px;
+    margin-top: 68px; }
+  header ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row; }
+    header ul li {
+      margin-left: 31px; }
+      header ul li a {
+        color: #4d4d4d;
+        font-size: 1.25em;
+        line-height: 1.25em;
+        font-weight: 300; }
+      header ul li a.active {
+        color: #ffffff;
+        font-weight: 900;
+        line-height: 1.25em; }
+
 #filter-btn {
   margin-right: 48px; }
   #filter-btn span {
@@ -27,6 +52,9 @@ header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
   padding: 0;
   font-size: 16px; }
+
+html {
+  height: 100%; }
 
 body {
   margin: 0;
