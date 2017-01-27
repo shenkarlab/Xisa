@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42f002a4-3369-4c95-902b-6d2deca94cab" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/scss/header.scss" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/css/base.css" afterPath="$PROJECT_DIR$/build/css/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/css/filter.css" afterPath="$PROJECT_DIR$/build/css/filter.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/css/style.css" afterPath="$PROJECT_DIR$/build/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/how.html" afterPath="$PROJECT_DIR$/build/how.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/how.html" afterPath="$PROJECT_DIR$/source/how.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/base.scss" afterPath="$PROJECT_DIR$/source/scss/base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/how.scss" afterPath="$PROJECT_DIR$/source/scss/how.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/partials/navbar.scss" afterPath="$PROJECT_DIR$/source/scss/partials/navbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/style.scss" afterPath="$PROJECT_DIR$/source/scss/style.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/index.html" afterPath="$PROJECT_DIR$/build/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/script.js" afterPath="$PROJECT_DIR$/build/scripts/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/what.html" afterPath="$PROJECT_DIR$/build/what.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/whom.html" afterPath="$PROJECT_DIR$/build/whom.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/filter.scss" afterPath="$PROJECT_DIR$/source/scss/filter.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/scss/partials/filterbtn.scss" afterPath="$PROJECT_DIR$/source/scss/partials/filterbtn.scss" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="D:\Shenkar\final_year\lab\projects\XisASimpleserver\.idea\shelf/" />
@@ -37,7 +38,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="7">
               <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-              <folding />
+              <folding>
+                <marker date="1485559982072" expanded="true" signature="1306:1684" ph="..." />
+                <marker date="1485559982072" expanded="true" signature="1319:1390" ph="..." />
+                <marker date="1485559982072" expanded="true" signature="1399:1673" ph="..." />
+                <marker date="1485559982072" expanded="true" signature="1429:1540" ph="..." />
+                <marker date="1485559982072" expanded="true" signature="1619:1663" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="how.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="how.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/scss/how.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2448">
@@ -65,18 +72,18 @@
       <file leaf-file-name="filter.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/scss/filter.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="52" column="29" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+            <state relative-caret-position="595">
+              <caret line="35" column="19" lean-forward="false" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filterbtn.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="filterbtn.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/scss/partials/filterbtn.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+            <state relative-caret-position="68">
+              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -106,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/source/how.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+              <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -126,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/source/scss/base.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="318">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -202,14 +209,14 @@
         <option value="$PROJECT_DIR$/source/scripts/script.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/source/index.html" />
-        <option value="$PROJECT_DIR$/source/scss/partials/filterbtn.scss" />
-        <option value="$PROJECT_DIR$/source/scss/filter.scss" />
         <option value="$PROJECT_DIR$/source/scss/header.scss" />
         <option value="$PROJECT_DIR$/source/scss/style.scss" />
         <option value="$PROJECT_DIR$/source/scss/partials/navbar.scss" />
         <option value="$PROJECT_DIR$/source/how.html" />
         <option value="$PROJECT_DIR$/source/scss/base.scss" />
         <option value="$PROJECT_DIR$/source/scss/how.scss" />
+        <option value="$PROJECT_DIR$/source/scss/filter.scss" />
+        <option value="$PROJECT_DIR$/source/scss/partials/filterbtn.scss" />
       </list>
     </option>
   </component>
@@ -994,7 +1001,7 @@
       <workItem from="1485034392374" duration="7741000" />
       <workItem from="1485537195057" duration="2104000" />
       <workItem from="1485541102550" duration="200000" />
-      <workItem from="1485551846588" duration="7446000" />
+      <workItem from="1485551846588" duration="7551000" />
     </task>
     <task id="LOCAL-00001" summary="Split dev from production">
       <created>1484936830199</created>
@@ -1073,11 +1080,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485555069080</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="inner page styling in process">
+      <created>1485559971955</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1485559971955</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64298000" />
+    <option name="totallyTimeSpent" value="64403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1139,7 +1153,8 @@
     <MESSAGE value="merge" />
     <MESSAGE value="who page styling" />
     <MESSAGE value="fixed filter menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed filter menu" />
+    <MESSAGE value="inner page styling in process" />
+    <option name="LAST_COMMIT_MESSAGE" value="inner page styling in process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1245,7 +1260,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-          <folding />
+          <folding>
+            <marker date="1485559982072" expanded="true" signature="1306:1684" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1319:1390" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1399:1673" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1429:1540" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1619:1663" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1373,22 +1394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/scss/partials/filterbtn.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/scss/filter.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="52" column="29" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/what.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1409,7 +1414,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7">
           <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
+          <folding>
+            <marker date="1485559982072" expanded="true" signature="1306:1684" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1319:1390" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1399:1673" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1429:1540" ph="..." />
+            <marker date="1485559982072" expanded="true" signature="1619:1663" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1448,7 +1459,7 @@
     <entry file="file://$PROJECT_DIR$/source/how.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1456,7 +1467,7 @@
     <entry file="file://$PROJECT_DIR$/source/scss/base.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1465,6 +1476,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2448">
           <caret line="144" column="19" lean-forward="false" selection-start-line="144" selection-start-column="19" selection-end-line="144" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/scss/filter.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="19" lean-forward="false" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/scss/partials/filterbtn.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
           <folding />
         </state>
       </provider>

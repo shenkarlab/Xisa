@@ -37,7 +37,8 @@ header {
         line-height: 1.25em; }
 
 #filter-btn {
-  margin-right: 48px; }
+  margin-right: 48px;
+  cursor: pointer; }
   #filter-btn span {
     color: #ff0000;
     font-size: 3.124em;
@@ -47,6 +48,30 @@ header {
     margin-left: 15px;
     line-height: 100%;
     vertical-align: middle; }
+
+footer section {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  margin: 4% 2%; }
+
+#studio {
+  color: #ffffff;
+  font-size: 0.938em;
+  font-weight: 700;
+  line-height: 4.967;
+  text-align: left;
+  flex: 1; }
+
+#studio span {
+  font-weight: 900; }
+
+#sprd {
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 3.726;
+  text-align: left; }
 
 header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
@@ -119,7 +144,8 @@ a {
     font-size: 3.124em;
     font-weight: 900;
     color: #fff;
-    margin-bottom: 33px; }
+    margin-bottom: 33px;
+    cursor: pointer; }
     #filter li span {
       border-bottom: 3px solid #fff; }
   #filter .selected {

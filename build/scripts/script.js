@@ -294,7 +294,7 @@ app.component('navbar', {
     templateUrl: 'navbar.html'
 });
 
-app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
+app.controller('navCtrl', ['$scope', function ($scope) {
 
     $scope.navLinks = [{
         Title: '/',
@@ -316,4 +316,17 @@ app.controller('navCtrl', ['$scope', '$location', function ($scope, $location) {
         }
         return page === currentRoute ? 'active' : '';
     };
+}]);
+
+app.component('footer', {
+    bindings: {
+        items: '='
+    },
+    templateUrl: 'footer.html'
+});
+
+app.controller('footerCtrl', ['$scope', function($scope){
+    $scope.studio = "OFFENSIVE";
+    $scope.studioCont = " studio TLV 2017";
+    $scope.sprd = 'SPRD if you hate'
 }]);
