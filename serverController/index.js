@@ -5,7 +5,7 @@ var express		= require('express'),
 
 var clientRootPath 		= __dirname + '/../build/',
 	apiPath 			= 'https://xisaapi.herokuapp.com',		
-	DEBUG				= true;
+	DEBUG				= false;
 
 var error = (next, msg, status) => {
 	var err = new Error();
