@@ -220,7 +220,8 @@ a {
   .searchBar form {
     border-bottom: 1px solid #0000ff;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    display: inline-block; }
 
 #search .logo {
   background: url("../images/blueLOGO.png") no-repeat;
@@ -238,6 +239,10 @@ a {
   border: none;
   outline: none;
   text-align: left; }
+
+.im-magnifier {
+  font-size: 2.5em;
+  color: #0000ff; }
 
 #how {
   width: 100vw;
