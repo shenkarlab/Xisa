@@ -1,25 +1,16 @@
 #searchBar {
-  border-bottom: 1px solid #0000ff;
-  margin-right: 48px;
-  margin-top: 80px; }
+  margin-right: 48px; }
+  #searchBar form {
+    border-bottom: 1px solid #0000ff;
+    margin: 0;
+    padding: 0; }
 
 #searchBar input {
-  float: left;
-  font-size: 1.7em;
-  padding-top: 11px;
-  width: 85%;
-  color: #4d4d4d;
+  font-size: 3.124em;
+  color: #fff;
+  opacity: 0.3;
   background-color: #000;
-  border: 0px; }
-
-#searchButton {
-  float: right;
-  background: url("/images/search.png");
-  background-size: 100% 100%;
-  width: 48px;
-  height: 42px;
-  border: none; }
-
-#searchBar:focus {
+  font-weight: 900;
+  border: none;
   outline: none;
-  border: 0px; }
+  text-align: left; }

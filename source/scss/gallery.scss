@@ -37,18 +37,23 @@
     padding: 1px 8px 8px 8px;
   }
 
+  .hater-followers {
+    margin-top: 7px;
+  }
+
   #followers {
     background-color: #fff;
+    color: $hater-color;
     font-size: 1.255em;
     font-weight: 500;
-    padding: 1px 8px 8px 8px;
+    padding: 8px;
   }
 
   #hashtag {
     color: #fff;
     font-size: 3.124em;
     font-weight: 400;
-    padding: 15px 8px 0 8px;
+    padding: 8px 8px 0 8px;
   }
 }
 

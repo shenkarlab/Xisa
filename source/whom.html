@@ -16,8 +16,8 @@
         </section>
         <section id="searchBar">
             <form action="/what" method="get">
-                <input id="serchInput" type="text" name="name" placeholder="TYPE ANY @USERNAME" required="true">
-                <button id="searchButton"></button>
+                <input id="searchInput" type="text" name="name" placeholder="TYPE ANY @USERNAME">
+                <img id="searchIcon" src="./images/search.png" alt="search" title="search">
             </form>
         </section>
     </div>
@@ -26,7 +26,7 @@
            ng-style="{'background-image': 'url({{cube.image}})'}">
             <section>
                 <p><span id="hashtag" class="hater-bg">{{cube.name}}</span></p>
-                <p><span id="followers" class="hater-bg">{{cube.followers}} followers</span></p>
+                <p class="hater-followers"><span id="followers" class="hater-bg">{{cube.followers}} followers</span></p>
             </section>
         </a>
     </section>
