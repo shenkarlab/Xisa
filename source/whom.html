@@ -4,6 +4,7 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.iconmonstr.com/1.1.0/css/iconmonstr-iconic-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whomCtrl" id="who">
@@ -17,9 +18,10 @@
             <p>{{past}}</p>
         </section>
         <section class="searchBar">
-            <form action="/what" method="get" class="filter-btn" ng-click="hideOptions = !hideOptions">
-                <input type="text" name="name" placeholder="TYPE ANY @USERNAME">
-                <img class="searchIcon" src="images/search.png" alt="search" title="search">
+            <form action="/what" method="get" class="filter-btn">
+                <input type="text" name="name" placeholder="TYPE ANY USERNAME" ng-focus="hideOptions = !hideOptions" autocomplete="off">
+                <!--<img class="searchIcon" src="images/search.png" alt="search" title="search">-->
+                <i class="im im-magnifier"></i>
             </form>
         </section>
     </div>
@@ -37,12 +39,13 @@
 <!--@include templates/footer.html -->
 <section id="filter" ng-show="hideOptions">
     <header id="search">
-        <a class="logo hater" href="/" title="logo"></a>
+        <a class="logo hater" href="#" title="logo" ng-click="hideOptions = !hideOptions"></a>
     </header>
     <section class="searchBar">
-        <form action="/what" method="get" class="filter-btn" ng-click="hideOptions = !hideOptions">
-            <input type="text" name="name" placeholder="TYPE ANY @USERNAME">
-            <img class="searchIcon" src="images/search.png" alt="search" title="search">
+        <form action="/what" method="get" class="filter-btn">
+            <input type="text" name="name" placeholder="TYPE ANY USERNAME" autocomplete="off">
+            <i class="im im-magnifier"></i>
+            <!--<img class="searchIcon" src="images/search.png" alt="search" title="search">-->
         </form>
     </section>
 </section>

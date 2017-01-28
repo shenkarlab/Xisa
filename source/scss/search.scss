@@ -9,6 +9,7 @@
     border-bottom: 1px solid $hater-color;
     margin: 0;
     padding: 0;
+    display: inline-block;
   }
 }
 
@@ -31,6 +32,11 @@
   border: none;
   outline: none;
   text-align: left;
+}
+
+.im-magnifier {
+  font-size: 2.5em;
+  color: $hater-color;
 }
 
 
