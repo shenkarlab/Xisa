@@ -6,10 +6,13 @@
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/jquery.tickerNews.min.js"></script>
     <script src="scripts/script.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="howCtrl" id="how" ng-style="{'background-image': 'url(' + celebImage + ')'}">
-<navbar class="hated"></navbar>
+<section class="hated">
+    <!--@include templates/navbar.html -->
+</section>
 <section id="howHeader">
     <section id="names">
         <p id="howCelebName">{{celebName}}</p>
@@ -30,12 +33,8 @@
     </section>
     <section id="bad_words"></section>
 </section>
-<section id="popup" stlye="visibility: hidden;">
-    <img src="">
-    <p id="tweetText"></p>
-    <p id="tweetTime"></p>
-</section>
 <section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
-<footer></footer>
+<!--@include templates/footer.html -->
+<!-- @include templates/popup.html -->
 </body>
 </html>

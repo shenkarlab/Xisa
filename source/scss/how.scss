@@ -109,6 +109,7 @@ body::after {
 
 #bars {
   margin-left: 48px;
+  margin-right: 100px;
   flex: 1;
 }
 
@@ -167,6 +168,20 @@ body::after {
 
 .ti_news {
   float: left;
+}
+
+.ti_news a {
+  color: #fff;
+  font-size: 1em;
+}
+
+.ti_news a:hover {
+  color: $hated-color;
+  border-bottom: 4px solid $hated-color;
+}
+
+.reply {
+
 }
 
 .bar_chart {

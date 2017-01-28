@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whatCtrl" id="how">
-<navbar class="hater"></navbar>
+<section class="hater">
+    <!--@include templates/navbar.html -->
+</section>
 <section id="whatHeader">
     <section id="whatnames">
         <p class="whatuserName">{{firstName}}</p>
@@ -56,6 +58,7 @@
     </section>
 </section>
 <section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
-<footer></footer>
+<!--@include templates/footer.html -->
+<!-- @include templates/popup.html -->
 </body>
 </html>

@@ -3,6 +3,7 @@
 @import "partials/navbar";
 @import "partials/filterbtn";
 @import "partials/footer";
+@import "partials/popup";
 
 header, nav, section, p, a, li, ul, h1, h2, button {
   margin: 0;
@@ -20,6 +21,7 @@ body {
   font-family: $font-stack;
   color: $text-color;
   background: $app-background-color;
+  overflow-x: hidden;
 }
 
 h1 {

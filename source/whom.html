@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="whomCtrl" id="who">
-<navbar class="hater"></navbar>
+<section class="hater">
+    <!--@include templates/navbar.html -->
+</section>
 <section id="content">
     <div id="topbar">
         <section id="title">
@@ -34,7 +36,7 @@
     </section>
 </section>
 <section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
-<footer></footer>
+<!--@include templates/footer.html -->
 <section id="filter" ng-show="hideOptions">
     <header id="search">
         <a class="logo hater" href="#" title="logo" ng-click="hideOptions = !hideOptions"></a>
