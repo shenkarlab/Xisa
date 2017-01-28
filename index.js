@@ -35,19 +35,19 @@ app.all('/local/*', (req,res,next) => {
 
 app.get('/', ctrl.inedxPage);
 
-app.get('/how', ctrl.howPage);
+app.get('/hated', ctrl.howPage);
 
-app.get('/what', ctrl.whatPage);
+app.get('/hater', ctrl.whatPage);
 
-app.get('/whom', ctrl.whomPage);
+app.get('/haters', ctrl.whomPage);
 
 app.get('/api/getCelebs', ctrl.getCelebs);
 
 app.get('/api/getCelebs/:category', ctrl.getCategoryCelebs);
 
-app.get('/api/celeb/:name', ctrl.getCeleb);
+app.get('/api/celeb/:name/:twitter_name', ctrl.getCeleb);
 
-app.get('/api/celeb/:name/:category', ctrl.getCategoryCeleb);
+app.get('/api/celeb/:name/:twitter_name/:category', ctrl.getCategoryCeleb);
 
 app.get('/api/getUsers', ctrl.getUsers);
 

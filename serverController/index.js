@@ -71,15 +71,15 @@ exports.inedxPage = (req, res, next) => {
 };
 
 exports.howPage = (req, res, next) => {
-	route(req, res, next, 'how.html');
+	route(req, res, next, 'hated.html');
 };
 
 exports.whatPage = (req, res, next) => {
-	route(req, res, next, 'what.html');
+	route(req, res, next, 'hater.html');
 };
 
 exports.whomPage = (req, res, next) => {
-	route(req, res, next, 'whom.html');
+	route(req, res, next, 'haters.html');
 };
 
 exports.getCelebs = (req,res,next) => {
@@ -105,7 +105,7 @@ exports.getCeleb = (req,res,next) => {
 		localApi(req, res, next, './celeb.json'); 
 	}
 	else{
-		api(req, res, next, apiPath + '/celeb/' + req.params.name);
+		api(req, res, next, apiPath + '/celeb/' + req.params.name + '/' + req.params.twitter_name);
 	}
 };
 
@@ -114,7 +114,7 @@ exports.getCategoryCeleb = (req,res,next) => {
 		localApi(req, res, next, './celeb.json'); 
 	}
 	else{
-		api(req, res, next, apiPath + '/celeb/' + req.params.name + '/' + req.params.category);
+		api(req, res, next, apiPath + '/celeb/' + req.params.name + '/' + req.params.twitter_name + '/' + req.params.category);
 	}
 };
 

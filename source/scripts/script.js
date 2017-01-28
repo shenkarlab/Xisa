@@ -19,7 +19,7 @@ function getUrlParameter(param) {
 }
 
 function setMovingTextClass(news, i){
-    $("#text_move"+(i+1)).hover(function(){
+    $("#text_move" + (i + 1)).hover(function(){
         news[0].pauseTicker();
     }, function(){
         news[0].startTicker();
@@ -27,22 +27,19 @@ function setMovingTextClass(news, i){
 }
 
 function showPopup(i, tweetId){
-    $("#ti_news"+(i+1)).hover(function(){
+    $("#ti_news" + (i + 1)).mouseenter(function(){
         var tweet = document.getElementById("tweet");
-        var id = tweetId;
         twttr.widgets.createTweet(
-            id, tweet,
+            tweetId, tweet,
             {
                 conversation : 'none',    // or all
                 cards        : 'hidden',  // or visible
                 linkColor    : '#cc0000', // default is blue
                 theme        : 'light'    // or dark
-            })
-            .then (function (el) {
-                el.contentDocument.querySelector(".footer").style.display = "none";
             });
         $('#tweet').css('visibility', "visible");
-    }, function(){
+    }).mouseleave(function(){
+        $('#tweet').empty();
         $('#tweet').css('visibility', "hidden");
     });
 }
@@ -92,11 +89,12 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
         $scope.isError = false;
         angular.forEach(response.data, function (data) {
             hatedArray.push({name: data.twitter_name});
+            var url = '/hated?name=' + data.name + '&twitter_name=' + data.twitter_name;
             $scope.cubes.push({
                 name: data.name,
                 word: data.word,
                 image: data.image,
-                url: '/how?name=' + data.name
+                url: url
             });
         });
         $http.post('/local/hated', JSON.stringify(hatedArray), config).then(function(response){
@@ -117,11 +115,12 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
                 $scope.hideOptions = false;
                 angular.forEach(response.data, function (data) {
                     hatedArray.push({name: data.twitter_name});
+                    var url = '/hated?name=' + data.name + '&twitter_name=' + data.twitter_name;
                     $scope.cubes.push({
                         name: data.name,
                         word: data.word,
                         image: data.image,
-                        url: '/how?name=' + data.name
+                        url: url
                     });
                 });
                 $http.post('/local/hated',JSON.stringify(hatedArray), config).then(function(response){
@@ -139,6 +138,7 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
 app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $http, $compile) {
     $scope.isError = false;
     var lastName = getUrlParameter('name').split("%20");
+    var twitter_name = getUrlParameter('twitter_name');
     var array = [];
     $http.get('/local/hated').then(function (response) {
         angular.forEach(response.data, function(data){
@@ -151,14 +151,14 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
     if (lastName == null) {
         lastName = getUrlParameter('name');
     }
-    var request = decodeURIComponent('/api/celeb/' + lastName);
+    var request = decodeURIComponent('/api/celeb/' + lastName + '/' + twitter_name);
     $http.get(request).then(function (response) {
         if (response.data == null) {
             $scope.isError = true;
         }
         else {
             $scope.celebImage = response.data.user_details.image;
-            $scope.celebName = response.data.user_details.name.toUpperCase() + '.';
+            $scope.celebName = response.data.user_details.name.toUpperCase();
             $scope.twitterName = '@' + response.data.user_details.twitter_name;
             $scope.numOfPeople = 'mean tweets were posted this week about ';
             $scope.badWord = response.data.mostUsedWord;
@@ -171,6 +171,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
             });
             $scope.bars = [];
             var i = 0;
+            var k = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
                 if (data.texts == null) {
                     $scope.isError = true;
@@ -181,38 +182,34 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                         width: {'width': data.bad_words_count / maxLen * WIDTH_MULTIPLIER},
                         bad_words_count: data.bad_words_count
                     });
-                    var texts = "";
-                    texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
-                    var k = 0;
-                    var keepGoing = true;
+                    var texts = '<div class="TickerNews" id="text_move' + (i + 1) + '"><div class="ti_wrapper"><div class="ti_slide"><div class="ti_content" id="ti_content' + (i + 1) + '"></div></div></div></div>';
+                    var compiled = $compile(texts)($scope);
+                    $("#bad_words").append(compiled);
                     angular.forEach(data.texts, function (text) {
-                        if (keepGoing) {
+                        var innerTexts = "";
                         $scope.tweetId = text.tweet_id;
-                        texts += '<div class="ti_news" id="ti_news' + (k + 1) + '">';
+                        innerTexts += '<div class="ti_news" id="ti_news' + (k + 1) + '">';
                         text.tweet.split(" ").forEach(function (word) {
                             if (word == data.word) {
-                                texts += '<span id="markWord">' + word.toUpperCase() + '&nbsp</span>';
+                                innerTexts += '<span id="markWord">' + word.toUpperCase() + '&nbsp</span>';
                             } else if (word.startsWith('@')) {
                                 var found = $.inArray(word, array) > -1;
                                 if (found) {
-                                    texts += '<a href="/how?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
+                                    innerTexts += '<a href="/hated?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
                                 }
                                 else {
-                                    texts += '<a href="/what?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
+                                    innerTexts += '<a href="/hater?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
                                 }
                             } else {
-                                texts += word.toUpperCase() + '&nbsp';
+                                innerTexts += word.toUpperCase() + '&nbsp';
                             }
                         });
-                        texts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '">Reply</a> &nbsp&nbsp </div>';
+                        innerTexts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '"></a> &nbsp&nbsp </div>';
+                        var compiled = $compile(innerTexts)($scope);
+                        $("#ti_content" + (i + 1)).append(compiled);
                         showPopup(k, text.tweet_id);
                         k++;
-                            if (k == 4) keepGoing = false;
-                        }
                     });
-                    texts += '</div> </div> </div> </div>';
-                    var compiled = $compile(texts)($scope);
-                    $("#bad_words").append(compiled);
                     var news = $("#text_move"+(i+1)).newsTicker();
                     setMovingTextClass(news, i);
                 }
@@ -275,7 +272,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                     angular.forEach(data.texts, function (text) {
                         var words = [];
                         text.tweet.split(" ").forEach(function (word) {
-                            var route = ($.inArray(word.substring(1), hatedArray.array) > -1) ? "/how" : "/what";
+                            var route = ($.inArray(word.substring(1), hatedArray.array) > -1) ? "/hated" : "/hater";
                             words.push({
                                 word: word.toUpperCase(),
                                 url: word.substring(1),
@@ -315,7 +312,7 @@ app.controller('whomCtrl', function ($scope, $http) {
         angular.forEach(response.data, function (data) {
             $scope.cubes.push({
                 name: data.twitter_name.substring(0, 10),
-                url: '/what?name=' + data.name,
+                url: '/hater?name=' + data.name,
                 image: data.image,
                 followers: data.followers_count
             });
@@ -332,17 +329,17 @@ app.controller('navCtrl', ['$scope', function ($scope) {
         Alias: '/',
         LinkText: 'HATED'
     }, {
-        Title: '/whom',
-        Alias: 'whom',
+        Title: '/hater',
+        Alias: 'hater',
         LinkText: 'HATER'
     }];
 
     $scope.navClass = function (page) {
         var currentRoute = window.location.pathname.substring(1);
         currentRoute = currentRoute.split("?")[0] || '/';
-        if (currentRoute.startsWith('what')) {
-            currentRoute = 'whom';
-        } else if (currentRoute.startsWith('how')) {
+        if (currentRoute.startsWith('hater')) {
+            currentRoute = 'haters';
+        } else if (currentRoute.startsWith('hated')) {
             currentRoute = '/';
         }
         return page === currentRoute ? 'active' : '';
