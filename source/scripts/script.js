@@ -21,20 +21,29 @@ function getUrlParameter(param) {
 function setMovingTextClass(news, i){
     $("#text_move"+(i+1)).hover(function(){
         news[0].pauseTicker();
-        var content = $('#text_move'+(i+1)+' .ti_content').children('div');
-        angular.forEach(content, function(child){
-            angular.forEach($(child).children('.whatmark'), function(grandchild){
-                $(grandchild).hover(function(){
-                    $(this).removeClass('whatmark');
-                    $(this).addClass('redUnder');
-                }, function(){
-                    $(this).first().removeClass('redUnder');
-                    $(this).first().addClass('whatmark');
-                });
-            });
-        });
     }, function(){
         news[0].startTicker();
+    });
+}
+
+function showPopup(i, tweetId){
+    $("#ti_news"+(i+1)).hover(function(){
+        var tweet = document.getElementById("tweet");
+        var id = tweetId;
+        twttr.widgets.createTweet(
+            id, tweet,
+            {
+                conversation : 'none',    // or all
+                cards        : 'hidden',  // or visible
+                linkColor    : '#cc0000', // default is blue
+                theme        : 'light'    // or dark
+            })
+            .then (function (el) {
+                el.contentDocument.querySelector(".footer").style.display = "none";
+            });
+        $('#tweet').css('visibility', "visible");
+    }, function(){
+        $('#tweet').css('visibility', "hidden");
     });
 }
 
@@ -175,25 +184,31 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                     var texts = "";
                     texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
                     var k = 0;
+                    var keepGoing = true;
                     angular.forEach(data.texts, function (text) {
-                        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
+                        if (keepGoing) {
+                        $scope.tweetId = text.tweet_id;
+                        texts += '<div class="ti_news" id="ti_news' + (k + 1) + '">';
                         text.tweet.split(" ").forEach(function (word) {
-                            if(word == data.word){
-                                texts += '<span id="markWord">'+word.toUpperCase()+'&nbsp</span>';
-                            } else if(word.startsWith('@')) {
+                            if (word == data.word) {
+                                texts += '<span id="markWord">' + word.toUpperCase() + '&nbsp</span>';
+                            } else if (word.startsWith('@')) {
                                 var found = $.inArray(word, array) > -1;
-                                if(found){
-                                    texts += '<a href="/how?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                                if (found) {
+                                    texts += '<a href="/how?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
                                 }
-                                else{
-                                    texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                                else {
+                                    texts += '<a href="/what?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
                                 }
                             } else {
                                 texts += word.toUpperCase() + '&nbsp';
                             }
                         });
-                        texts += '&nbsp&nbsp <a href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '">Reply</a> <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script> &nbsp&nbsp </div>';
+                        texts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '">Reply</a> &nbsp&nbsp </div>';
+                        showPopup(k, text.tweet_id);
                         k++;
+                            if (k == 4) keepGoing = false;
+                        }
                     });
                     texts += '</div> </div> </div> </div>';
                     var compiled = $compile(texts)($scope);
@@ -310,13 +325,6 @@ app.controller('whomCtrl', function ($scope, $http) {
     });
 });
 
-app.component('navbar', {
-    bindings: {
-        items: '='
-    },
-    templateUrl: 'navbar.html'
-});
-
 app.controller('navCtrl', ['$scope', function ($scope) {
 
     $scope.navLinks = [{
@@ -341,12 +349,6 @@ app.controller('navCtrl', ['$scope', function ($scope) {
     };
 }]);
 
-app.component('footer', {
-    bindings: {
-        items: '='
-    },
-    templateUrl: 'footer.html'
-});
 
 app.controller('footerCtrl', ['$scope', function($scope){
     $scope.studio = " OFFENSIVE";
