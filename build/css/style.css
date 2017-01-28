@@ -257,7 +257,6 @@ body::after {
 
 #howHeader {
   color: #ffffff;
-  height: 150px;
   margin-top: 50px;
   margin-left: 48px;
   display: flex;
@@ -268,7 +267,7 @@ body::after {
   border-bottom: 4px solid #ff0000; }
 
 #names {
-  width: 26%; }
+  margin-right: 153px; }
 
 #names p {
   margin: 0; }
@@ -276,21 +275,22 @@ body::after {
 #howText p {
   color: #fff;
   font-weight: 300;
-  font-size: 1.874em; }
+  font-size: 1.874em;
+  margin-right: 48px; }
 
 #howCelebName {
-  font-size: 2.18em;
-  font-weight: bold;
+  font-size: 3.124em;
+  font-weight: 900;
   color: #ff0000; }
 
 #twitterName {
-  float: left;
-  font-size: 1.09em; }
+  font-size: 1.562em;
+  font-weight: 500; }
 
 #howText {
-  width: 74%;
-  font-size: 1.50em;
-  color: #535257;
+  font-size: 1.874em;
+  font-weight: 300;
+  color: #fff;
   margin-top: 12px; }
 
 #mark {
@@ -316,15 +316,17 @@ body::after {
   flex: 2; }
 
 .barBadWord {
-  font-size: 2.00em;
+  font-size: 1.874em;
+  font-weight: 400;
   color: #ff0000;
   margin-bottom: 7px;
   margin-top: 0; }
 
 .barWordCount {
-  font-size: 1.17em;
-  color: #4c4c61;
-  margin-bottom: 7px; }
+  font-size: 1.25em;
+  color: #fff;
+  margin-bottom: 7px;
+  font-weight: 300; }
 
 .TickerNews {
   margin-bottom: 52px;
@@ -360,7 +362,8 @@ body::after {
 
 #howContent {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  margin-top: 120px; }
 
 .currentWord {
   color: #ff0000; }

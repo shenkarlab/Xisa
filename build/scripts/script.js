@@ -130,11 +130,11 @@ app.controller('howCtrl', ['$scope', '$http', function ($scope, $http) {
         }
         else {
             $scope.celebImage = response.data.user_details.image;
-            $scope.celebName = response.data.user_details.name;
+            $scope.celebName = response.data.user_details.name.toUpperCase();
             $scope.twitterName = '@' + response.data.user_details.twitter_name;
-            $scope.numOfPeople = 'This week, People said 100 times That he is ';
+            $scope.numOfPeople = 'mean tweets were posted this week about ';
             $scope.badWord = response.data.mostUsedWord;
-            $scope.also = 'They also said about him:';
+            $scope.also = 'Here are the most offensive ones.';
             var maxLen = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
                 if (maxLen < data.bad_words_count) {
