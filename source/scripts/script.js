@@ -240,14 +240,8 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.twitterName = '@' + response.data.user_details.screen_name;
             $scope.followersCount = response.data.user_details.followers_count + ' followers';
             $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' said ';
-            $scope.picText = "She doesn't like these people: ";
+            $scope.picText =  $scope.twitterName + " doesn't like these people: ";
             $scope.also = ' offensive words';
-            var maxLen = 0;
-            angular.forEach(response.data.words_with_tweets, function (data) {
-                if (maxLen < data.bad_words_count) {
-                    maxLen = data.bad_words_count;
-                }
-            });
             var badWordCount = 0;
             $scope.pics = [];
             for (var j = 0; j < 5; j++) {
@@ -255,8 +249,15 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                     image: response.data.images[j]
                 });
             }
+            var maxLen = 0;
+            angular.forEach(response.data.words_with_tweets, function (data) {
+                if (maxLen < data.bad_words_count) {
+                    maxLen = data.bad_words_count;
+                }
+            });
             $scope.bars = [];
-            $scope.wrappers = [];
+            var i = 0;
+            var k = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
                 if (data.texts == null) {
                     $scope.isError = true;
@@ -268,33 +269,39 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                         width: {'width': data.bad_words_count / maxLen * WIDTH_MULTIPLIER},
                         bad_words_count: data.bad_words_count
                     });
-                    var texts = [];
+                    var texts = '<div class="TickerNews" id="text_move' + (i + 1) + '"><div class="ti_wrapper"><div class="ti_slide"><div class="ti_content" id="ti_content' + (i + 1) + '"></div></div></div></div>';
+                    var compiled = $compile(texts)($scope);
+                    $("#bad_words").append(compiled);
                     angular.forEach(data.texts, function (text) {
-                        var words = [];
+                        var innerTexts = "";
+                        $scope.tweetId = text.tweet_id;
+                        innerTexts += '<div class="ti_news" id="ti_news' + (k + 1) + '">';
                         text.tweet.split(" ").forEach(function (word) {
-                            var route = ($.inArray(word.substring(1), hatedArray.array) > -1) ? "/hated" : "/hater";
-                            words.push({
-                                word: word.toUpperCase(),
-                                url: word.substring(1),
-                                route: route
-                            });
+                            if (word == data.word) {
+                                innerTexts += '<span id="markWord">' + word.toUpperCase() + '&nbsp</span>';
+                            } else if (word.startsWith('@')) {
+                                var found = $.inArray(word, array) > -1;
+                                if (found) {
+                                    innerTexts += '<a href="/hated?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
+                                }
+                                else {
+                                    innerTexts += '<a href="/hater?name=' + word.substring(1) + '">' + word.toUpperCase() + '&nbsp</a>'
+                                }
+                            } else {
+                                innerTexts += word.toUpperCase() + '&nbsp';
+                            }
                         });
-                        texts.push({
-                            tweet: text,
-                            word: data.word,
-                            tweetId: text.tweet_id,
-                            words: words
-                        });
+                        innerTexts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '"></a> &nbsp&nbsp </div>';
+                        var compiled = $compile(innerTexts)($scope);
+                        $("#ti_content" + (i + 1)).append(compiled);
+                        showPopup(k, text.tweet_id);
+                        k++;
                     });
-                    $scope.wrappers.push({texts: texts});
+                    var news = $("#text_move"+(i+1)).newsTicker();
+                    setMovingTextClass(news, i);
                 }
+                i++;
             });
-            $scope.shouldLink = function (word) {
-                return !!word.word.startsWith('@');
-            };
-            $scope.wordClass = function (text, word) {
-                return word.word.toUpperCase() === text.word.toUpperCase();
-            }
             $scope.badWordCount = badWordCount;
         }
     }, function (error) {
