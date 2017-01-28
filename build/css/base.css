@@ -5,12 +5,6 @@
   margin-left: 48px;
   margin-top: 59px; }
 
-.hated a#logo {
-  background: url("../../images/redLOGO.png") no-repeat; }
-
-.hater a#logo {
-  background: url("../../images/blueLOGO.png") no-repeat; }
-
 header {
   display: flex;
   flex-direction: row; }
@@ -116,6 +110,12 @@ a {
 .hater-text {
   color: #0000ff;
   font-weight: 900; }
+
+.hated a#logo {
+  background: url("../images/redLOGO.png") no-repeat; }
+
+.hater a#logo {
+  background: url("../images/blueLOGO.png") no-repeat; }
 
 #title {
   flex: 1; }

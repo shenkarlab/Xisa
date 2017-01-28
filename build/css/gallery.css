@@ -22,13 +22,16 @@
     font-size: 1.255em;
     font-weight: 500;
     padding: 1px 8px 8px 8px; }
+  #cubeContainer .hater-followers {
+    margin-top: 7px; }
   #cubeContainer #followers {
     background-color: #fff;
+    color: #0000ff;
     font-size: 1.255em;
     font-weight: 500;
-    padding: 1px 8px 8px 8px; }
+    padding: 8px; }
   #cubeContainer #hashtag {
     color: #fff;
     font-size: 3.124em;
     font-weight: 400;
-    padding: 15px 8px 0 8px; }
+    padding: 8px 8px 0 8px; }

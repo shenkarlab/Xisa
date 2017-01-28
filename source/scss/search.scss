@@ -1,31 +1,36 @@
 @import "colors";
+@import "fonts";
 
-#searchBar {
-  border-bottom: 1px solid $hater-color;
+.searchBar {
   margin-right: 48px;
-  margin-top: 80px;
+  margin-top: 6px;
+
+  form {
+    border-bottom: 1px solid $hater-color;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-#searchBar input {
-  float: left;
-  font-size: 1.7em;
-  padding-top: 11px;
-  width: 85%;
-  color: $text-color;
+#search {
+  .logo {
+    background: url('../images/blueLOGO.png') no-repeat;
+    width: 190px;
+    height: 73px;
+    margin-left: 48px;
+    margin-top: 59px;
+  }
+}
+
+.searchBar input {
+  font-size: 3.124em;
+  color: #fff;
+  opacity: 0.3;
   background-color: $app-background-color;
-  border: 0px;
-}
-
-#searchButton {
-  float: right;
-  background: url('/images/search.png');
-  background-size: 100% 100%;
-  width: 48px;
-  height: 42px;
+  font-weight: 900;
   border: none;
+  outline: none;
+  text-align: left;
 }
 
-#searchBar:focus {
-  outline: none;
-  border: 0px;
-}
+

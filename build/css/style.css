@@ -1,15 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Monsterat);
+@import url(https://fonts.googleapis.com/css?family=Monsterat);
 #logo {
   width: 190px;
   height: 73px;
   margin-left: 48px;
   margin-top: 59px; }
-
-.hated a#logo {
-  background: url("../../images/redLOGO.png") no-repeat; }
-
-.hater a#logo {
-  background: url("../../images/blueLOGO.png") no-repeat; }
 
 header {
   display: flex;
@@ -117,6 +112,12 @@ a {
   color: #0000ff;
   font-weight: 900; }
 
+.hated a#logo {
+  background: url("../images/redLOGO.png") no-repeat; }
+
+.hater a#logo {
+  background: url("../images/blueLOGO.png") no-repeat; }
+
 #title {
   flex: 1; }
 
@@ -170,6 +171,10 @@ a {
       margin-left: 15px;
       line-height: 100%;
       vertical-align: middle; }
+  #filter .searchBar {
+    margin-top: 38px; }
+    #filter .searchBar input {
+      opacity: 1; }
 
 #cubeContainer {
   display: flex;
@@ -195,42 +200,44 @@ a {
     font-size: 1.255em;
     font-weight: 500;
     padding: 1px 8px 8px 8px; }
+  #cubeContainer .hater-followers {
+    margin-top: 7px; }
   #cubeContainer #followers {
     background-color: #fff;
+    color: #0000ff;
     font-size: 1.255em;
     font-weight: 500;
-    padding: 1px 8px 8px 8px; }
+    padding: 8px; }
   #cubeContainer #hashtag {
     color: #fff;
     font-size: 3.124em;
     font-weight: 400;
-    padding: 15px 8px 0 8px; }
+    padding: 8px 8px 0 8px; }
 
-#searchBar {
-  border-bottom: 1px solid #0000ff;
+.searchBar {
   margin-right: 48px;
-  margin-top: 80px; }
+  margin-top: 6px; }
+  .searchBar form {
+    border-bottom: 1px solid #0000ff;
+    margin: 0;
+    padding: 0; }
 
-#searchBar input {
-  float: left;
-  font-size: 1.7em;
-  padding-top: 11px;
-  width: 85%;
-  color: #4d4d4d;
+#search .logo {
+  background: url("../images/blueLOGO.png") no-repeat;
+  width: 190px;
+  height: 73px;
+  margin-left: 48px;
+  margin-top: 59px; }
+
+.searchBar input {
+  font-size: 3.124em;
+  color: #fff;
+  opacity: 0.3;
   background-color: #000;
-  border: 0px; }
-
-#searchButton {
-  float: right;
-  background: url("/images/search.png");
-  background-size: 100% 100%;
-  width: 48px;
-  height: 42px;
-  border: none; }
-
-#searchBar:focus {
+  font-weight: 900;
+  border: none;
   outline: none;
-  border: 0px; }
+  text-align: left; }
 
 #how {
   width: 100vw;

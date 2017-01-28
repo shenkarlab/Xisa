@@ -37,3 +37,7 @@
       margin-left: 15px;
       line-height: 100%;
       vertical-align: middle; }
+  #filter .searchBar {
+    margin-top: 38px; }
+    #filter .searchBar input {
+      opacity: 1; }
