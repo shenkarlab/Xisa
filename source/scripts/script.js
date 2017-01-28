@@ -26,7 +26,7 @@ function setMovingTextClass(news, i){
     });
 }
 
-function showPopup(i, tweetId){
+function showPopup(i, tweetId, top){
     $("#ti_news" + (i + 1)).mouseenter(function(){
         var tweet = document.getElementById("tweet");
         twttr.widgets.createTweet(
@@ -36,10 +36,15 @@ function showPopup(i, tweetId){
                 cards        : 'hidden',  // or visible
                 linkColor    : '#cc0000', // default is blue
                 theme        : 'light'    // or dark
-            });
-        $('#tweet').css('visibility', "visible");
+            }).then (function (el) {
+                $('#tweet').css('visibility', "visible");
+                $('#tweet').css('top', top + 140);
+                $('#tweet').append('<span class="arrow" style="visibility: hidden;"></span>');
+                $('.arrow').css('visibility', "visible");
+        });
     }).mouseleave(function(){
-        $('#tweet').empty();
+        $('#tweet ').empty();
+        $('.arrow').css('visibility', "hidden");
         $('#tweet').css('visibility', "hidden");
     });
 }
@@ -207,7 +212,8 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                         innerTexts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '"></a> &nbsp&nbsp </div>';
                         var compiled = $compile(innerTexts)($scope);
                         $("#ti_content" + (i + 1)).append(compiled);
-                        showPopup(k, text.tweet_id);
+                        var elemLoaction = $("#ti_content" + (i + 1)).offset();
+                        showPopup(k, text.tweet_id, elemLoaction.top);
                         k++;
                     });
                     var news = $("#text_move"+(i+1)).newsTicker();
