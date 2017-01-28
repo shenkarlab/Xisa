@@ -149,7 +149,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
         }
         else {
             $scope.celebImage = response.data.user_details.image;
-            $scope.celebName = response.data.user_details.name.toUpperCase();
+            $scope.celebName = response.data.user_details.name.toUpperCase() + '.';
             $scope.twitterName = '@' + response.data.user_details.twitter_name;
             $scope.numOfPeople = 'mean tweets were posted this week about ';
             $scope.badWord = response.data.mostUsedWord;
@@ -192,7 +192,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                                 texts += word.toUpperCase() + '&nbsp';
                             }
                         });
-                        texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+                        texts += '&nbsp&nbsp <a href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '">Reply</a> <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script> &nbsp&nbsp </div>';
                         k++;
                     });
                     texts += '</div> </div> </div> </div>';
@@ -228,7 +228,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.twitterName = '@' + response.data.user_details.screen_name;
             $scope.followersCount = response.data.user_details.followers_count + ' followers';
             $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' said ';
-            $scope.picText = "She doesn't like these people: "
+            $scope.picText = "She doesn't like these people: ";
             $scope.also = ' offensive words';
             var maxLen = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
