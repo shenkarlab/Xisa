@@ -1,7 +1,9 @@
 @import "colors";
+@import "fonts";
 
-#searchBar {
+.searchBar {
   margin-right: 48px;
+  margin-top: 6px;
 
   form {
     border-bottom: 1px solid $hater-color;
@@ -10,7 +12,17 @@
   }
 }
 
-#searchBar input {
+#search {
+  .logo {
+    background: url('../images/blueLOGO.png') no-repeat;
+    width: 190px;
+    height: 73px;
+    margin-left: 48px;
+    margin-top: 59px;
+  }
+}
+
+.searchBar input {
   font-size: 3.124em;
   color: #fff;
   opacity: 0.3;

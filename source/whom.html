@@ -14,10 +14,10 @@
             <h1><span class="hater-text">{{ mostHating }}</span> {{ users }}</h1>
             <p>{{past}}</p>
         </section>
-        <section id="searchBar">
-            <form action="/what" method="get">
-                <input id="searchInput" type="text" name="name" placeholder="TYPE ANY @USERNAME">
-                <img id="searchIcon" src="./images/search.png" alt="search" title="search">
+        <section class="searchBar">
+            <form action="/what" method="get" class="filter-btn" ng-click="hideOptions = !hideOptions">
+                <input type="text" name="name" placeholder="TYPE ANY @USERNAME">
+                <img class="searchIcon" src="images/search.png" alt="search" title="search">
             </form>
         </section>
     </div>
@@ -33,5 +33,16 @@
 </section>
 <section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
 <footer></footer>
+<section id="filter" ng-show="hideOptions">
+    <header id="search">
+        <a class="logo hater" href="/" title="logo"></a>
+    </header>
+    <section class="searchBar">
+        <form action="/what" method="get" class="filter-btn" ng-click="hideOptions = !hideOptions">
+            <input type="text" name="name" placeholder="TYPE ANY @USERNAME">
+            <img class="searchIcon" src="images/search.png" alt="search" title="search">
+        </form>
+    </section>
+</section>
 </body>
 </html>

@@ -1,15 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Monsterat);
+@import url(https://fonts.googleapis.com/css?family=Monsterat);
 #logo {
   width: 190px;
   height: 73px;
   margin-left: 48px;
   margin-top: 59px; }
-
-.hated a#logo {
-  background: url("../../images/redLOGO.png") no-repeat; }
-
-.hater a#logo {
-  background: url("../../images/blueLOGO.png") no-repeat; }
 
 header {
   display: flex;
@@ -117,6 +112,12 @@ a {
   color: #0000ff;
   font-weight: 900; }
 
+.hated a#logo {
+  background: url("../images/redLOGO.png") no-repeat; }
+
+.hater a#logo {
+  background: url("../images/blueLOGO.png") no-repeat; }
+
 #title {
   flex: 1; }
 
@@ -170,6 +171,10 @@ a {
       margin-left: 15px;
       line-height: 100%;
       vertical-align: middle; }
+  #filter .searchBar {
+    margin-top: 38px; }
+    #filter .searchBar input {
+      opacity: 1; }
 
 #cubeContainer {
   display: flex;
@@ -209,14 +214,22 @@ a {
     font-weight: 400;
     padding: 8px 8px 0 8px; }
 
-#searchBar {
-  margin-right: 48px; }
-  #searchBar form {
+.searchBar {
+  margin-right: 48px;
+  margin-top: 6px; }
+  .searchBar form {
     border-bottom: 1px solid #0000ff;
     margin: 0;
     padding: 0; }
 
-#searchBar input {
+#search .logo {
+  background: url("../images/blueLOGO.png") no-repeat;
+  width: 190px;
+  height: 73px;
+  margin-left: 48px;
+  margin-top: 59px; }
+
+.searchBar input {
   font-size: 3.124em;
   color: #fff;
   opacity: 0.3;

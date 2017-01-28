@@ -43,6 +43,14 @@ a {
   font-weight: 900;
 }
 
+.hated a#logo{
+  background: url('../images/redLOGO.png') no-repeat;
+}
+
+.hater a#logo{
+  background: url('../images/blueLOGO.png') no-repeat;
+}
+
 #title {
   flex: 1;
 }
@@ -59,6 +67,8 @@ a {
   display: flex;
   flex-direction: row;
 }
+
+
 
 
 
