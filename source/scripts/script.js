@@ -329,8 +329,8 @@ app.controller('navCtrl', ['$scope', function ($scope) {
         Alias: '/',
         LinkText: 'HATED'
     }, {
-        Title: '/hater',
-        Alias: 'hater',
+        Title: '/haters',
+        Alias: 'haters',
         LinkText: 'HATER'
     }];
 
