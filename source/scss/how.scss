@@ -29,7 +29,7 @@ body::after {
 
 #redDimmer::after {
   content: "";
-  background-color: #ff0000;
+  background-color: $hated-color;
   opacity: 0.5;
   top: 0;
   left: 0;
@@ -51,8 +51,8 @@ body::after {
 }
 
 .redUnder {
-  color: #ff0000;
-  border-bottom: 4px solid #ff0000;
+  color: $hated-color;
+  border-bottom: 4px solid $hated-color;
 }
 
 #names {
@@ -89,22 +89,22 @@ body::after {
 }
 
 #mark {
-  background-color: #ff0000;
+  background-color: $hated-color;
   color: #ffffff;
 }
 
 #blueMark {
   background-color: #ffffff;
-  color: #0000ff;
+  color: $hater-color;
 }
 
 #revertBlueMark {
   background-color: #0000ff;
-  color: #ffffff;
+  color: $hater-color;
 }
 
 #markWord {
-  color: #ff0000;
+  color: $hated-color;
 }
 
 #bars {
@@ -123,7 +123,7 @@ body::after {
 .barBadWord {
   font-size: 1.874em;
   font-weight: 400;
-  color: #ff0000;
+  color: $hated-color;
   margin-bottom: 18px;
   margin-top: 0;
 }
@@ -171,7 +171,7 @@ body::after {
 
 .bar_chart {
   color: #ffffff;
-  background-color: #ff0000;
+  background-color: $hated-color;
   height: 7px;
   margin-bottom: 7px;
 }
@@ -180,4 +180,5 @@ body::after {
   display: flex;
   flex-direction: row;
   margin-top: 120px;
+  margin-bottom: 111px;
 }

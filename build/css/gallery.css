@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 43px 48px 51px 48px; }
+  margin: 43px 48px 51px 48px;
+  margin-bottom: 98px; }
   #cubeContainer a.cube {
     width: 361px;
     height: 361px;

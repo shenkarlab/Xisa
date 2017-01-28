@@ -175,7 +175,8 @@ a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 43px 48px 51px 48px; }
+  margin: 43px 48px 51px 48px;
+  margin-bottom: 98px; }
   #cubeContainer a.cube {
     width: 361px;
     height: 361px;
@@ -316,7 +317,7 @@ body::after {
 
 #revertBlueMark {
   background-color: #0000ff;
-  color: #ffffff; }
+  color: #0000ff; }
 
 #markWord {
   color: #ff0000; }
@@ -382,7 +383,8 @@ body::after {
 #howContent {
   display: flex;
   flex-direction: row;
-  margin-top: 120px; }
+  margin-top: 120px;
+  margin-bottom: 111px; }
 
 .currentWord {
   color: #ff0000; }
