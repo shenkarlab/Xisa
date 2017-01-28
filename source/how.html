@@ -28,24 +28,7 @@
             <p class="barWordCount">{{bar.bad_words_count}} times</p>
         </section>
     </section>
-    <section id="bad_words">
-        <div class="TickerNews" ng-repeat="wrapper in wrappers track by $index" ng-attr-id="{{'text_move' + $index}}">
-            <div class="ti_wrapper">
-                <div class="ti_slide">
-                    <div class="ti_content">
-                        <div class="ti_news" ng-repeat="text in wrapper.texts" ng-attr-id="{{'ti_news' + $index}}"
-                             ng-mouseover="showPopup">
-									<span ng-repeat="word in text.words">
-										<a ng-if="shouldLink(word)" ng-href="{{word.route}}?name={{word.url}}">{{word.word}}&nbsp</a>
-										<span ng-if="!shouldLink(word)" ng-class="{currentWord: wordClass(text, word)}">{{word.word}}&nbsp</span>
-									</span>
-                            <a ng-href="https://twitter.com/intent/tweet?in_reply_to={{text.tweetId}}">Reply</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="bad_words"></section>
 </section>
 <section id="popup" stlye="visibility: hidden;">
     <img src="">

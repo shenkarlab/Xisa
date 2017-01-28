@@ -18,6 +18,26 @@ function getUrlParameter(param) {
     return res;
 }
 
+function setMovingTextClass(news, i){
+    $("#text_move"+(i+1)).hover(function(){
+        news[0].pauseTicker();
+        var content = $('#text_move'+(i+1)+' .ti_content').children('div');
+        angular.forEach(content, function(child){
+            angular.forEach($(child).children('.whatmark'), function(grandchild){
+                $(grandchild).hover(function(){
+                    $(this).removeClass('whatmark');
+                    $(this).addClass('redUnder');
+                }, function(){
+                    $(this).first().removeClass('redUnder');
+                    $(this).first().addClass('whatmark');
+                });
+            });
+        });
+    }, function(){
+        news[0].startTicker();
+    });
+}
+
 app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $http, $timeout) {
     $scope.selectFilter = 'CATEGORIES';
     $scope.categories = [
@@ -104,11 +124,10 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
         }, function (error) {
             $scope.isError = true;
         });
-
     };
 }]);
 
-app.controller('howCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $http, $compile) {
     $scope.isError = false;
     var lastName = getUrlParameter('name').split("%20");
     var array = [];
@@ -142,7 +161,7 @@ app.controller('howCtrl', ['$scope', '$http', function ($scope, $http) {
                 }
             });
             $scope.bars = [];
-            $scope.wrappers = [];
+            var i = 0;
             angular.forEach(response.data.words_with_tweets, function (data) {
                 if (data.texts == null) {
                     $scope.isError = true;
@@ -153,33 +172,37 @@ app.controller('howCtrl', ['$scope', '$http', function ($scope, $http) {
                         width: {'width': data.bad_words_count / maxLen * WIDTH_MULTIPLIER},
                         bad_words_count: data.bad_words_count
                     });
-                    var texts = [];
+                    var texts = "";
+                    texts += '<div class="TickerNews" id="text_move'+(i+1)+'"> <div class="ti_wrapper"> <div class="ti_slide"> <div class="ti_content"> ';
+                    var k = 0;
                     angular.forEach(data.texts, function (text) {
-                        var words = [];
+                        texts += '<div class="ti_news" id="ti_news'+(k+1)+'">';
                         text.tweet.split(" ").forEach(function (word) {
-                            var route = ($.inArray(word.substring(1), array) > -1) ? "/how" : "/what";
-                            words.push({
-                                word: word.toUpperCase(),
-                                url: word.substring(1),
-                                route: route
-                            });
+                            if(word == data.word){
+                                texts += '<span id="markWord">'+word.toUpperCase()+'&nbsp</span>';
+                            } else if(word.startsWith('@')) {
+                                var found = $.inArray(word, array) > -1;
+                                if(found){
+                                    texts += '<a href="/how?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                                }
+                                else{
+                                    texts += '<a href="/what?name='+word.substring(1)+'">'+word.toUpperCase()+'&nbsp</a>'
+                                }
+                            } else {
+                                texts += word.toUpperCase() + '&nbsp';
+                            }
                         });
-                        texts.push({
-                            tweet: text,
-                            word: data.word,
-                            tweetId: text.tweet_id,
-                            words: words
-                        });
+                        texts += '&nbsp&nbsp + &nbsp&nbsp</div> ';
+                        k++;
                     });
-                    $scope.wrappers.push({texts: texts});
+                    texts += '</div> </div> </div> </div>';
+                    var compiled = $compile(texts)($scope);
+                    $("#bad_words").append(compiled);
+                    var news = $("#text_move"+(i+1)).newsTicker();
+                    setMovingTextClass(news, i);
                 }
+                i++;
             });
-            $scope.shouldLink = function (word) {
-                return !!word.word.startsWith('@');
-            };
-            $scope.wordClass = function (text, word) {
-                return word.word.toUpperCase() === text.word.toUpperCase();
-            }
         }
     }, function (error) {
         $scope.isError = true;
