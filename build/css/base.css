@@ -33,7 +33,7 @@ header {
         font-weight: 300; }
       header ul li a.active {
         color: #ffffff;
-        font-weight: 900;
+        font-weight: bold;
         line-height: 1.25em; }
 
 #filter-btn {
