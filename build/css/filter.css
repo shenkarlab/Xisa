@@ -24,10 +24,12 @@
     font-weight: 900;
     color: #fff;
     margin-bottom: 33px;
-    cursor: pointer; }
+    cursor: pointer;
+    margin-right: 33px; }
     #filter li span {
       border-bottom: 3px solid #fff; }
   #filter .selected {
+    margin-right: 0;
     color: #ff0000; }
     #filter .selected span {
       border-bottom: 3px solid #ff0000; }

@@ -349,7 +349,7 @@ app.component('footer', {
 });
 
 app.controller('footerCtrl', ['$scope', function($scope){
-    $scope.studio = "OFFENSIVE";
+    $scope.studio = " OFFENSIVE";
     $scope.studioCont = " studio TLV 2017";
     $scope.sprd = 'SPRD if you hate'
 }]);
