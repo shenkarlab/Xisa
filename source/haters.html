@@ -30,8 +30,8 @@
         <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
            ng-style="{'background-image': 'url({{cube.image}})'}">
             <section>
-                <p><span id="hashtag" class="hater-bg">{{cube.name}}</span></p>
-                <p class="hater-followers"><span id="followers" class="hater-bg">{{cube.followers}} followers</span></p>
+                <p><span class="userName hater-bg">{{cube.name}}</span></p>
+                <p class="hater-followers"><span class="followers">{{cube.followers}} followers</span></p>
             </section>
         </a>
     </section>

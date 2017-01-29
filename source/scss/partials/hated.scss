@@ -1,4 +1,4 @@
-@import "colors";
+@import "../utils/colors";
 
 #how {
   width: 100vw;
@@ -70,13 +70,13 @@ body::after {
   margin-right: 48px;
 }
 
-#howCelebName {
+.howCelebName {
   font-size: 3.124em;
   font-weight: 900;
   color: $hated-color;
 }
 
-#twitterName {
+.twitterName {
   font-size: 1.562em;
   font-weight: 500;
 }
@@ -91,16 +91,6 @@ body::after {
 #mark {
   background-color: $hated-color;
   color: #ffffff;
-}
-
-#blueMark {
-  background-color: #ffffff;
-  color: $hater-color;
-}
-
-#revertBlueMark {
-  background-color: #0000ff;
-  color: $hater-color;
 }
 
 #markWord {
@@ -184,10 +174,11 @@ body::after {
   display: inline-block;
   width: 95px;
   height: 27px;
-  background: url('../images/tweet_red.png') no-repeat;
+  background: url('../../images/tweet_red.png') no-repeat;
   line-height: 100px;
   vertical-align: middle;
 }
+
 a.reply:hover{
   border: none;
 }

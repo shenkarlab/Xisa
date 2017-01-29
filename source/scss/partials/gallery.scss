@@ -1,4 +1,4 @@
-@import "colors";
+@import "../utils/colors";
 
 #cubeContainer {
   display: flex;
@@ -12,6 +12,17 @@
     height: 361px;
     display: block;
     background-size: cover;
+  }
+
+  a.cube:hover{
+    .celebName,.hashtag {
+      background-color: #fff;
+      color: $hated-color;
+    }
+    .userName{
+      background-color: #fff;
+      color: $hater-color;
+    }
   }
 
   span.hater-bg {
@@ -30,7 +41,7 @@
     text-align: center;
   }
 
-  #celebName {
+  .celebName {
     color: #ffffff;
     font-size: 1.255em;
     font-weight: 500;
@@ -41,7 +52,7 @@
     margin-top: 7px;
   }
 
-  #followers {
+  .followers {
     background-color: #fff;
     color: $hater-color;
     font-size: 1.255em;
@@ -49,7 +60,7 @@
     padding: 8px;
   }
 
-  #hashtag {
+  .hashtag, .userName {
     color: #fff;
     font-size: 3.124em;
     font-weight: 400;

@@ -1,0 +1,102 @@
+@import "../utils/colors";
+
+#hater {
+
+  width: 100vw;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+
+  .barBadWord{
+    color: $hater-color;
+  }
+  .bar_chart{
+    background-color: $hater-color;
+  }
+
+  .ti_news a:hover {
+    color: $hater-color;
+    border-bottom: 4px solid $hater-color;
+  }
+
+  .reply {
+    background: url('../../images/tweet_blue.png') no-repeat;
+  }
+
+  #markWord{
+    color: $hater-color;
+  }
+
+  .howCelebName {
+    color: $hater-color;
+  }
+
+  #followersCount {
+    font-size: 1.562em;
+    font-weight: 500;
+    margin-top: 29px;
+  }
+
+  #blueMark {
+    background-color: #ffffff;
+    color: $hater-color;
+    padding: 6px;
+  }
+
+  #revertBlueMark {
+    background-color: $hater-color;
+    color: #fff;
+  }
+  #pics{
+    ul {
+      display: flex;
+      flex-direction: row-reverse;
+      list-style: none;
+    }
+    li{
+      background-color: $hated-color;
+    }
+    a{
+      height: 72px;
+      width: 72px;
+      background-repeat:no-repeat;
+      background-size: cover;
+      display: flex;
+    }
+    a:hover{
+      opacity: 0.5;
+    }
+  }
+
+  #whatnames{
+    flex: 1;
+  }
+
+  #picText{
+    margin-bottom: 15px;
+    text-align: right;
+  }
+
+  #haterText{
+    flex: 2;
+    margin-right: 25px;
+    position: relative;
+    p{
+      font-weight: 300;
+      position: absolute;
+      bottom: 0;
+      font-size: 1.874em;
+    }
+  }
+
+  #hatedPeople{
+    margin-right: 48px;
+    flex: 1;
+    p{
+      font-size: 1.25em;
+      font-weight: 300;
+    }
+  }
+}
+

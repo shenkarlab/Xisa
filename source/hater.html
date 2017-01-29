@@ -13,20 +13,22 @@
 <section class="hater">
     <!--@include templates/navbar.html -->
 </section>
-<section id="whatHeader">
+<section id="howHeader">
     <section id="whatnames">
-        <p class="whatuserName">{{firstName}}</p>
-        <p class="whatuserName">{{lastName}}</p>
-        <p id="whattwitterName">{{twitterName}}</p>
-        <p id="whatfollowersCount"><span id="blueMark">{{followersCount}}</span></p>
+        <p class="howCelebName">{{firstName}}</p>
+        <p class="howCelebName">{{lastName}}</p>
+        <p class="twitterName">{{twitterName}}</p>
+        <p id="followersCount"><span id="blueMark">{{followersCount}}</span></p>
     </section>
-    <section id="whatText">
+    <section id="haterText">
         <p>{{numOfPeople}}<span id="revertBlueMark">{{badWordCount}}</span>{{also}}</p>
     </section>
     <section id="hatedPeople">
         <p id="picText"><span id="whatmark">{{picText}}</span></p>
         <section id="pics">
-            <a ng-mouseover="" ng-click="" ng-repeat="pic in pics" class="pics" ng-style="{'background-image': 'url(' + pic.image + ')'}"></a>
+            <ul>
+                <li ng-repeat="pic in pics"><a href={{pic.url}} ng-style="{'background-image': 'url(' + pic.image + ')'}"></a></li>
+            </ul>
         </section>
     </section>
     <div class="clear"></div>

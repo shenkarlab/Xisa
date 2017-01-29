@@ -25,7 +25,7 @@ var route = (req, res, next, page) => {
 };
 
 var localApi = (req, res, next, path) => {
-	fs.readFile(path, (err, json) => {
+	fs.readFile(clientRootPath + path, (err, json) => {
 		if (err) {
         	error(next, err.message, 500);
     	}
@@ -84,7 +84,7 @@ exports.whomPage = (req, res, next) => {
 
 exports.getCelebs = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './celebs.json'); 
+		localApi(req, res, next, '/data/celebs.json');
 	}
 	else{
 		api(req, res, next, apiPath + '/getCelebs');
@@ -93,7 +93,7 @@ exports.getCelebs = (req,res,next) => {
 
 exports.getCategoryCelebs = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './celebs.json'); 
+		localApi(req, res, next, '/data/celebs.json');
 	}
 	else{
 		api(req, res, next, apiPath + '/getCelebs/' + req.params.category);
@@ -102,7 +102,7 @@ exports.getCategoryCelebs = (req,res,next) => {
 
 exports.getCeleb = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './celeb.json'); 
+		localApi(req, res, next, '/data/celeb.json');
 	}
 	else{
 		api(req, res, next, apiPath + '/celeb/' + req.params.name + '/' + req.params.twitter_name);
@@ -111,7 +111,7 @@ exports.getCeleb = (req,res,next) => {
 
 exports.getCategoryCeleb = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './celeb.json'); 
+		localApi(req, res, next, '/data/celeb.json');
 	}
 	else{
 		api(req, res, next, apiPath + '/celeb/' + req.params.name + '/' + req.params.twitter_name + '/' + req.params.category);
@@ -120,16 +120,16 @@ exports.getCategoryCeleb = (req,res,next) => {
 
 exports.getUser = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './user.json'); 
+		localApi(req, res, next, '/data/user.json');
 	}
 	else{
-		api(req, res, next, apiPath + '/user/' + name);
+		api(req, res, next, apiPath + '/user/' + req.params.name);
 	}	
 };
 
 exports.getUsers = (req,res,next) => {
 	if(DEBUG){
-		localApi(req, res, next, './users.json'); 
+		localApi(req, res, next, '/data/users.json');
 	}
 	else{
 		api(req, res, next, apiPath + '/getUsers');
@@ -137,11 +137,11 @@ exports.getUsers = (req,res,next) => {
 };
 
 exports.getHated = (req,res,next) => {
-	getFile(req, res, next, 'topHated.txt');
+	getFile(req, res, next, clientRootPath + '/data/topHated.txt');
 };
 
 exports.saveHated = (req,res,next) => {
-	saveFile(req, res, next, 'topHated.txt');
+	saveFile(req, res, next, clientRootPath + '/data/topHated.txt');
 };
 
 

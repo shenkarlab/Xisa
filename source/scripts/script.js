@@ -50,15 +50,15 @@ function showPopup(i, tweetId, top){
 }
 
 app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $http, $timeout) {
-    $scope.selectFilter = 'CATEGORIES';
+    $scope.selectFilter = 'ALL';
     $scope.categories = [
+        {
+            name: 'ALL',
+            ref: 'characteristics'
+        },
         {
             name: 'BODY PARTS',
             ref: 'body-parts'
-        },
-        {
-            name: 'CHARACTERISTICS',
-            ref: 'characteristics'
         },
         {
             name: 'CRAZY/ILL',
@@ -158,14 +158,14 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
     }
     var request = decodeURIComponent('/api/celeb/' + lastName + '/' + twitter_name);
     $http.get(request).then(function (response) {
-        if (response.data == null) {
+        if (response.data == null || response.data.error != null) {
             $scope.isError = true;
         }
         else {
             $scope.celebImage = response.data.user_details.image;
             $scope.celebName = response.data.user_details.name.toUpperCase();
             $scope.twitterName = '@' + response.data.user_details.twitter_name;
-            $scope.numOfPeople = 'mean tweets were posted this week about ';
+            $scope.numOfPeople = response.data.total_bad_tweets + ' mean tweets were posted this week about ';
             $scope.badWord = response.data.mostUsedWord;
             $scope.also = 'Here are the most offensive ones.';
             var maxLen = 0;
@@ -229,14 +229,18 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
 
 app.controller('whatCtrl', function ($scope, $http, $compile) {
     $scope.isError = false;
-    var lastName = getUrlParameter('name').split("%20");
-    lastName = lastName[lastName.length - 1];
-    if (lastName == null) {
-        lastName = getUrlParameter('name');
-    }
-    var request = decodeURIComponent('/api/user/' + lastName);
+    var twitterName = getUrlParameter('name');
+    var request = decodeURIComponent('/api/user/' + twitterName);
+    var array = [];
+    $http.get('/local/hated').then(function (response) {
+        angular.forEach(response.data, function(data){
+            array.push(data.name);
+        });
+    },function (response) {
+        console.log('error getting hated array')
+    });
     $http.get(request).then(function (response) {
-        if (response.data == null) {
+        if (response.data == null || response.data.error != null) {
             $scope.isError = true;
         }
         else {
@@ -245,20 +249,21 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.lastName = (response.data.user_details.name.split(" ").length > 1) ? response.data.user_details.name.split(" ")[1].toUpperCase() : '';
             $scope.twitterName = '@' + response.data.user_details.screen_name;
             $scope.followersCount = response.data.user_details.followers_count + ' followers';
-            $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' said ';
-            $scope.picText =  $scope.twitterName + " doesn't like these people: ";
+            $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' used ';
             $scope.also = ' offensive words';
+            $scope.picText =  $scope.twitterName + " doesn't like these people: ";
             var badWordCount = 0;
             $scope.pics = [];
-            for (var j = 0; j < 5; j++) {
-                $scope.pics.push({
-                    image: response.data.images[j]
-                });
-            }
             var maxLen = 0;
+            angular.forEach(response.data.images, function(data){
+                $scope.pics.push({
+                    image: data.image,
+                    url: '/hater?name=' + data.twitter_name
+                });
+            });
             angular.forEach(response.data.words_with_tweets, function (data) {
-                if (maxLen < data.bad_words_count) {
-                    maxLen = data.bad_words_count;
+                if (maxLen < data.count) {
+                    maxLen = data.count;
                 }
             });
             $scope.bars = [];
@@ -269,11 +274,11 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                     $scope.isError = true;
                 }
                 else {
-                    badWordCount += data.bad_words_count;
+                    badWordCount += data.count;
                     $scope.bars.push({
                         word: data.word.toUpperCase(),
-                        width: {'width': data.bad_words_count / maxLen * WIDTH_MULTIPLIER},
-                        bad_words_count: data.bad_words_count
+                        width: {'width': data.count / maxLen * WIDTH_MULTIPLIER},
+                        bad_words_count: data.count
                     });
                     var texts = '<div class="TickerNews" id="text_move' + (i + 1) + '"><div class="ti_wrapper"><div class="ti_slide"><div class="ti_content" id="ti_content' + (i + 1) + '"></div></div></div></div>';
                     var compiled = $compile(texts)($scope);
@@ -300,7 +305,8 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                         innerTexts += '&nbsp&nbsp <a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=' + text.tweet_id + '"></a> &nbsp&nbsp </div>';
                         var compiled = $compile(innerTexts)($scope);
                         $("#ti_content" + (i + 1)).append(compiled);
-                        showPopup(k, text.tweet_id);
+                        var elemLoaction = $("#ti_content" + (i + 1)).offset();
+                        showPopup(k, text.tweet_id, elemLoaction.top - 110);
                         k++;
                     });
                     var news = $("#text_move"+(i+1)).newsTicker();
@@ -325,7 +331,7 @@ app.controller('whomCtrl', function ($scope, $http) {
         angular.forEach(response.data, function (data) {
             $scope.cubes.push({
                 name: data.twitter_name.substring(0, 10),
-                url: '/hater?name=' + data.name,
+                url: '/hater?name=' + data.twitter_name,
                 image: data.image,
                 followers: data.followers_count
             });

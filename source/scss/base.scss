@@ -1,5 +1,5 @@
-@import "colors";
-@import "fonts";
+@import "utils/colors";
+@import "utils/fonts";
 @import "partials/navbar";
 @import "partials/filterbtn";
 @import "partials/footer";
@@ -70,6 +70,9 @@ a {
   flex-direction: row;
 }
 
+.currentWord {
+  color: $hated-color;
+}
 
 
 

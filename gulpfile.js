@@ -3,7 +3,6 @@
 var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
-    minify = require('gulp-minify'),
     sass = require('gulp-sass'),
     htmlclean = require('gulp-htmlclean'),
     preprocess = require('gulp-preprocess'),
@@ -46,6 +45,10 @@ var devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() != 
         in: source + 'scripts/*.*',
         watch: [source + 'scripts/*'],
         out: dest + 'scripts/'
+    },
+    data = {
+        in: source + 'data/*.*',
+        out: dest + 'data/'
     };
 
 //images task
@@ -64,14 +67,6 @@ gulp.task('html', function () {
         .pipe(gulp.dest(html.out));
 });
 
-//build TEMPLATE files
-gulp.task('templates', function () {
-    return gulp.src(templates.in)
-        .pipe(preprocess({context: html.context}))
-        .pipe(htmlclean())
-        .pipe(gulp.dest(html.out));
-});
-
 //build css files
 gulp.task('sass', function () {
     return gulp.src(css.in)
@@ -82,20 +77,19 @@ gulp.task('sass', function () {
 //build js files
 gulp.task('js', function () {
     return gulp.src(js.in)
-    // .pipe(minify({
-    //     ignoreFiles: [
-    //     '*.min.js'
-    //     ]
-    // }))
         .pipe(gulp.dest(js.out));
 });
 
+gulp.task('data', function () {
+    return gulp.src(data.in)
+        .pipe(gulp.dest(data.out));
+});
+
 //default task
-gulp.task('default', ['html', 'templates', 'sass', 'js', 'images'], function () {
+gulp.task('default', ['html', 'sass', 'js', 'images', 'data'], function () {
 
     //html changes
     gulp.watch(html.watch, ['html']);
-    gulp.watch(html.watch, ['templates']);
 
     //sass changes
     gulp.watch(css.watch, ['sass']);
@@ -105,4 +99,7 @@ gulp.task('default', ['html', 'templates', 'sass', 'js', 'images'], function () 
 
     //images changes
     gulp.watch(images.in, ['images']);
+
+    //static data changes
+    gulp.watch(data.in, ['data']);
 });

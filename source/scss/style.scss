@@ -1,10 +1,6 @@
 @import "base";
-@import "filter";
-@import "gallery";
-@import "search";
-@import "hated";
-@import "hater";
-
-.currentWord {
-  color: $hated-color;
-}
+@import "partials/filter";
+@import "partials/gallery";
+@import "partials/search";
+@import "partials/hated";
+@import "partials/hater";
