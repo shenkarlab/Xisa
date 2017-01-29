@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+<head>
+    <title>HateSpread</title>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/jquery.tickerNews.min.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <script src="scripts/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="whatCtrl" id="hater" ng-style="{'background-image': 'url(' + celebImage + ')'}">
+<section class="hater">
+    <!--@include templates/navbar.html -->
+</section>
+<section id="howHeader">
+    <section id="whatnames">
+        <p class="howCelebName">{{firstName}}</p>
+        <p class="howCelebName">{{lastName}}</p>
+        <p class="twitterName">{{twitterName}}</p>
+        <p id="followersCount"><span id="blueMark">{{followersCount}}</span></p>
+    </section>
+    <section id="haterText">
+        <p>{{numOfPeople}}<span id="revertBlueMark">{{badWordCount}}</span>{{also}}</p>
+    </section>
+    <section id="hatedPeople">
+        <p id="picText"><span id="whatmark">{{picText}}</span></p>
+        <section id="pics">
+            <ul>
+                <li ng-repeat="pic in pics"><a href={{pic.url}} ng-style="{'background-image': 'url(' + pic.image + ')'}"></a></li>
+            </ul>
+        </section>
+    </section>
+    <div class="clear"></div>
+</section>
+<section id="howContent">
+    <section id="bars">
+        <section class="bar" ng-repeat="bar in bars">
+            <p class="barBadWord">{{bar.word}}</p>
+            <div class="bar_chart" ng-style={{bar.width}}></div>
+            <p class="barWordCount">{{bar.bad_words_count}} times</p>
+        </section>
+    </section>
+    <section id="bad_words"></section>
+</section>
+<section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
+<!--@include templates/footer.html -->
+<!-- @include templates/popup.html -->
+</body>
+</html>

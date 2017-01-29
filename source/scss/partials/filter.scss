@@ -1,0 +1,72 @@
+@import "../utils/colors";
+
+#filter {
+  background: $app-background-color;
+  opacity: 0.9;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  header {
+    display: flex;
+  }
+
+  .logo {
+    background: url('../../images/redLOGO.png') no-repeat;
+    width: 190px;
+    height: 73px;
+    margin-left: 48px;
+    margin-top: 59px;
+  }
+
+  ul {
+    list-style: none;
+    margin-right: 48px;
+    margin-top: 32px;
+  }
+
+  li {
+    font-size: 3.124em;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 33px;
+    cursor: pointer;
+    margin-right: 33px;
+
+    span {
+      border-bottom: 3px solid #fff;
+    }
+  }
+
+  .selected {
+    margin-right: 0;
+    color: $hated-color;
+
+    span {
+      border-bottom: 3px solid $hated-color;
+    }
+
+    img {
+      margin-left: 15px;
+      line-height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .searchBar {
+    margin-top: 38px;
+
+    input {
+      opacity: 1;
+    }
+  }
+
+}
+
+
+
+
+

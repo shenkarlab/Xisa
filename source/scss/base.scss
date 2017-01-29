@@ -1,0 +1,83 @@
+@import "utils/colors";
+@import "utils/fonts";
+@import "partials/navbar";
+@import "partials/filterbtn";
+@import "partials/footer";
+@import "partials/popup";
+
+header, nav, section, p, a, li, ul, h1, h2, button {
+  margin: 0;
+  padding: 0;
+  font-size: $base-font-size;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  font-family: $font-stack;
+  color: $text-color;
+  background: $app-background-color;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4.374em;
+  font-weight: 300;
+  color: #fff;
+  margin-left: 48px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hated-text {
+  color: $hated-color;
+  font-weight: 900;
+}
+
+.hater-text {
+  color: $hater-color;
+  font-weight: 900;
+}
+
+.hated a#logo{
+  background: url('../images/redLOGO.png') no-repeat;
+}
+
+.hater a#logo{
+  background: url('../images/blueLOGO.png') no-repeat;
+}
+
+#title {
+  flex: 1;
+}
+
+#title p {
+  margin-left: 48px;
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 1.563em;
+}
+
+#topbar {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+}
+
+.currentWord {
+  color: $hated-color;
+}
+
+
+
+
+
+
+
+

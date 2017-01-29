@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+<head>
+    <title>HateSpread</title>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/script.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="whoCtrl" id="who">
+<section class="hated">
+    <!--@include templates/navbar.html -->
+</section>
+<section id="content">
+    <div id="topbar">
+        <section id="title">
+            <h1><span class="hated-text">{{ mostHated }}</span> {{ people }}</h1>
+            <p>{{past}}</p>
+        </section>
+        <div id="filter-btn" ng-click="hideOptions = !hideOptions">
+            <span>{{ selectFilter }}<img src="images/categories.png" alt="categoriesArrow"></span>
+        </div>
+    </div>
+    <section id="cubeContainer">
+        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
+           ng-style="{'background-image': 'url({{cube.image}})'}">
+            <section>
+                <p><span class="hashtag hated-bg">{{cube.word}}</span></p>
+                <p><span class="celebName hated-bg">{{cube.name}}</span></p>
+            </section>
+        </a>
+    </section>
+</section>
+<section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
+<!--@include templates/footer.html -->
+<section id="filter" ng-show="hideOptions">
+    <header>
+        <a class="logo hated" href="#" title="logo" ng-click="hideOptions = !hideOptions"></a>
+    </header>
+    <ul>
+        <li class="selected">
+            <span>{{selectFilter}}<img src="images/categories.png" alt="categoriesArrow"></span>
+        </li>
+        <li ng-repeat="category in categories" ng-click="getCelebs(category)"><span>{{category.name}}</span>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

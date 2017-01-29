@@ -1,0 +1,54 @@
+<html ng-app="xisa">
+<head>
+    <title>HateSpread</title>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/script.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.iconmonstr.com/1.1.0/css/iconmonstr-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="whomCtrl" id="who">
+<section class="hater">
+    <!--@include templates/navbar.html -->
+</section>
+<section id="content">
+    <div id="topbar">
+        <section id="title">
+            <h1><span class="hater-text">{{ mostHating }}</span> {{ users }}</h1>
+            <p>{{past}}</p>
+        </section>
+        <section class="searchBar">
+            <form action="/what" method="get" class="filter-btn">
+                <input type="text" name="name" placeholder="TYPE ANY USERNAME" ng-focus="hideOptions = !hideOptions" autocomplete="off">
+                <!--<img class="searchIcon" src="images/search.png" alt="search" title="search">-->
+                <i class="im im-magnifier"></i>
+            </form>
+        </section>
+    </div>
+    <section id="cubeContainer">
+        <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
+           ng-style="{'background-image': 'url({{cube.image}})'}">
+            <section>
+                <p><span class="userName hater-bg">{{cube.name}}</span></p>
+                <p class="hater-followers"><span class="followers">{{cube.followers}} followers</span></p>
+            </section>
+        </a>
+    </section>
+</section>
+<section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
+<!--@include templates/footer.html -->
+<section id="filter" ng-show="hideOptions">
+    <header id="search">
+        <a class="logo hater" href="#" title="logo" ng-click="hideOptions = !hideOptions"></a>
+    </header>
+    <section class="searchBar">
+        <form action="/hater" method="get" class="filter-btn">
+            <input type="text" name="name" placeholder="TYPE ANY USERNAME" autocomplete="off">
+            <i class="im im-magnifier"></i>
+            <!--<img class="searchIcon" src="images/search.png" alt="search" title="search">-->
+        </form>
+    </section>
+</section>
+</body>
+</html>

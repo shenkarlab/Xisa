@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="xisa">
+<head>
+    <title>HateSpread</title>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/jquery.tickerNews.min.js"></script>
+    <script src="scripts/script.js"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="howCtrl" id="how" ng-style="{'background-image': 'url(' + celebImage + ')'}">
+<section class="hated">
+    <!--@include templates/navbar.html -->
+</section>
+<section id="howHeader">
+    <section id="names">
+        <p class="howCelebName">{{celebName}}</p>
+        <p class="twitterName">{{twitterName}}</p>
+    </section>
+    <section id="howText">
+        <p>{{numOfPeople}}<span id="mark">{{celebName}}</span></p>
+        <p>{{also}}</p>
+    </section>
+</section>
+<section id="howContent">
+    <section id="bars">
+        <section class="bar" ng-repeat="bar in bars">
+            <p class="barBadWord">{{bar.word}}</p>
+            <div class="bar_chart" ng-style={{bar.width}}></div>
+            <p class="barWordCount">{{bar.bad_words_count}} times</p>
+        </section>
+    </section>
+    <section id="bad_words"></section>
+</section>
+<section class="error" ng-show="{{isError}}">{{errorMsg}}</section>
+<!--@include templates/footer.html -->
+<!-- @include templates/popup.html -->
+</body>
+</html>

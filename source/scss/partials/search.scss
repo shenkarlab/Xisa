@@ -1,0 +1,42 @@
+@import "../utils/colors";
+@import "../utils/fonts";
+
+.searchBar {
+  margin-right: 48px;
+  margin-top: 6px;
+
+  form {
+    border-bottom: 1px solid $hater-color;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+}
+
+#search {
+  .logo {
+    background: url('../../images/blueLOGO.png') no-repeat;
+    width: 190px;
+    height: 73px;
+    margin-left: 48px;
+    margin-top: 59px;
+  }
+}
+
+.searchBar input {
+  font-size: 3.124em;
+  color: #fff;
+  opacity: 0.3;
+  background-color: $app-background-color;
+  font-weight: 900;
+  border: none;
+  outline: none;
+  text-align: left;
+}
+
+.im-magnifier {
+  font-size: 2.5em;
+  color: $hater-color;
+}
+
+

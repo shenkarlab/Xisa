@@ -1,0 +1,72 @@
+@import "../utils/colors";
+
+#cubeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 43px 48px 51px 48px;
+  margin-bottom: 98px;
+
+  a.cube {
+    width: 361px;
+    height: 361px;
+    display: block;
+    background-size: cover;
+  }
+
+  a.cube:hover{
+    .celebName,.hashtag {
+      background-color: #fff;
+      color: $hated-color;
+    }
+    .userName{
+      background-color: #fff;
+      color: $hater-color;
+    }
+  }
+
+  span.hater-bg {
+    background-color: $hater-color;
+  }
+
+  span.hated-bg {
+    background-color: $hated-color;
+  }
+
+  section {
+    margin-top: 134px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .celebName {
+    color: #ffffff;
+    font-size: 1.255em;
+    font-weight: 500;
+    padding: 1px 8px 8px 8px;
+  }
+
+  .hater-followers {
+    margin-top: 7px;
+  }
+
+  .followers {
+    background-color: #fff;
+    color: $hater-color;
+    font-size: 1.255em;
+    font-weight: 500;
+    padding: 8px;
+  }
+
+  .hashtag, .userName {
+    color: #fff;
+    font-size: 3.124em;
+    font-weight: 400;
+    padding: 8px 8px 0 8px;
+  }
+}
+
+
+
