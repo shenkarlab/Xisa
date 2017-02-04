@@ -319,6 +319,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             });
             $scope.badWordCount = badWordCount;
         }
+        $('.sk-circle').css('display', 'none');
     }, function (error) {
         $scope.isError = true;
     });
@@ -339,6 +340,7 @@ app.controller('whomCtrl', function ($scope, $http) {
                 followers: data.followers_count
             });
         });
+        $('.sk-circle').css('display', 'none');
     }, function (error) {
         $scope.isError = true;
     });
