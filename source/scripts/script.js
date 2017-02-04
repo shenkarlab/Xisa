@@ -215,7 +215,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                         var compiled = $compile(innerTexts)($scope);
                         $("#ti_content" + (i + 1)).append(compiled);
                         var elemLoaction = $("#ti_content" + (i + 1)).offset();
-                        showPopup(k, text.tweet_id, elemLoaction.top);
+                        showPopup(k, text.tweet_id, elemLoaction.top - 340);
                         k++;
                     });
                     var news = $("#text_move"+(i+1)).newsTicker();
@@ -258,6 +258,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             var badWordCount = 0;
             $scope.pics = [];
             var maxLen = 0;
+            var length = response.data.images.length;
             angular.forEach(response.data.images, function(data){
                 $scope.pics.push({
                     image: data.image,
@@ -309,7 +310,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
                         var compiled = $compile(innerTexts)($scope);
                         $("#ti_content" + (i + 1)).append(compiled);
                         var elemLoaction = $("#ti_content" + (i + 1)).offset();
-                        showPopup(k, text.tweet_id, elemLoaction.top - 110);
+                        showPopup(k, text.tweet_id, elemLoaction.top - (380 + length * 10));
                         k++;
                     });
                     var news = $("#text_move"+(i+1)).newsTicker();
