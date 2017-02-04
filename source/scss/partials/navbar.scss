@@ -28,7 +28,8 @@ header {
       margin-left: 31px;
 
       a {
-        color: $text-color;
+        color: #ffffff;
+        opacity: 0.5;
         font-size: 1.25em;
         line-height: 1.25em;
         font-weight: 300;
@@ -36,6 +37,7 @@ header {
 
       a.active {
         color: #ffffff;
+        opacity: 1;
         font-weight: bold;
         line-height: 1.25em;
       }

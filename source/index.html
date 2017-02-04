@@ -22,6 +22,7 @@
             <span>{{ selectFilter }}<img src="images/categories.png" alt="categoriesArrow"></span>
         </div>
     </div>
+    <!-- @include templates/spinner.html -->
     <section id="cubeContainer">
         <a class="cube" href='{{cube.url}}' ng-repeat="cube in cubes"
            ng-style="{'background-image': 'url({{cube.image}})'}">

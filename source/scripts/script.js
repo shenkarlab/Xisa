@@ -107,6 +107,7 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
         },function (response) {
             console.log('error saving file');
         });
+        $('.sk-circle').css('display', 'none');
     }, function (error) {
         $scope.isError = true;
     });
@@ -134,6 +135,7 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
                     console.log('error saving file');
                 });
             });
+            $('.sk-circle').css('display', 'none');
         }, function (error) {
             $scope.isError = true;
         });
@@ -222,6 +224,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                 i++;
             });
         }
+        $('.sk-circle').css('display', 'none');
     }, function (error) {
         $scope.isError = true;
     });
@@ -251,7 +254,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.followersCount = response.data.user_details.followers_count + ' followers';
             $scope.numOfPeople = 'This week, ' + $scope.twitterName + ' used ';
             $scope.also = ' offensive words';
-            $scope.picText =  $scope.twitterName + " doesn't like these people: ";
+            $scope.picText =  $scope.twitterName + " mentioned these people: ";
             var badWordCount = 0;
             $scope.pics = [];
             var maxLen = 0;

@@ -20,8 +20,12 @@
     border-bottom: 4px solid $hater-color;
   }
 
-  .reply {
+  a.reply {
     background: url('../../images/tweet_blue.png') no-repeat;
+  }
+
+  a.reply:hover {
+    border: none;
   }
 
   #markWord{
