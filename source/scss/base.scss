@@ -20,7 +20,7 @@ body {
   margin: 0;
   position: relative;
   font-family: $font-stack;
-  color: $text-color;
+  color: #fff;
   background: $app-background-color;
   overflow-x: hidden;
 }
@@ -63,6 +63,7 @@ a {
   margin-top: 15px;
   font-weight: 400;
   font-size: 1.563em;
+  opacity: 0.5;
 }
 
 #topbar {
