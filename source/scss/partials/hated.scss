@@ -61,12 +61,15 @@ body::after {
 
 #names p {
   margin: 0;
+  max-width: 360px;
+  margin-right: 75px;
 }
 
 #howText p {
   color: #fff;
   font-weight: 300;
-  font-size: 1.874em;
+  font-size: 0.874em;
+  opacity: 0.7;
   margin-right: 48px;
 }
 

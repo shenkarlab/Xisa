@@ -219,7 +219,7 @@ app.controller('howCtrl', ['$scope', '$http', '$compile', function ($scope, $htt
                         var compiled = $compile(innerTexts)($scope);
                         $("#ti_content" + (i + 1)).append(compiled);
                         var elemLoaction = $("#ti_content" + (i + 1)).offset();
-                        showPopup(k, text.tweet_id, elemLoaction.top - 340);
+                        showPopup(k, text.tweet_id, elemLoaction.top - 400);
                         k++;
                     });
                     var news = $("#text_move"+(i+1)).newsTicker();
