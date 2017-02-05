@@ -54,6 +54,10 @@ app.controller('whoCtrl', ['$scope', '$http', '$timeout',  function ($scope, $ht
     $scope.categories = [
         {
             name: 'ALL',
+            ref: 'default'
+        },
+        {
+            name: 'CHARACTERISTICS',
             ref: 'characteristics'
         },
         {
@@ -321,6 +325,7 @@ app.controller('whatCtrl', function ($scope, $http, $compile) {
             $scope.badWordCount = badWordCount;
         }
         $('.sk-circle').css('display', 'none');
+        $('#blueMark').css('padding', '6px');
     }, function (error) {
         $scope.isError = true;
     });
